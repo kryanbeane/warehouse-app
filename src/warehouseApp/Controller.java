@@ -97,6 +97,6 @@ public class Controller {
     }
 
     public void reset() {
-        Main.floorList.clearAll();
+        Main.floorList.clearList();
     }
 }

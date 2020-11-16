@@ -2,7 +2,7 @@ package warehouseApp;
 
 import java.util.Iterator;
 
-public class MyList<F> implements Iterable{
+public class MyList<F> implements Iterable<F> {
 
     public Node<F> head=null, tail=null;
 
@@ -28,13 +28,13 @@ public class MyList<F> implements Iterable{
         return fullList;
     }
 
-    public void clearAll() {
+    public void clearList() {
         head=null;
     }
 
     @Override
     public Iterator<F> iterator() {
-        return new myIterator<F>(head);
+        return new listIterator<F>(head);
     }
 
 }
