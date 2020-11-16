@@ -1,0 +1,480 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="450" minWidth="600" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="warehouseApp.Controller">
+   <children>
+      <TabPane prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <tabs>
+            <Tab text="MAIN">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <BorderPane prefHeight="423.0" prefWidth="600.0">
+                           <center>
+                              <VBox prefHeight="421.0" prefWidth="268.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <Button mnemonicParsing="false" onAction="#viewAll" prefHeight="25.0" prefWidth="73.0" text="VIEW ALL">
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" left="15.0" right="15.0" top="15.0" />
+                                       </VBox.margin></Button>
+                                    <Button layoutX="25.0" layoutY="25.0" mnemonicParsing="false" onAction="#reset" prefHeight="25.0" prefWidth="73.0" text="RESET">
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" left="15.0" right="15.0" top="5.0" />
+                                       </VBox.margin>
+                                    </Button>
+                                 </children></VBox>
+                           </center>
+                        </BorderPane>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+          <Tab text="FLOOR">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <BorderPane prefHeight="423.0" prefWidth="600.0">
+                           <left>
+                              <VBox prefHeight="360.0" prefWidth="166.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <Label alignment="CENTER" blendMode="MULTIPLY" prefHeight="21.0" prefWidth="211.0" text="Add Floor">
+                                       <font>
+                                          <Font name="System Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <Label prefHeight="17.0" prefWidth="208.0" text="Floor Number">
+                                       <VBox.margin>
+                                          <Insets left="7.0" />
+                                       </VBox.margin></Label>
+                                    <TextField fx:id="textFNum">
+                                       <VBox.margin>
+                                          <Insets left="5.0" right="5.0" />
+                                       </VBox.margin></TextField>
+                                    <Label layoutX="10.0" layoutY="31.0" prefHeight="17.0" prefWidth="208.0" text="Security Level">
+                                       <VBox.margin>
+                                          <Insets left="7.0" />
+                                       </VBox.margin></Label>
+                                    <Label text="(HIGH, MEDIUM or LOW)">
+                                       <VBox.margin>
+                                          <Insets bottom="1.0" left="7.0" />
+                                       </VBox.margin>
+                                       <font>
+                                          <Font name="System Italic" size="10.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="textSecLvl">
+                                       <VBox.margin>
+                                          <Insets left="5.0" right="5.0" />
+                                       </VBox.margin></TextField>
+                                    <Label layoutX="10.0" layoutY="31.0" prefHeight="17.0" prefWidth="208.0" text="Floor Temperature">
+                                       <VBox.margin>
+                                          <Insets left="7.0" />
+                                       </VBox.margin></Label>
+                                    <TextField fx:id="textFTemp">
+                                       <VBox.margin>
+                                          <Insets left="5.0" right="5.0" />
+                                       </VBox.margin></TextField>
+                                    <Button mnemonicParsing="false" onAction="#addFloor" text="ADD">
+                                       <VBox.margin>
+                                          <Insets left="5.0" top="5.0" />
+                                       </VBox.margin>
+                                    </Button>
+                                 </children>
+                              </VBox>
+                           </left>
+                           <center>
+                              <VBox prefHeight="421.0" prefWidth="268.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <Label alignment="CENTER" prefHeight="19.0" prefWidth="431.0" text="Floor List">
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </VBox.margin>
+                                       <font>
+                                          <Font name="System Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <TextArea editable="false" prefHeight="389.0" prefWidth="268.0">
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" left="5.0" right="10.0" top="5.0" />
+                                       </VBox.margin></TextArea>
+                                    <Button alignment="CENTER" mnemonicParsing="false" onAction="#displayFloors" prefHeight="25.0" prefWidth="104.0" text="VIEW CONTENT">
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </VBox.margin>
+                                    </Button>
+                                 </children>
+                              </VBox>
+                           </center>
+                        </BorderPane>
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="AISLE">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <BorderPane prefHeight="420.0" prefWidth="600.0">
+                           <left>
+                              <VBox prefHeight="378.0" prefWidth="166.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <Label alignment="CENTER" blendMode="MULTIPLY" prefHeight="21.0" prefWidth="211.0" text="Add Aisle">
+                                       <font>
+                                          <Font name="System Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="17.0" layoutY="56.0" prefHeight="17.0" prefWidth="208.0" text="Floor Number">
+                                       <VBox.margin>
+                                          <Insets left="7.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <TextField layoutX="15.0" layoutY="48.0">
+                                       <VBox.margin>
+                                          <Insets left="5.0" right="5.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                    <Label prefHeight="17.0" prefWidth="208.0" text="Aisle ID">
+                                       <VBox.margin>
+                                          <Insets left="7.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <TextField fx:id="textAID">
+                                       <VBox.margin>
+                                          <Insets left="5.0" right="5.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                    <Label layoutX="10.0" layoutY="31.0" prefHeight="17.0" prefWidth="208.0" text="Aisle Width">
+                                       <VBox.margin>
+                                          <Insets left="7.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <TextField fx:id="textAisleW">
+                                       <VBox.margin>
+                                          <Insets left="5.0" right="5.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                    <Label layoutX="10.0" layoutY="31.0" prefHeight="17.0" prefWidth="208.0" text="Aisle Depth">
+                                       <VBox.margin>
+                                          <Insets left="7.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <TextField fx:id="textAisleD">
+                                       <VBox.margin>
+                                          <Insets left="5.0" right="5.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                    <Button mnemonicParsing="false" onAction="#addAisle" text="ADD">
+                                       <VBox.margin>
+                                          <Insets left="5.0" top="5.0" />
+                                       </VBox.margin>
+                                    </Button>
+                                 </children>
+                              </VBox>
+                           </left>
+                           <center>
+                              <VBox prefHeight="404.0" prefWidth="434.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <Label alignment="CENTER" prefHeight="19.0" prefWidth="441.0" text="Aisle List">
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </VBox.margin>
+                                       <font>
+                                          <Font name="System Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField editable="false" prefHeight="395.0" prefWidth="419.0">
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" left="5.0" right="10.0" top="5.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                    <Button alignment="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="114.0" text="VIEW CONTENT">
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </VBox.margin>
+                                    </Button>
+                                 </children>
+                              </VBox>
+                           </center>
+                        </BorderPane>
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="SHELF">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <BorderPane prefHeight="420.0" prefWidth="600.0">
+                           <left>
+                              <VBox prefHeight="454.0" prefWidth="166.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <Label alignment="CENTER" blendMode="MULTIPLY" prefHeight="21.0" prefWidth="211.0" text="Add Shelf">
+                                       <font>
+                                          <Font name="System Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="17.0" layoutY="31.0" prefHeight="17.0" prefWidth="217.0" text="Aisle ID">
+                                       <VBox.margin>
+                                          <Insets left="7.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <TextField layoutX="15.0" layoutY="48.0">
+                                       <VBox.margin>
+                                          <Insets left="5.0" right="5.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                    <Label prefHeight="17.0" prefWidth="208.0" text="Shelf Number">
+                                       <VBox.margin>
+                                          <Insets left="7.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <TextField fx:id="textSNum">
+                                       <VBox.margin>
+                                          <Insets left="5.0" right="5.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                    <Button mnemonicParsing="false" onAction="#addShelf" text="ADD">
+                                       <VBox.margin>
+                                          <Insets left="5.0" top="5.0" />
+                                       </VBox.margin>
+                                    </Button>
+                                 </children>
+                              </VBox>
+                           </left>
+                           <center>
+                              <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <Label alignment="CENTER" prefHeight="17.0" prefWidth="298.0" text="Shelf List">
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </VBox.margin>
+                                       <font>
+                                          <Font name="System Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField editable="false" prefHeight="358.0" prefWidth="419.0">
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" left="5.0" right="10.0" top="5.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                    <Button alignment="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="109.0" text="VIEW CONTENT">
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </VBox.margin>
+                                    </Button>
+                                 </children>
+                              </VBox>
+                           </center>
+                        </BorderPane>
+                     </children></AnchorPane>
+              </content>
+            </Tab>
+            <Tab text="PALLET">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <BorderPane prefHeight="422.0" prefWidth="600.0">
+                           <left>
+                              <VBox prefHeight="378.0" prefWidth="166.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <Label alignment="CENTER" blendMode="MULTIPLY" prefHeight="21.0" prefWidth="211.0" text="Add Pallet">
+                                       <font>
+                                          <Font name="System Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="17.0" layoutY="31.0" prefHeight="17.0" prefWidth="208.0" text="Shelf Number">
+                                       <VBox.margin>
+                                          <Insets left="7.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <TextField layoutX="15.0" layoutY="48.0">
+                                       <VBox.margin>
+                                          <Insets left="5.0" right="5.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                    <Label prefHeight="17.0" prefWidth="208.0" text="Product Description">
+                                       <VBox.margin>
+                                          <Insets left="7.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <TextField fx:id="textProDesc">
+                                       <VBox.margin>
+                                          <Insets left="5.0" right="5.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                    <Label layoutX="10.0" layoutY="31.0" prefHeight="17.0" prefWidth="208.0" text="Product Quantity">
+                                       <VBox.margin>
+                                          <Insets left="7.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <TextField fx:id="textProQuantity">
+                                       <VBox.margin>
+                                          <Insets left="5.0" right="5.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                    <Label layoutX="10.0" layoutY="31.0" prefHeight="17.0" prefWidth="208.0" text="Minimum Storage Temp">
+                                       <VBox.margin>
+                                          <Insets left="7.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <TextField fx:id="textMinStoreTemp">
+                                       <VBox.margin>
+                                          <Insets left="5.0" right="5.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                    <Label layoutX="17.0" layoutY="115.0" prefHeight="17.0" prefWidth="208.0" text="Maximum Storage Temp">
+                                       <VBox.margin>
+                                          <Insets left="7.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <TextField fx:id="textMaxStoreTemp" layoutX="15.0" layoutY="132.0">
+                                       <VBox.margin>
+                                          <Insets left="5.0" right="5.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                    <Label layoutX="17.0" layoutY="115.0" prefHeight="17.0" prefWidth="208.0" text="Pallet Position (Width)">
+                                       <VBox.margin>
+                                          <Insets left="7.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <TextField fx:id="textPalPosW" layoutX="15.0" layoutY="132.0">
+                                       <VBox.margin>
+                                          <Insets left="5.0" right="5.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                    <Label layoutX="17.0" layoutY="115.0" prefHeight="17.0" prefWidth="208.0" text="Pallet Position (Depth)">
+                                       <VBox.margin>
+                                          <Insets left="7.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <TextField fx:id="textPalPosD" layoutX="15.0" layoutY="132.0">
+                                       <VBox.margin>
+                                          <Insets left="5.0" right="5.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                    <Button mnemonicParsing="false" onAction="#addPallet" text="ADD">
+                                       <VBox.margin>
+                                          <Insets left="5.0" top="5.0" />
+                                       </VBox.margin>
+                                    </Button>
+                                 </children>
+                              </VBox>
+                           </left>
+                           <right>
+                              <VBox prefHeight="378.0" prefWidth="166.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <Label alignment="CENTER" blendMode="MULTIPLY" prefHeight="21.0" prefWidth="211.0" text="Delete Pallet">
+                                       <font>
+                                          <Font name="System Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <Label prefHeight="17.0" prefWidth="208.0" text="Shelf Number">
+                                       <VBox.margin>
+                                          <Insets left="7.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <TextField>
+                                       <VBox.margin>
+                                          <Insets left="5.0" right="5.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                    <Label prefHeight="17.0" prefWidth="208.0" text="Pallet Position (Width)">
+                                       <VBox.margin>
+                                          <Insets left="7.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <TextField>
+                                       <VBox.margin>
+                                          <Insets left="5.0" right="5.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                    <Label layoutX="17.0" layoutY="31.0" prefHeight="17.0" prefWidth="208.0" text="Pallet Position (Depth)">
+                                       <VBox.margin>
+                                          <Insets left="7.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <TextField layoutX="15.0" layoutY="48.0">
+                                       <VBox.margin>
+                                          <Insets left="5.0" right="5.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                    <Button mnemonicParsing="false" text="DELETE">
+                                       <VBox.margin>
+                                          <Insets left="5.0" top="5.0" />
+                                       </VBox.margin>
+                                    </Button>
+                                 </children>
+                              </VBox>
+                           </right>
+                           <center>
+                              <VBox prefHeight="430.0" prefWidth="268.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <Label alignment="CENTER" prefHeight="17.0" prefWidth="298.0" text="Pallet List">
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </VBox.margin>
+                                       <font>
+                                          <Font name="System Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField editable="false" prefHeight="344.0" prefWidth="258.0">
+                                       <VBox.margin>
+                                          <Insets left="5.0" right="5.0" top="10.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                    <Button alignment="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="114.0" text="VIEW CONTENT">
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </VBox.margin>
+                                    </Button>
+                                 </children>
+                              </VBox>
+                           </center>
+                        </BorderPane>
+                     </children></AnchorPane>
+              </content>
+            </Tab>
+            <Tab text="SAVE/LOAD">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <BorderPane prefHeight="378.0" prefWidth="600.0">
+                           <left>
+                              <VBox prefHeight="378.0" prefWidth="166.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <Button mnemonicParsing="false" onAction="#save" prefHeight="25.0" prefWidth="47.0" text="SAVE">
+                                       <VBox.margin>
+                                          <Insets left="5.0" right="5.0" top="5.0" />
+                                       </VBox.margin>
+                                    </Button>
+                                    <Button mnemonicParsing="false" onAction="#load" text="LOAD">
+                                       <VBox.margin>
+                                          <Insets left="5.0" top="5.0" />
+                                       </VBox.margin>
+                                    </Button>
+                                 </children>
+                              </VBox>
+                           </left>
+                           <right>
+                              <VBox prefHeight="378.0" prefWidth="166.0" BorderPane.alignment="CENTER" />
+                           </right>
+                           <center>
+                              <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
+                           </center>
+                        </BorderPane>
+                     </children></AnchorPane>
+              </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>
