@@ -13,7 +13,7 @@ public class Shelf {
 
     @Override
     public String toString() {
-        return "Shelf Number:  a" + shelfNumber;
+        return "Shelf Number:  aa" + shelfNumber;
 
     }
 }
