@@ -5,7 +5,6 @@ public class Shelf {
     // Details stored about each shelf
     private String aisleIdentifier;
     private int shelfNumber;
-
     // List of Pallets
     static MyList<Pallet> palletList = new MyList<>();
 

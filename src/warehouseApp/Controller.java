@@ -1,4 +1,5 @@
 package warehouseApp;
+
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 import javafx.fxml.FXML;
@@ -23,11 +24,6 @@ public class Controller {
     }
 
     /**
-     *  Display the list of floors
-     */
-    public void displayFloors() { System.out.println(Main.floorList.printList()); }
-
-    /**
      * Add aisle to aisleList in Floor
      */
     @FXML TextField textFNumber, textAID, textAisleW, textAisleD;
@@ -40,38 +36,47 @@ public class Controller {
         System.out.println("Aisle" + Floor.aisleList.printList());
     }
 
-     /**
-     * Shelf list methods
+    /**
+     * Add Shelf to shelfList in Aisle
      */
-    @FXML TextField textSNum;
+    @FXML TextField textAisleID, textSNum;
     public void addShelf() {
+        String aID = textAisleID.getText();
         int sNum = Integer.parseInt(textSNum.getText());
-        Aisle.shelfList.addElement(new Shelf(sNum));
+        Aisle.shelfList.addElement(new <Pallet>Shelf(aID, sNum));
         System.out.println("Shelf" + Aisle.shelfList.printList());
     }
 
     /**
-     * Pallet list methods
+     * Add pallet to palletList in Shelf
      */
-    @FXML TextField textProDesc, textProQuantity, textMinStoreTemp, textMaxStoreTemp, textPalPosW, textPalPosD;
+    @FXML TextField textSNumber, textProDesc, textProQuantity, textMinStoreTemp, textMaxStoreTemp, textPalPosW, textPalPosD;
     public void addPallet() {
+        int sNum = Integer.parseInt(textSNumber.getText());
         String proDesc = textProDesc.getText();
         int proQuantity = Integer.parseInt(textProQuantity.getText());
         double minStoreTemp = Double.parseDouble(textMinStoreTemp.getText());
         double maxStoreTemp = Double.parseDouble(textMaxStoreTemp.getText());
         int palPosW = Integer.parseInt(textPalPosW.getText());
         int palPosD = Integer.parseInt(textPalPosD.getText());
-        Shelf.palletList.addElement(new Pallet(proDesc, proQuantity, minStoreTemp, maxStoreTemp, palPosW, palPosD));
+        Shelf.palletList.addElement(new Pallet(sNum, proDesc, proQuantity, minStoreTemp, maxStoreTemp, palPosW, palPosD));
         System.out.println("Pallet" + Shelf.palletList.printList());
     }
 
-    public void viewAll() {
-        System.out.println("Floor" + Main.floorList.printList());
-        System.out.println("Aisle" + Floor.aisleList.printList());
-        System.out.println("Shelf" + Aisle.shelfList.printList());
-        System.out.println("Pallet" + Shelf.palletList.printList());
-    }
+    /**
+     *  Display the list of floors
+     */
+    public void displayFloors() { System.out.println(Main.floorList.printList()); }
 
+    /**
+     *  View all method
+     */
+    public void viewAll() {}
+
+    /**
+     * Loads objects from text in xml document
+     * @throws Exception - Error printed if floorList is empty
+     */
     public void load() throws Exception {
         try {
             XStream xstream = new XStream(new DomDriver());
@@ -84,6 +89,10 @@ public class Controller {
         }
     }
 
+    /**
+     * Saves objects as text in xml document
+     * @throws Exception -
+     */
     public void save() throws Exception {
         XStream xstream = new XStream(new DomDriver());
         ObjectOutputStream out = xstream.createObjectOutputStream(new FileWriter("warehouseApp.xml"));
@@ -92,6 +101,10 @@ public class Controller {
         System.out.println("File has been saved");
     }
 
+    /**
+     *  Reset clears floor list, thus clearing all other lists as aisle is a node of floor,
+     *  shelf is a node of aisle and pallet is a node of shelf.
+     */
     public void reset() {
         Main.floorList.clear();
     }
