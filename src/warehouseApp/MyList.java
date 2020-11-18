@@ -1,8 +1,10 @@
 package warehouseApp;
 
+import javafx.scene.control.TextField;
+
 import java.util.Iterator;
 
-public class MyList<F> implements Iterable<F> {
+public class MyList<F> extends TextField implements Iterable<F> {
 
     public Node<F> head=null, tail=null;
     private int numberOfContents = 0;

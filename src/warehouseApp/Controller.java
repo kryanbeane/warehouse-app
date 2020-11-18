@@ -11,10 +11,9 @@ import java.io.ObjectOutputStream;
 public class Controller {
 
     /**
-     * Floor list methods
+     * Add Floor to floorList in Main
      */
-    @FXML
-    TextField textFNum, textSecLvl, textFTemp;
+    @FXML TextField textFNum, textSecLvl, textFTemp;
     public void addFloor() {
         int floorNumber = Integer.parseInt(textFNum.getText());
         String securityLevel = textSecLvl.getText();
@@ -23,29 +22,25 @@ public class Controller {
         System.out.println(Main.floorList.printList());
     }
 
+    /**
+     *  Display the list of floors
+     */
     public void displayFloors() { System.out.println(Main.floorList.printList()); }
 
     /**
-     * Aisle list methods
+     * Add aisle to aisleList in Floor
      */
-    @FXML TextField textAID, textAisleW, textAisleD;
+    @FXML TextField textFNumber, textAID, textAisleW, textAisleD;
     public void addAisle() {
+        int fNumber = Integer.parseInt(textFNumber.getText());
         String aID = textAID.getText();
         int aisleW = Integer.parseInt(textAisleW.getText());
         int aisleD = Integer.parseInt(textAisleD.getText());
-        Floor.aisleList.addElement(new <Shelf>Aisle(aID, aisleW, aisleD));
+        Floor.aisleList.addElement(new <Shelf>Aisle(fNumber, aID, aisleW, aisleD));
         System.out.println("Aisle" + Floor.aisleList.printList());
     }
 
-    //    Bed bed = new Bed(roomName, bedName, bedType, bedCost, roomList, student, isFree);
-    //    BedNode bedNode = new BedNode(bed);
-    //    Room room = roomList.findRoom(roomName);
-    //    room.addBed(bed);
-    //    bedList.addBed(bedNode);
-    //    System.out.println(bedList.findBed(bedName).toString());
-    //    return bed;
-
-    /**
+     /**
      * Shelf list methods
      */
     @FXML TextField textSNum;

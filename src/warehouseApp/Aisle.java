@@ -7,7 +7,6 @@ public class Aisle {
     private String aisleIdentifier;
     private int aisleWidth;
     private int aisleDepth;
-    private MyList<Aisle> floorList;
     // List of Shelves
     static MyList<Shelf> shelfList = new MyList<>();
 
@@ -29,7 +28,7 @@ public class Aisle {
     }
 
     /**
-     * Gets Aisle ID
+     * Gets Aisle ID using user specified data
      * @return - User specified Aisle ID
      */
     public String getAisleIdentifier() {
@@ -45,7 +44,7 @@ public class Aisle {
     }
 
     /**
-     * Gets aisle width
+     * Gets aisle width using user specified data
      * @return - User specified aisle width
      */
     public int getAisleWidth() {
@@ -61,7 +60,7 @@ public class Aisle {
     }
 
     /**
-     * Gets aisle depth
+     * Gets aisle depth using user specified data
      * @return - User specified aisle depth
      */
     public int getAisleDepth() {
@@ -77,35 +76,17 @@ public class Aisle {
     }
 
     /**
-     * Gets FloorList associated with aisle
-     * @return - FloorList associated with this aisle
-     */
-    public MyList<Aisle> getFloorList() {
-        return floorList;
-    }
-
-    /**
-     * Sets floor list for this specified aisle
-     * @param floorList - Selected floor list
-     */
-    public void setFloorList(MyList<Aisle> floorList) {
-        this.floorList = floorList;
-    }
-
-    /**
      * Constructor that creates the Aisle
-     * @param floorNumber - User specified Floor Number
-     * @param aisleIdentifier - User specified Aisle ID
-     * @param aisleWidth - User specified Aisle Width
-     * @param aisleDepth - User specified Aisle Depth
-     * @param floorList - Floor list associated with this room
+     * @param fNumber - User specified Floor Number
+     * @param aID - User specified Aisle ID
+     * @param aisleW - User specified Aisle Width
+     * @param aisleD - User specified Aisle Depth
      */
-    public Aisle(int floorNumber, String aisleIdentifier, int aisleWidth, int aisleDepth, MyList<Aisle> floorList) {
-        this.setFloorNumber(floorNumber);
-        this.setAisleIdentifier(aisleIdentifier);
-        this.setAisleWidth(aisleWidth);
-        this.setAisleDepth(aisleDepth);
-        this.setFloorList(floorList);
+    public Aisle(int fNumber, String aID, int aisleW, int aisleD) {
+        this.setFloorNumber(fNumber);
+        this.setAisleIdentifier(aID);
+        this.setAisleWidth(aisleW);
+        this.setAisleDepth(aisleD);
     }
 
     /**
