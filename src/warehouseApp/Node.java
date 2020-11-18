@@ -2,7 +2,7 @@ package warehouseApp;
 
 public class Node<N> {
 
-    public Node<N> next=null;
+    public Node<N> next=null, previous=null;
 
     private N contents; // ADT reference
 

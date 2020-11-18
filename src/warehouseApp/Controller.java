@@ -20,13 +20,12 @@ public class Controller {
         String secLvl = textSecLvl.getText();
         double fTemp = Double.parseDouble(textFTemp.getText());
 
-        // Validation for security level so users can only enter high, medium or low
-        if (!secLvl.equalsIgnoreCase("high") && !secLvl.equalsIgnoreCase("medium") && !secLvl.equalsIgnoreCase("low")) {
-            System.out.println("Error: Incorrect Security Level. Please enter HIGH, MEDIUM or LOW"); // Outputs error if high medium or low is not entered
+        if((secLvl.equalsIgnoreCase("high")) || (secLvl.equalsIgnoreCase("medium")) || (secLvl.equalsIgnoreCase("low"))) {
+            Main.floorList.addElement(new Floor(fNum, secLvl, fTemp));
+            System.out.println(Main.floorList.printList());
         }
         else {
-            Main.floorList.addElement(new <Aisle>Floor(fNum, secLvl.toUpperCase(), fTemp));
-            System.out.println("Floor" + Main.floorList.printList());
+            System.out.println("Error: Incorrect Security Level. Please enter HIGH, MEDIUM or LOW"); // Outputs error if high medium or low is not entered
         }
     }
 
@@ -43,6 +42,19 @@ public class Controller {
         Floor.aisleList.addElement(new <Shelf>Aisle(aID, aisleW, aisleD));
         System.out.println("Aisle" + Floor.aisleList.printList());
     }
+
+
+
+
+    //    Bed bed = new Bed(roomName, bedName, bedType, bedCost, roomList, student, isFree);
+   //     BedNode bedNode = new BedNode(bed);
+   //     Room room = roomList.findRoom(roomName);
+   //     room.addBed(bed);
+    //    bedList.addBed(bedNode);
+   //     System.out.println(bedList.findBed(bedName).toString());
+   //     return bed;
+
+
 
     /**
      * Shelf list methods
@@ -97,6 +109,6 @@ public class Controller {
     }
 
     public void reset() {
-        Main.floorList.clearList();
+        Main.floorList.clear();
     }
 }
