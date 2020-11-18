@@ -16,17 +16,11 @@ public class Controller {
     @FXML
     TextField textFNum, textSecLvl, textFTemp;
     public void addFloor() {
-        int fNum = Integer.parseInt(textFNum.getText());
-        String secLvl = textSecLvl.getText();
-        double fTemp = Double.parseDouble(textFTemp.getText());
-
-        if((secLvl.equalsIgnoreCase("high")) || (secLvl.equalsIgnoreCase("medium")) || (secLvl.equalsIgnoreCase("low"))) {
-            Main.floorList.addElement(new Floor(fNum, secLvl, fTemp));
-            System.out.println(Main.floorList.printList());
-        }
-        else {
-            System.out.println("Error: Incorrect Security Level. Please enter HIGH, MEDIUM or LOW"); // Outputs error if high medium or low is not entered
-        }
+        int floorNumber = Integer.parseInt(textFNum.getText());
+        String securityLevel = textSecLvl.getText();
+        double floorTemperature = Double.parseDouble(textFTemp.getText());
+        Main.floorList.addElement(new <Aisle>Floor(floorNumber, securityLevel, floorTemperature));
+        System.out.println(Main.floorList.printList());
     }
 
     public void displayFloors() { System.out.println(Main.floorList.printList()); }
@@ -43,18 +37,13 @@ public class Controller {
         System.out.println("Aisle" + Floor.aisleList.printList());
     }
 
-
-
-
     //    Bed bed = new Bed(roomName, bedName, bedType, bedCost, roomList, student, isFree);
-   //     BedNode bedNode = new BedNode(bed);
-   //     Room room = roomList.findRoom(roomName);
-   //     room.addBed(bed);
+    //    BedNode bedNode = new BedNode(bed);
+    //    Room room = roomList.findRoom(roomName);
+    //    room.addBed(bed);
     //    bedList.addBed(bedNode);
-   //     System.out.println(bedList.findBed(bedName).toString());
-   //     return bed;
-
-
+    //    System.out.println(bedList.findBed(bedName).toString());
+    //    return bed;
 
     /**
      * Shelf list methods

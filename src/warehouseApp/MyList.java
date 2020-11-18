@@ -34,7 +34,7 @@ public class MyList<F> implements Iterable<F> {
 
         while (currentNode != null) {                       // Traverse through the List
             fullList += currentNode.getContents() + "\n";   // Print the data at current nod
-            currentNode = currentNode.next;                    // Go to next node
+            currentNode = currentNode.next;                 // Go to next node
         }
         return fullList;
     }
