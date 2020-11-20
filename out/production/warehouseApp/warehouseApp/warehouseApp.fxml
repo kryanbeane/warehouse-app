@@ -138,7 +138,7 @@
                                           <Insets left="7.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <TextField layoutX="15.0" layoutY="48.0">
+                                    <TextField fx:id="textFNumber" layoutX="15.0" layoutY="48.0">
                                        <VBox.margin>
                                           <Insets left="5.0" right="5.0" />
                                        </VBox.margin>
@@ -227,7 +227,7 @@
                                           <Insets left="7.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <TextField layoutX="15.0" layoutY="48.0">
+                                    <TextField fx:id="textAisleID" layoutX="15.0" layoutY="48.0">
                                        <VBox.margin>
                                           <Insets left="5.0" right="5.0" />
                                        </VBox.margin>
@@ -296,7 +296,7 @@
                                           <Insets left="7.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <TextField layoutX="15.0" layoutY="48.0">
+                                    <TextField fx:id="textSNumber" layoutX="15.0" layoutY="48.0">
                                        <VBox.margin>
                                           <Insets left="5.0" right="5.0" />
                                        </VBox.margin>
@@ -382,7 +382,7 @@
                                           <Insets left="7.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <TextField>
+                                    <TextField fx:id="textSNumber">
                                        <VBox.margin>
                                           <Insets left="5.0" right="5.0" />
                                        </VBox.margin>
