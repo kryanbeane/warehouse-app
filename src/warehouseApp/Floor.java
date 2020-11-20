@@ -7,7 +7,7 @@ public class Floor {
     private String securityLevel;
     private Double floorTemperature;
     // List of Aisles
-    static MyList<Aisle> aisleList = new MyList<>();
+    MyList<Aisle> aisleList = new MyList<>();
 
     /**
      * Gets Floor Number

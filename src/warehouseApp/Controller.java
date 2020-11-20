@@ -32,8 +32,25 @@ public class Controller {
         String aID = textAID.getText();
         int aisleW = Integer.parseInt(textAisleW.getText());
         int aisleD = Integer.parseInt(textAisleD.getText());
-        Floor.aisleList.addElement(new <Shelf>Aisle(fNumber, aID, aisleW, aisleD));
-        System.out.println("Aisle" + Floor.aisleList.printList());
+        Floor floorFound = getFloor(fNumber);
+        if (floorFound!=null) {
+            floorFound.aisleList.addElement(new Aisle(fNumber, aID, aisleW, aisleD));
+            System.out.println("Aisle" + floorFound.aisleList.printList());
+        }
+        else {
+            System.out.println("Floor not found. Aisle not added.");
+        }
+    }
+
+    public Floor getFloor(int floorNumber) {
+        Node<Floor> temp = Main.floorList.head;
+        while(temp!=null) {
+            if(temp.getContents().getFloorNumber()==floorNumber) {
+                return temp.getContents();
+            }
+            temp=temp.next;
+        }
+        return null;
     }
 
     /**
