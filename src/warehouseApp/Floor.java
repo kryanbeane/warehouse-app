@@ -72,9 +72,9 @@ public class Floor {
      */
     @Override
     public String toString() {
-        return  "\n Floor Number = " + floorNumber +
-                ",\n Security Level = " + securityLevel +
-                ",\n Floor Temperature = " + floorTemperature;
+        return  "\n Floor " + floorNumber + ": " +
+                "\n Security Level = " + securityLevel +
+                ",\n Floor Temperature = " + floorTemperature + "°C";
     }
 }
 

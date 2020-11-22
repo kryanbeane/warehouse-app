@@ -20,7 +20,7 @@ public class Controller {
         String securityLevel = textSecLvl.getText();
         double floorTemperature = Double.parseDouble(textFTemp.getText());
         Main.floorList.addElement(new <Aisle>Floor(floorNumber, securityLevel, floorTemperature));
-        System.out.println(Main.floorList.printList());
+        System.out.println("Floors" + Main.floorList.printList());
     }
 
     /**
@@ -33,15 +33,22 @@ public class Controller {
         int aisleW = Integer.parseInt(textAisleW.getText());
         int aisleD = Integer.parseInt(textAisleD.getText());
         Floor floorFound = getFloor(fNumber);
+
         if (floorFound!=null) {
             floorFound.aisleList.addElement(new Aisle(fNumber, aID, aisleW, aisleD));
-            System.out.println("Aisle" + floorFound.aisleList.printList());
+            System.out.println(floorFound);
+            System.out.println("\n" + floorFound.aisleList.printList());
         }
         else {
             System.out.println("Floor not found. Aisle not added.");
         }
     }
 
+    /**
+     * Gets floor to add aisle to.
+     * @param floorNumber - User specified floor number
+     * @return - Floor node or null if floor not found
+     */
     public Floor getFloor(int floorNumber) {
         Node<Floor> temp = Main.floorList.head;
         while(temp!=null) {
