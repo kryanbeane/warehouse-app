@@ -67,7 +67,9 @@ public class Controller {
     public void addShelf() {
         String aID = textAisleID.getText();
         int sNum = Integer.parseInt(textSNum.getText());
-        Aisle.shelfList.addElement(new <Pallet>Shelf(aID, sNum));
+        Aisle aisleFound = getAisle(f, aID);
+
+        Aisle.shelfList.addElement(new Shelf(aID, sNum));
         System.out.println("Shelf" + Aisle.shelfList.printList());
     }
 
@@ -75,8 +77,15 @@ public class Controller {
      *
      * @return
      */
-    public Aisle getAisle(String aisleIdentifier) {
-        Node<Aisle> tempAisle =
+    public Aisle getAisle(int floorNumber, String aisleIdentifier) {
+        Node<Aisle> tempAisle = getFloor(floorNumber).aisleList.head;
+        while(tempAisle!=null) {
+            if(tempAisle.getContents().getAisleIdentifier()==aisleIdentifier) {
+                return tempAisle.getContents();
+            }
+            tempAisle = tempAisle.next;
+        }
+        return null;
     }
 
     /**
@@ -91,7 +100,7 @@ public class Controller {
         double maxStoreTemp = Double.parseDouble(textMaxStoreTemp.getText());
         int palPosW = Integer.parseInt(textPalPosW.getText());
         int palPosD = Integer.parseInt(textPalPosD.getText());
-
+        Shelf shelfFound = getShelf();
 
         Shelf.palletList.addElement(new Pallet(sNum, proDesc, proQuantity, minStoreTemp, maxStoreTemp, palPosW, palPosD));
         System.out.println("Pallet" + Shelf.palletList.printList());
