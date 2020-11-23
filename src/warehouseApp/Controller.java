@@ -50,12 +50,12 @@ public class Controller {
      * @return - Floor node or null if floor not found
      */
     public Floor getFloor(int floorNumber) {
-        Node<Floor> temp = Main.floorList.head;
-        while(temp!=null) {
-            if(temp.getContents().getFloorNumber()==floorNumber) {
-                return temp.getContents();
+        Node<Floor> tempFloor = Main.floorList.head;
+        while(tempFloor!=null) {
+            if(tempFloor.getContents().getFloorNumber()==floorNumber) {
+                return tempFloor.getContents();
             }
-            temp=temp.next;
+            tempFloor=tempFloor.next;
         }
         return null;
     }
@@ -75,8 +75,8 @@ public class Controller {
      *
      * @return
      */
-    public Aisle getAisle() {
-
+    public Aisle getAisle(String aisleIdentifier) {
+        Node<Aisle> tempAisle =
     }
 
     /**
@@ -91,6 +91,8 @@ public class Controller {
         double maxStoreTemp = Double.parseDouble(textMaxStoreTemp.getText());
         int palPosW = Integer.parseInt(textPalPosW.getText());
         int palPosD = Integer.parseInt(textPalPosD.getText());
+
+
         Shelf.palletList.addElement(new Pallet(sNum, proDesc, proQuantity, minStoreTemp, maxStoreTemp, palPosW, palPosD));
         System.out.println("Pallet" + Shelf.palletList.printList());
     }

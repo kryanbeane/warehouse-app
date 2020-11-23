@@ -6,7 +6,7 @@ public class Shelf {
     private String aisleIdentifier;
     private int shelfNumber;
     // List of Pallets
-    static MyList<Pallet> palletList = new MyList<>();
+    MyList<Pallet> palletList = new MyList<>();
 
     /**
      * Gets aisle ID using user specified data

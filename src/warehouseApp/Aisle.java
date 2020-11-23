@@ -8,7 +8,7 @@ public class Aisle {
     private int aisleWidth;
     private int aisleDepth;
     // List of Shelves
-    static MyList<Shelf> shelfList = new MyList<>();
+    MyList<Shelf> shelfList = new MyList<>();
 
     /**
      * Gets aisle's floor number
