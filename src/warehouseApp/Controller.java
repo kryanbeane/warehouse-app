@@ -72,6 +72,14 @@ public class Controller {
     }
 
     /**
+     *
+     * @return
+     */
+    public Aisle getAisle() {
+
+    }
+
+    /**
      * Add pallet to palletList in Shelf
      */
     @FXML TextField textSNumber, textProDesc, textProQuantity, textMinStoreTemp, textMaxStoreTemp, textPalPosW, textPalPosD;
@@ -85,6 +93,14 @@ public class Controller {
         int palPosD = Integer.parseInt(textPalPosD.getText());
         Shelf.palletList.addElement(new Pallet(sNum, proDesc, proQuantity, minStoreTemp, maxStoreTemp, palPosW, palPosD));
         System.out.println("Pallet" + Shelf.palletList.printList());
+    }
+
+    /**
+     *
+     * @return
+     */
+    public Shelf getShelf() {
+
     }
 
     /**
