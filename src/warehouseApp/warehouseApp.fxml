@@ -21,36 +21,33 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <BorderPane prefHeight="423.0" prefWidth="600.0">
-                           <center>
-                              <VBox prefHeight="421.0" prefWidth="268.0" BorderPane.alignment="CENTER">
+                        <BorderPane prefHeight="649.0" prefWidth="700.0">
+                           <bottom>
+                              <HBox prefHeight="73.0" prefWidth="700.0" BorderPane.alignment="CENTER">
                                  <children>
-                                    <HBox prefHeight="240.0" prefWidth="600.0">
-                                       <children>
-                                          <Button mnemonicParsing="false" onAction="#viewAll" prefHeight="25.0" prefWidth="73.0" text="VIEW ALL">
-                                             <HBox.margin>
-                                                <Insets bottom="5.0" left="20.0" right="5.0" top="20.0" />
-                                             </HBox.margin>
-                                          </Button>
-                                          <Button mnemonicParsing="false" onAction="#reset" prefHeight="25.0" prefWidth="73.0" text="RESET">
-                                             <HBox.margin>
-                                                <Insets bottom="5.0" left="20.0" right="5.0" top="20.0" />
-                                             </HBox.margin>
-                                          </Button>
-                                          <Button mnemonicParsing="false" onAction="#save" prefHeight="25.0" prefWidth="63.0" text="SAVE">
-                                             <HBox.margin>
-                                                <Insets bottom="5.0" left="20.0" right="5.0" top="20.0" />
-                                             </HBox.margin>
-                                          </Button>
-                                          <Button mnemonicParsing="false" onAction="#load" prefHeight="25.0" prefWidth="62.0" text="LOAD">
-                                             <HBox.margin>
-                                                <Insets bottom="5.0" left="20.0" right="5.0" top="20.0" />
-                                             </HBox.margin>
-                                          </Button>
-                                       </children>
-                                    </HBox>
-                                 </children></VBox>
-                           </center>
+                                    <Button mnemonicParsing="false" onAction="#viewAll" prefHeight="25.0" prefWidth="143.0" text="VIEW ALL">
+                                       <HBox.margin>
+                                          <Insets bottom="5.0" left="20.0" right="5.0" top="20.0" />
+                                       </HBox.margin>
+                                    </Button>
+                                    <Button mnemonicParsing="false" onAction="#reset" prefHeight="25.0" prefWidth="143.0" text="RESET">
+                                       <HBox.margin>
+                                          <Insets bottom="5.0" left="20.0" right="5.0" top="20.0" />
+                                       </HBox.margin>
+                                    </Button>
+                                    <Button mnemonicParsing="false" onAction="#save" prefHeight="25.0" prefWidth="146.0" text="SAVE">
+                                       <HBox.margin>
+                                          <Insets bottom="5.0" left="20.0" right="5.0" top="20.0" />
+                                       </HBox.margin>
+                                    </Button>
+                                    <Button mnemonicParsing="false" onAction="#load" prefHeight="25.0" prefWidth="148.0" text="LOAD">
+                                       <HBox.margin>
+                                          <Insets bottom="5.0" left="20.0" right="5.0" top="20.0" />
+                                       </HBox.margin>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                           </bottom>
                         </BorderPane>
                      </children>
                   </AnchorPane>

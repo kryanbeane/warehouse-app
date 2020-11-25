@@ -14,34 +14,15 @@ public class Controller {
     /**
      * Add Floor to floorList in Main
      */
-    @FXML TextField textFNum, textSecLvl, textFTemp;
+    @FXML
+    TextField textFNum, textSecLvl, textFTemp;
     public void addFloor() {
         int floorNumber = Integer.parseInt(textFNum.getText());
         String securityLevel = textSecLvl.getText();
         double floorTemperature = Double.parseDouble(textFTemp.getText());
+
         Main.floorList.addElement(new <Aisle>Floor(floorNumber, securityLevel, floorTemperature));
         System.out.println("Floors" + Main.floorList.printList());
-    }
-
-    /**
-     * Add aisle to aisleList in Floor
-     */
-    @FXML TextField textFNumber, textAID, textAisleW, textAisleD;
-    public void addAisle() {
-        int fNumber = Integer.parseInt(textFNumber.getText());
-        String aID = textAID.getText();
-        int aisleW = Integer.parseInt(textAisleW.getText());
-        int aisleD = Integer.parseInt(textAisleD.getText());
-        Floor floorFound = getFloor(fNumber);
-
-        if (floorFound!=null) {
-            floorFound.aisleList.addElement(new Aisle(fNumber, aID, aisleW, aisleD));
-            System.out.println(floorFound);
-            System.out.println("\n" + floorFound.aisleList.printList());
-        }
-        else {
-            System.out.println("Floor not found. Aisle not added.");
-        }
     }
 
     /**
@@ -51,31 +32,42 @@ public class Controller {
      */
     public Floor getFloor(int floorNumber) {
         Node<Floor> tempFloor = Main.floorList.head;
-        while(tempFloor!=null) {
-            if(tempFloor.getContents().getFloorNumber()==floorNumber) {
+
+        while (tempFloor != null) {
+            if (tempFloor.getContents().getFloorNumber() == floorNumber) {
                 return tempFloor.getContents();
             }
-            tempFloor=tempFloor.next;
+            tempFloor = tempFloor.next;
         }
         return null;
     }
 
     /**
-     * Add Shelf to shelfList in Aisle
+     * Add aisle to aisleList in Floor
      */
-    @FXML TextField textAisleID, textSNum;
-    public void addShelf() {
-        String aID = textAisleID.getText();
-        int sNum = Integer.parseInt(textSNum.getText());
-        Aisle aisleFound = getAisle(f, aID);
+    @FXML
+    TextField textFNumber, textAID, textAisleW, textAisleD;
+    public void addAisle() {
+        int fNumber = Integer.parseInt(textFNumber.getText());
+        String aID = textAID.getText();
+        int aisleW = Integer.parseInt(textAisleW.getText());
+        int aisleD = Integer.parseInt(textAisleD.getText());
+        Floor floorFound = getFloor(fNumber);
 
-        Aisle.shelfList.addElement(new Shelf(aID, sNum));
-        System.out.println("Shelf" + Aisle.shelfList.printList());
+        if (floorFound != null) {
+            floorFound.aisleList.addElement(new Aisle(fNumber, aID, aisleW, aisleD));
+            System.out.println(floorFound);
+            System.out.println("\n" + floorFound.aisleList.printList());
+        } else {
+            System.out.println("Floor not found. Aisle not added.");
+        }
     }
 
     /**
-     *
-     * @return
+     *  Gets aisle to add shelf to.
+     * @param floorNumber - User specified floor number
+     * @param aisleIdentifier - User specified aisle ID
+     * @return - Aisle node or null if aisle not found
      */
     public Aisle getAisle(int floorNumber, String aisleIdentifier) {
         Node<Aisle> tempAisle = getFloor(floorNumber).aisleList.head;
@@ -84,6 +76,40 @@ public class Controller {
                 return tempAisle.getContents();
             }
             tempAisle = tempAisle.next;
+        }
+        return null;
+    }
+
+    /**
+     * Add Shelf to shelfList in Aisle
+     */
+    @FXML
+    TextField textAisleID, textSNum;
+    public void addShelf() {
+        String aID = textAisleID.getText();
+        int sNum = Integer.parseInt(textSNum.getText());
+        int floorNumber = Integer.parseInt(textFNumber.getText());
+        Aisle aisleFound = getAisle(floorNumber, aID);
+
+        aisleFound.shelfList.addElement(new Shelf(aID, sNum));
+        System.out.println("\n" + aisleFound.shelfList.printList());
+    }
+
+    /**
+     *  Gets shelf to add pallet to.
+     * @param floorNumber - User specified floor number
+     * @param aisleIdentifier - User aisle ID
+     * @param sNum - User specified shelf number
+     * @return - Shelf node or null if shelf not found
+     */
+    public Shelf getShelf(int floorNumber, String aisleIdentifier, int sNum) {
+        Node<Shelf> tempShelf = getAisle(floorNumber, aisleIdentifier).shelfList.head;
+
+        while(tempShelf!=null) {
+            if(tempShelf.getContents().getShelfNumber()==sNum) {
+                return tempShelf.getContents();
+            }
+            tempShelf=tempShelf.next;
         }
         return null;
     }
@@ -104,14 +130,6 @@ public class Controller {
 
         Shelf.palletList.addElement(new Pallet(sNum, proDesc, proQuantity, minStoreTemp, maxStoreTemp, palPosW, palPosD));
         System.out.println("Pallet" + Shelf.palletList.printList());
-    }
-
-    /**
-     *
-     * @return
-     */
-    public Shelf getShelf() {
-
     }
 
     /**
