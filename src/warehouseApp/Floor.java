@@ -32,14 +32,9 @@ public class Floor {
     /**
      * Sets the security level value using user specified data or error
      * @param securityLevel - User specified security level
-     * ## IMPORTANT ##     Will display error but proceeds with adding sec level to null if input doesn't meet params    ## IMPORTANT ##
      */
     public void setSecurityLevel(String securityLevel) {
-        if ((securityLevel.equals("high")) || (securityLevel.equals("High")) || (securityLevel.equals("medium")) || (securityLevel.equals("Medium")) || (securityLevel.equals("low")) || (securityLevel.equals("Low"))) {
-            this.securityLevel = securityLevel.toUpperCase();
-        } else {
-            System.out.println("Error: Incorrect Security Level. Please enter HIGH, MEDIUM or LOW"); // Outputs error if high medium or low is not entered
-        }
+        this.securityLevel = securityLevel.toUpperCase();
     }
 
     /**
@@ -73,8 +68,7 @@ public class Floor {
     @Override
     public String toString() {
         return  "\n Floor " + floorNumber + ": " +
-                "\n Security Level = " + securityLevel +
-                ",\n Floor Temperature = " + floorTemperature + "°C";
+                "\n Security Level = " + securityLevel + ", Floor Temperature = " + floorTemperature + "°C";
     }
 }
 

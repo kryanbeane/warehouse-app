@@ -3,6 +3,7 @@ package warehouseApp;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 import javafx.fxml.FXML;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -21,7 +22,7 @@ public class Controller {
         String securityLevel = textSecLvl.getText();
         double floorTemperature = Double.parseDouble(textFTemp.getText());
 
-        Main.floorList.addElement(new <Aisle>Floor(floorNumber, securityLevel, floorTemperature));
+        Main.floorList.addElement(new Floor(floorNumber, securityLevel, floorTemperature));
         System.out.println("Floors" + Main.floorList.printList());
     }
 
@@ -126,10 +127,12 @@ public class Controller {
         double maxStoreTemp = Double.parseDouble(textMaxStoreTemp.getText());
         int palPosW = Integer.parseInt(textPalPosW.getText());
         int palPosD = Integer.parseInt(textPalPosD.getText());
-        Shelf shelfFound = getShelf();
+        int floorNumber = Integer.parseInt(textFNumber.getText());
+        String aID = textAisleID.getText();
+        Shelf shelfFound = getShelf(floorNumber, aID, sNum);
 
-        Shelf.palletList.addElement(new Pallet(sNum, proDesc, proQuantity, minStoreTemp, maxStoreTemp, palPosW, palPosD));
-        System.out.println("Pallet" + Shelf.palletList.printList());
+        shelfFound.palletList.addElement(new Pallet(sNum, proDesc, proQuantity, minStoreTemp, maxStoreTemp, palPosW, palPosD));
+        System.out.println("\n" + shelfFound.palletList.printList());
     }
 
     /**
@@ -137,10 +140,14 @@ public class Controller {
      */
     public void displayFloors() { System.out.println(Main.floorList.printList()); }
 
+    @FXML
+    TextArea textDisplayArea;
     /**
      *  View all method
      */
-    public void viewAll() {}
+    public void viewAll() {
+        textDisplayArea.setText(Main.floorList.printList());
+    }
 
     /**
      * Loads objects from text in xml document
