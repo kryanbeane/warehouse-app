@@ -219,7 +219,7 @@
                                           <Font name="System Bold" size="13.0" />
                                        </font>
                                     </Label>
-                                    <TextField fx:id="textCurrentFloor1" editable="false" layoutX="15.0" layoutY="48.0" prefHeight="55.0" prefWidth="156.0">
+                                    <TextField fx:id="textCurrentFloor1" editable="false" layoutX="15.0" layoutY="48.0" prefHeight="0.0" prefWidth="156.0">
                                        <VBox.margin>
                                           <Insets bottom="5.0" left="5.0" right="5.0" />
                                        </VBox.margin>
@@ -309,7 +309,7 @@
                                           <Font name="System Bold" size="13.0" />
                                        </font>
                                     </Label>
-                                    <TextField fx:id="textCurrentFloor2" editable="false" prefHeight="55.0" prefWidth="156.0">
+                                    <TextField fx:id="textCurrentFloor2" editable="false" prefHeight="0.0" prefWidth="156.0">
                                        <VBox.margin>
                                           <Insets bottom="5.0" left="5.0" right="5.0" />
                                        </VBox.margin>
@@ -322,7 +322,7 @@
                                           <Insets top="5.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <TextField fx:id="textAisleID" editable="false" layoutX="15.0" layoutY="48.0" prefHeight="55.0" prefWidth="156.0">
+                                    <TextField fx:id="textCurrentAisle1" editable="false" layoutX="15.0" layoutY="48.0" prefHeight="0.0" prefWidth="156.0">
                                        <VBox.margin>
                                           <Insets bottom="5.0" left="5.0" right="5.0" />
                                        </VBox.margin>
@@ -403,7 +403,7 @@
                                           <Insets top="5.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <TextField fx:id="textCurrentFloor3" editable="false" prefHeight="55.0" prefWidth="156.0">
+                                    <TextField fx:id="textCurrentFloor3" editable="false" prefHeight="0.0" prefWidth="156.0">
                                        <VBox.margin>
                                           <Insets left="5.0" right="5.0" />
                                        </VBox.margin>
@@ -416,7 +416,7 @@
                                           <Insets top="5.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <TextField fx:id="textAisleID11" editable="false" prefHeight="55.0" prefWidth="156.0">
+                                    <TextField fx:id="textCurrentAisle2" editable="false" prefHeight="0.0" prefWidth="156.0">
                                        <VBox.margin>
                                           <Insets left="5.0" right="5.0" />
                                        </VBox.margin>
@@ -429,7 +429,7 @@
                                           <Insets top="5.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <TextField fx:id="textSNumber1" editable="false" prefHeight="55.0" prefWidth="156.0">
+                                    <TextField fx:id="textSNumber1" editable="false" prefHeight="0.0" prefWidth="156.0">
                                        <VBox.margin>
                                           <Insets left="5.0" right="5.0" />
                                        </VBox.margin>

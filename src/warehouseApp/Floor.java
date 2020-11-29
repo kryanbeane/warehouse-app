@@ -70,5 +70,14 @@ public class Floor {
         return  "\n Floor " + floorNumber + ": " +
                 "\n Security Level = " + securityLevel + ", Floor Temperature = " + floorTemperature + "°C";
     }
+
+    /**
+     * Presents floor in User Friendly View
+     * @return - Floor in String data
+     */
+    public String toString2() {
+        return "Floor " + floorNumber;
+    }
+
 }
 

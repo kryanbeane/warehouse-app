@@ -3,29 +3,12 @@ package warehouseApp;
 public class Aisle {
 
     // Details stored about each aisle
-    private int floorNumber;
+
     private String aisleIdentifier;
     private int aisleWidth;
     private int aisleDepth;
     // List of Shelves
     MyList<Shelf> shelfList = new MyList<>();
-
-    /**
-     * Gets aisle's floor number
-     * @return - User specified floor number
-     */
-    public int getFloorNumber() {
-        return floorNumber;
-    }
-
-    /**
-     * Sets floor number using user specified data
-     * @param floorNumber - User specified floor number
-     *                      Floor number must be contained in Floor List
-     */
-    public void setFloorNumber(int floorNumber) {
-        this.floorNumber = floorNumber;
-    }
 
     /**
      * Gets Aisle ID using user specified data
@@ -77,13 +60,11 @@ public class Aisle {
 
     /**
      * Constructor that creates the Aisle
-     * @param fNumber - User specified Floor Number
      * @param aID - User specified Aisle ID
      * @param aisleW - User specified Aisle Width
      * @param aisleD - User specified Aisle Depth
      */
-    public Aisle(int fNumber, String aID, int aisleW, int aisleD) {
-        this.setFloorNumber(fNumber);
+    public Aisle(String aID, int aisleW, int aisleD) {
         this.setAisleIdentifier(aID);
         this.setAisleWidth(aisleW);
         this.setAisleDepth(aisleD);
@@ -95,8 +76,7 @@ public class Aisle {
      */
     @Override
     public String toString() {
-        return  "\n Floor Number = " + floorNumber +
-                ",\n Aisle ID = " + aisleIdentifier +
+        return  ",\n Aisle ID = " + aisleIdentifier +
                 ",\n Aisle Width = " + aisleWidth +
                 ",\n Aisle Depth = " + aisleDepth;
     }

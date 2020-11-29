@@ -3,30 +3,12 @@ package warehouseApp;
 public class Pallet {
 
     // Details stored about each pallet
-    private int shelfNumber;
     private String productDescription;
     private int productQuantity;
     private double minimumStoreTemperature;
     private double maximumStoreTemperature;
     private int palletPositionWidth;
     private int palletPositionDepth;
-
-    /**
-     * Gets shelf number using user specified data
-     * @return - User specified shelf number
-     *           Shelf number must be contained in Shelf list
-     */
-    public int getShelfNumber() {
-        return shelfNumber;
-    }
-
-    /**
-     * Sets shelf number using user specified data
-     * @param shelfNumber - User specified shelf number
-     */
-    public void setShelfNumber(int shelfNumber) {
-        this.shelfNumber = shelfNumber;
-    }
 
     /**
      * Gets product description using user specified data
@@ -126,7 +108,6 @@ public class Pallet {
 
     /**
      * Constructor that creates the Pallet
-     * @param sNum - User specified shelf number
      * @param proDesc - User specified product description
      * @param proQuantity - User specified product quantity
      * @param minStoreTemp - User specified minimum storage temperature
@@ -134,8 +115,7 @@ public class Pallet {
      * @param palPosW - User specified pallet position width
      * @param palPosD - User specified pallet position depth
      */
-    public Pallet(int sNum, String proDesc, int proQuantity, double minStoreTemp, double maxStoreTemp, int palPosW, int palPosD) {
-        this.setShelfNumber(sNum);
+    public Pallet(String proDesc, int proQuantity, double minStoreTemp, double maxStoreTemp, int palPosW, int palPosD) {
         this.setProductDescription(proDesc);
         this.setProductQuantity(proQuantity);
         this.setMinimumStoreTemperature(minStoreTemp);
@@ -150,13 +130,13 @@ public class Pallet {
      */
     @Override
     public String toString() {
-        return  "\n Shelf Number = " + shelfNumber +
-                ",\n Product Description = " + productDescription +
+        return  "\n Product Description = " + productDescription +
                 ",\n Product Description = " + productQuantity +
                 ",\n Minimum Storage Temperature = " + minimumStoreTemperature +
                 ",\n Maximum Storage Temperature = " + maximumStoreTemperature +
                 ",\n Pallet Position Width = " + palletPositionWidth +
                 ",\n Pallet Position Depth = " + palletPositionDepth;
+
     }
 }
 
