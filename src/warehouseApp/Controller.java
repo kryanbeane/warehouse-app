@@ -5,6 +5,7 @@ import com.thoughtworks.xstream.io.xml.DomDriver;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.ObjectInputStream;
@@ -15,45 +16,47 @@ public class Controller {
     /**
      * Add Floor to floorList in Main
      */
-    @FXML
-    TextField textFNum, textSecLvl, textFTemp;
+    @FXML TextField textFNum, textSecLvl, textFTemp;
+    @FXML TextArea textFloorArea;
     public void addFloor() {
         int floorNumber = Integer.parseInt(textFNum.getText());
         String securityLevel = textSecLvl.getText();
         double floorTemperature = Double.parseDouble(textFTemp.getText());
-
         Main.floorList.addElement(new Floor(floorNumber, securityLevel, floorTemperature));
-        System.out.println("Floors" + Main.floorList.printList());
+        textFloorArea.setText(Main.floorList.printList());
     }
+
 
     /**
      * Gets floor to add aisle to.
-     * @param floorNumber - User specified floor number
      * @return - Floor node or null if floor not found
      */
-    public Floor getFloor(int floorNumber) {
-        Node<Floor> tempFloor = Main.floorList.head;
+    @FXML TextField textGetFloor, textCurrentFloor;
+    public Floor getFloor() {
+        int floorNumber = Integer.parseInt(textGetFloor.getText());
 
+        Node<Floor> tempFloor = Main.floorList.head;
         while (tempFloor != null) {
             if (tempFloor.getContents().getFloorNumber() == floorNumber) {
                 return tempFloor.getContents();
             }
             tempFloor = tempFloor.next;
+            textCurrentFloor.setText(tempFloor.toString());
         }
         return null;
+        textCurrentFloor.setText(Invalid Floor)
     }
 
     /**
      * Add aisle to aisleList in Floor
      */
-    @FXML
-    TextField textFNumber, textAID, textAisleW, textAisleD;
+    @FXML TextField textFNumber, textAID, textAisleW, textAisleD;
     public void addAisle() {
         int fNumber = Integer.parseInt(textFNumber.getText());
         String aID = textAID.getText();
         int aisleW = Integer.parseInt(textAisleW.getText());
         int aisleD = Integer.parseInt(textAisleD.getText());
-        Floor floorFound = getFloor(fNumber);
+        Floor floorFound = getFloor();
 
         if (floorFound != null) {
             floorFound.aisleList.addElement(new Aisle(fNumber, aID, aisleW, aisleD));
@@ -71,7 +74,7 @@ public class Controller {
      * @return - Aisle node or null if aisle not found
      */
     public Aisle getAisle(int floorNumber, String aisleIdentifier) {
-        Node<Aisle> tempAisle = getFloor(floorNumber).aisleList.head;
+        Node<Aisle> tempAisle = getFloor().aisleList.head;
         while(tempAisle!=null) {
             if(tempAisle.getContents().getAisleIdentifier()==aisleIdentifier) {
                 return tempAisle.getContents();
@@ -84,8 +87,7 @@ public class Controller {
     /**
      * Add Shelf to shelfList in Aisle
      */
-    @FXML
-    TextField textAisleID, textSNum;
+    @FXML TextField textAisleID, textSNum;
     public void addShelf() {
         String aID = textAisleID.getText();
         int sNum = Integer.parseInt(textSNum.getText());
@@ -134,11 +136,6 @@ public class Controller {
         shelfFound.palletList.addElement(new Pallet(sNum, proDesc, proQuantity, minStoreTemp, maxStoreTemp, palPosW, palPosD));
         System.out.println("\n" + shelfFound.palletList.printList());
     }
-
-    /**
-     *  Display the list of floors
-     */
-    public void displayFloors() { System.out.println(Main.floorList.printList()); }
 
     @FXML
     TextArea textDisplayArea;
