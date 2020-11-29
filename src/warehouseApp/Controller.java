@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
+import javax.print.DocFlavor;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.ObjectInputStream;
@@ -26,25 +27,26 @@ public class Controller {
         textFloorArea.setText(Main.floorList.printList());
     }
 
-
     /**
      * Gets floor to add aisle to.
      * @return - Floor node or null if floor not found
      */
-    @FXML TextField textGetFloor, textCurrentFloor;
+    @FXML TextField textGetFloor, textCurrentFloor1, textCurrentFloor2, textCurrentFloor3;
     public Floor getFloor() {
         int floorNumber = Integer.parseInt(textGetFloor.getText());
 
         Node<Floor> tempFloor = Main.floorList.head;
         while (tempFloor != null) {
             if (tempFloor.getContents().getFloorNumber() == floorNumber) {
+                textCurrentFloor1.setText(tempFloor.getContents().toString());
+                textCurrentFloor2.setText(tempFloor.getContents().toString());
+                textCurrentFloor3.setText(tempFloor.getContents().toString());
                 return tempFloor.getContents();
             }
             tempFloor = tempFloor.next;
-            textCurrentFloor.setText(tempFloor.toString());
         }
         return null;
-        textCurrentFloor.setText(Invalid Floor)
+
     }
 
     /**
@@ -137,8 +139,7 @@ public class Controller {
         System.out.println("\n" + shelfFound.palletList.printList());
     }
 
-    @FXML
-    TextArea textDisplayArea;
+    @FXML TextArea textDisplayArea;
     /**
      *  View all method
      */

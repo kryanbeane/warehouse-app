@@ -27,22 +27,22 @@
                                  <children>
                                     <Button mnemonicParsing="false" onAction="#viewAll" prefHeight="25.0" prefWidth="143.0" text="VIEW ALL">
                                        <HBox.margin>
-                                          <Insets bottom="5.0" left="20.0" right="5.0" top="20.0" />
+                                          <Insets bottom="5.0" left="20.0" right="5.0" />
                                        </HBox.margin>
                                     </Button>
                                     <Button mnemonicParsing="false" onAction="#reset" prefHeight="25.0" prefWidth="143.0" text="RESET">
                                        <HBox.margin>
-                                          <Insets bottom="5.0" left="20.0" right="5.0" top="20.0" />
+                                          <Insets bottom="5.0" left="20.0" right="5.0" />
                                        </HBox.margin>
                                     </Button>
                                     <Button mnemonicParsing="false" onAction="#save" prefHeight="25.0" prefWidth="146.0" text="SAVE">
                                        <HBox.margin>
-                                          <Insets bottom="5.0" left="20.0" right="5.0" top="20.0" />
+                                          <Insets bottom="5.0" left="20.0" right="5.0" />
                                        </HBox.margin>
                                     </Button>
                                     <Button mnemonicParsing="false" onAction="#load" prefHeight="25.0" prefWidth="148.0" text="LOAD">
                                        <HBox.margin>
-                                          <Insets bottom="5.0" left="20.0" right="5.0" top="20.0" />
+                                          <Insets bottom="5.0" left="20.0" right="5.0" />
                                        </HBox.margin>
                                     </Button>
                                  </children>
@@ -63,11 +63,11 @@
                                                       <Font name="System Bold" size="12.0" />
                                                    </font>
                                                 </Label>
-                                                <TextArea fx:id="textGetFloor" prefHeight="38.0" prefWidth="58.0">
+                                                <TextField fx:id="textGetFloor">
                                                    <VBox.margin>
-                                                      <Insets bottom="5.0" left="20.0" right="10.0" top="5.0" />
+                                                      <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
                                                    </VBox.margin>
-                                                </TextArea>
+                                                </TextField>
                                                 <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#getFloor" prefHeight="25.0" prefWidth="282.0" text="SELECT ">
                                                    <VBox.margin>
                                                       <Insets left="75.0" right="75.0" />
@@ -85,11 +85,11 @@
                                                       <Font name="System Bold" size="12.0" />
                                                    </font>
                                                 </Label>
-                                                <TextArea prefHeight="0.0" prefWidth="229.0">
+                                                <TextField fx:id="textGetFloor1">
                                                    <VBox.margin>
                                                       <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
                                                    </VBox.margin>
-                                                </TextArea>
+                                                </TextField>
                                                 <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="300.0" text="SELECT ">
                                                    <VBox.margin>
                                                       <Insets left="75.0" right="75.0" />
@@ -106,11 +106,11 @@
                                                       <Font name="System Bold" size="12.0" />
                                                    </font>
                                                 </Label>
-                                                <TextArea prefHeight="0.0" prefWidth="223.0">
+                                                <TextField fx:id="textGetFloor11">
                                                    <VBox.margin>
-                                                      <Insets bottom="5.0" left="10.0" right="20.0" top="5.0" />
+                                                      <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
                                                    </VBox.margin>
-                                                </TextArea>
+                                                </TextField>
                                                 <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="360.0" text="SELECT ">
                                                    <VBox.margin>
                                                       <Insets left="75.0" right="75.0" />
@@ -219,7 +219,7 @@
                                           <Font name="System Bold" size="13.0" />
                                        </font>
                                     </Label>
-                                    <TextField fx:id="textCurrentFloor" editable="false" layoutX="15.0" layoutY="48.0">
+                                    <TextField fx:id="textCurrentFloor1" editable="false" layoutX="15.0" layoutY="48.0" prefHeight="55.0" prefWidth="156.0">
                                        <VBox.margin>
                                           <Insets bottom="5.0" left="5.0" right="5.0" />
                                        </VBox.margin>
@@ -309,7 +309,7 @@
                                           <Font name="System Bold" size="13.0" />
                                        </font>
                                     </Label>
-                                    <TextField>
+                                    <TextField fx:id="textCurrentFloor2" editable="false" prefHeight="55.0" prefWidth="156.0">
                                        <VBox.margin>
                                           <Insets bottom="5.0" left="5.0" right="5.0" />
                                        </VBox.margin>
@@ -322,7 +322,7 @@
                                           <Insets top="5.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <TextField fx:id="textAisleID" layoutX="15.0" layoutY="48.0">
+                                    <TextField fx:id="textAisleID" editable="false" layoutX="15.0" layoutY="48.0" prefHeight="55.0" prefWidth="156.0">
                                        <VBox.margin>
                                           <Insets bottom="5.0" left="5.0" right="5.0" />
                                        </VBox.margin>
@@ -403,7 +403,7 @@
                                           <Insets top="5.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <TextField>
+                                    <TextField fx:id="textCurrentFloor3" editable="false" prefHeight="55.0" prefWidth="156.0">
                                        <VBox.margin>
                                           <Insets left="5.0" right="5.0" />
                                        </VBox.margin>
@@ -416,7 +416,7 @@
                                           <Insets top="5.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <TextField fx:id="textAisleID11">
+                                    <TextField fx:id="textAisleID11" editable="false" prefHeight="55.0" prefWidth="156.0">
                                        <VBox.margin>
                                           <Insets left="5.0" right="5.0" />
                                        </VBox.margin>
@@ -429,7 +429,7 @@
                                           <Insets top="5.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <TextField fx:id="textSNumber1">
+                                    <TextField fx:id="textSNumber1" editable="false" prefHeight="55.0" prefWidth="156.0">
                                        <VBox.margin>
                                           <Insets left="5.0" right="5.0" />
                                        </VBox.margin>
