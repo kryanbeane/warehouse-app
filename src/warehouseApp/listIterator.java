@@ -19,4 +19,5 @@ public class listIterator<K> implements Iterator<K> {
         pos = pos.next;
         return temp.getContents();
     }
+
 }

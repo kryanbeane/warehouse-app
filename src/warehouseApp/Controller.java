@@ -1,9 +1,13 @@
 package warehouseApp;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
+import javafx.beans.Observable;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 import javax.print.DocFlavor;
 import java.io.FileReader;
@@ -23,20 +27,21 @@ public class Controller {
         double floorTemperature = Double.parseDouble(textFTemp.getText());
         Main.floorList.addElement(new Floor(floorNumber, securityLevel, floorTemperature));
         textFloorArea.setText(Main.floorList.printList());
+        textFNum.clear();
+        textSecLvl.clear();
+        textFTemp.clear();
     }
 
     /**
      * Get floor node to add aisle to.
      */
-    @FXML TextField textGetFloor, textCurrentFloor1, textCurrentFloor2, textCurrentFloor3;
+    @FXML TextField textGetFloor, textCurrentFloor;
     public Floor getFloor() {
         int floorNumber = Integer.parseInt(textGetFloor.getText());
         Node<Floor> tempFloor = Main.floorList.head;
         while (tempFloor != null) {
             if (tempFloor.getContents().getFloorNumber() == floorNumber) {
-                textCurrentFloor1.setText(tempFloor.getContents().toString2());
-                textCurrentFloor2.setText(tempFloor.getContents().toString2());
-                textCurrentFloor3.setText(tempFloor.getContents().toString2());
+                textCurrentFloor.setText(tempFloor.getContents().toString2());
                 return tempFloor.getContents();
             }
             tempFloor = tempFloor.next;
@@ -63,7 +68,7 @@ public class Controller {
         }
     }
 
-    @FXML TextField textCurrentAisle1, textCurrentAisle2;
+    @FXML TextField textCurrentAisle;
     /**
      * Gets aisle to add shelf to.
      * @return - Aisle node or null if aisle not found.
@@ -73,8 +78,7 @@ public class Controller {
         Node<Aisle> tempAisle = getFloor().aisleList.head;
         while(tempAisle!=null) {
             if(tempAisle.getContents().getAisleIdentifier() == aID) {
-                textCurrentAisle1.setText(tempAisle.getContents().toString());
-                textCurrentAisle2.setText(tempAisle.getContents().toString());
+                textCurrentAisle.setText(tempAisle.getContents().toString());
                 return tempAisle.getContents();
             }
             tempAisle = tempAisle.next;
@@ -94,15 +98,17 @@ public class Controller {
         System.out.println("\n" + aisleFound.shelfList.printList());
     }
 
+    @FXML TextField textCurrentShelf;
     /**
      * Gets shelf to add pallet to.
      * @return - Shelf node or null if shelf not found.
      */
     public Shelf getShelf() {
-        int sNum = Integer.parseInt(textSNum.getText());
+        int sNum = Integer.parseInt(textCurrentShelf.getText());
         Node<Shelf> tempShelf = getAisle().shelfList.head;
         while(tempShelf!=null) {
             if(tempShelf.getContents().getShelfNumber()==sNum) {
+                textCurrentShelf.setText(tempShelf.getContents().toString());
                 return tempShelf.getContents();
             }
             tempShelf=tempShelf.next;
@@ -144,11 +150,12 @@ public class Controller {
             XStream xstream = new XStream(new DomDriver());
             ObjectInputStream is = xstream.createObjectInputStream(new FileReader("warehouseApp.xml"));
             Main.floorList = (MyList<Floor>) is.readObject();
-            System.out.println(Main.floorList.printList());
+            textDisplayArea.setText(Main.floorList.printList());
             is.close();
         }catch(Exception e) {
-            System.out.println("There are no Floors in the Loaded Data!");
+            textDisplayArea.setText("There are no Floors in the Loaded Data!");
         }
+
     }
 
     /**
@@ -169,5 +176,6 @@ public class Controller {
      */
     public void reset() {
         Main.floorList.clear();
+        textDisplayArea.setText(Main.floorList.printList());
     }
 }
