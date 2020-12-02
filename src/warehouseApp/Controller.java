@@ -1,19 +1,15 @@
 package warehouseApp;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
-import javafx.beans.Observable;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
-
-import javax.print.DocFlavor;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.Random;
+
 public class Controller {
 
     /**
@@ -49,32 +45,43 @@ public class Controller {
         return null;
     }
 
+    public String genAisleID() {
+            Random random = new Random();
+            Floor floorFound = getFloor();
+            int integerPart = floorFound.getFloorNumber();   // Makes the int part a number between 1 and 10
+            int stringIndex = random.nextInt(26);
+            String alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            char charPart = alpha.charAt(stringIndex);
+            return integerPart + String.valueOf(charPart);
+    }
+
     /**
      * Add aisle to aisleList in Floor
      */
-    @FXML TextField textAID, textAisleW, textAisleD;
+    @FXML TextField textAisleW, textAisleD;
+    @FXML TextArea textAisleArea;
     public void addAisle() {
-        String aID = textAID.getText();
         int aisleW = Integer.parseInt(textAisleW.getText());
         int aisleD = Integer.parseInt(textAisleD.getText());
         Floor floorFound = getFloor();
 
         if (floorFound != null) {
-            floorFound.aisleList.addElement(new Aisle(aID, aisleW, aisleD));
+            floorFound.aisleList.addElement(new Aisle(genAisleID(), aisleW, aisleD));
             System.out.println("\n" + floorFound.aisleList.printList());
+            textAisleArea.setText(floorFound.aisleList.printList());
         }
         else {
             System.out.println("Floor not found. Aisle not added.");
         }
     }
 
-    @FXML TextField textCurrentAisle;
+    @FXML TextField textGetAisle, textCurrentAisle;
     /**
      * Gets aisle to add shelf to.
      * @return - Aisle node or null if aisle not found.
      */
     public Aisle getAisle() {
-        String aID = textAID.getText();
+        String aID = textGetAisle.getText();
         Node<Aisle> tempAisle = getFloor().aisleList.head;
         while(tempAisle!=null) {
             if(tempAisle.getContents().getAisleIdentifier() == aID) {

@@ -103,9 +103,9 @@ public class MyList<F> implements Iterable<F> {
 
         Node<F> temp = head;
         if(head!=null){
-        }
-        for(int i = 0; i<index;i++){
-            temp = temp.next;
+            for(int i = 0; i<index;i++){
+                temp = temp.next;
+            }
         }
         return temp;
     }

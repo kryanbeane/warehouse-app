@@ -1,5 +1,60 @@
 <object-stream>
   <warehouseApp.MyList>
-    <numberOfContents>0</numberOfContents>
+    <head>
+      <next>
+        <next>
+          <next>
+            <next>
+              <previous reference="../.."/>
+              <contents class="warehouseApp.Floor">
+                <floorNumber>1</floorNumber>
+                <securityLevel>HIGH</securityLevel>
+                <floorTemperature>25.0</floorTemperature>
+                <aisleList>
+                  <numberOfContents>0</numberOfContents>
+                </aisleList>
+              </contents>
+            </next>
+            <previous reference="../.."/>
+            <contents class="warehouseApp.Floor">
+              <floorNumber>2</floorNumber>
+              <securityLevel>HIGH</securityLevel>
+              <floorTemperature>21.0</floorTemperature>
+              <aisleList>
+                <numberOfContents>0</numberOfContents>
+              </aisleList>
+            </contents>
+          </next>
+          <previous reference="../.."/>
+          <contents class="warehouseApp.Floor">
+            <floorNumber>3</floorNumber>
+            <securityLevel>MEDIUM</securityLevel>
+            <floorTemperature>38.0</floorTemperature>
+            <aisleList>
+              <numberOfContents>0</numberOfContents>
+            </aisleList>
+          </contents>
+        </next>
+        <previous reference="../.."/>
+        <contents class="warehouseApp.Floor">
+          <floorNumber>4</floorNumber>
+          <securityLevel>LOW</securityLevel>
+          <floorTemperature>21.0</floorTemperature>
+          <aisleList>
+            <numberOfContents>0</numberOfContents>
+          </aisleList>
+        </contents>
+      </next>
+      <contents class="warehouseApp.Floor">
+        <floorNumber>5</floorNumber>
+        <securityLevel>LOW</securityLevel>
+        <floorTemperature>18.5</floorTemperature>
+        <aisleList>
+          <numberOfContents>0</numberOfContents>
+        </aisleList>
+      </contents>
+    </head>
+    <tail reference="../head/next/next/next/next"/>
+    <numberOfContents>5</numberOfContents>
   </warehouseApp.MyList>
 </object-stream>

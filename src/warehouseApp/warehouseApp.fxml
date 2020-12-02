@@ -155,16 +155,6 @@
                                                 <Font name="System Bold" size="13.0" />
                                              </font>
                                           </Label>
-                                          <Label prefHeight="17.0" prefWidth="208.0" text="Aisle ID">
-                                             <VBox.margin>
-                                                <Insets left="7.0" />
-                                             </VBox.margin>
-                                          </Label>
-                                          <TextField fx:id="textAID">
-                                             <VBox.margin>
-                                                <Insets left="5.0" right="5.0" />
-                                             </VBox.margin>
-                                          </TextField>
                                           <Label layoutX="10.0" layoutY="31.0" prefHeight="17.0" prefWidth="208.0" text="Aisle Width">
                                              <VBox.margin>
                                                 <Insets left="7.0" />
@@ -196,12 +186,12 @@
                                  <center>
                                     <VBox prefHeight="404.0" prefWidth="434.0" BorderPane.alignment="CENTER">
                                        <children>
-                                          <TextField editable="false" prefHeight="656.0" prefWidth="519.0">
+                                          <TextArea fx:id="textAisleArea" prefHeight="534.0" prefWidth="349.0">
                                              <VBox.margin>
                                                 <Insets bottom="5.0" left="5.0" right="10.0" top="5.0" />
                                              </VBox.margin>
-                                          </TextField>
-                                          <HBox prefHeight="100.0" prefWidth="200.0">
+                                          </TextArea>
+                                          <HBox fx:id="t" prefHeight="100.0" prefWidth="200.0">
                                              <children>
                                                 <Button alignment="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="280.0" text="VIEW FLOORS">
                                                    <HBox.margin>
