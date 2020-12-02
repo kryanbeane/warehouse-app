@@ -45,6 +45,10 @@ public class Controller {
         return null;
     }
 
+    /**
+     * Generates an ID to assign to a newly created aisle using the floor number and a random letter.
+     * @return - Randomly generated aisle ID.
+     */
     public String genAisleID() {
             Random random = new Random();
             Floor floorFound = getFloor();
@@ -69,8 +73,9 @@ public class Controller {
             floorFound.aisleList.addElement(new Aisle(genAisleID(), aisleW, aisleD));
             System.out.println("\n" + floorFound.aisleList.printList());
             textAisleArea.setText(floorFound.aisleList.printList());
-        }
-        else {
+            textAisleW.clear();
+            textAisleD.clear();
+        } else {
             System.out.println("Floor not found. Aisle not added.");
         }
     }
@@ -84,7 +89,7 @@ public class Controller {
         String aID = textGetAisle.getText();
         Node<Aisle> tempAisle = getFloor().aisleList.head;
         while(tempAisle!=null) {
-            if(tempAisle.getContents().getAisleIdentifier() == aID) {
+            if(tempAisle.getContents().getAisleIdentifier().equals(aID)) {
                 textCurrentAisle.setText(tempAisle.getContents().toString());
                 return tempAisle.getContents();
             }
@@ -145,6 +150,15 @@ public class Controller {
      *  View all method
      */
     public void viewAll() {
+        Node temp=Main.floorList.head;
+        int a = Main.floorList.length();
+        while(temp!=null) {
+            for(int i=0; i<a; i++) {
+                temp
+            }
+
+            temp=temp.next;
+        }
         textDisplayArea.setText(Main.floorList.printList());
     }
 
@@ -156,7 +170,7 @@ public class Controller {
         try {
             XStream xstream = new XStream(new DomDriver());
             ObjectInputStream is = xstream.createObjectInputStream(new FileReader("warehouseApp.xml"));
-            Main.floorList = (MyList<Floor>) is.readObject();
+            Main.floorList = (MyList<Floor>)is.readObject();
             textDisplayArea.setText(Main.floorList.printList());
             is.close();
         }catch(Exception e) {
@@ -184,5 +198,12 @@ public class Controller {
     public void reset() {
         Main.floorList.clear();
         textDisplayArea.setText(Main.floorList.printList());
+    }
+
+    public String ViewToString() {
+
+        Node temp = Main.floorList.head;
+        return  "Floor " + temp.getContents(). + ": " +
+                "\n Security Level = " + securityLevel + ", Floor Temperature = " + floorTemperature + "°C";
     }
 }

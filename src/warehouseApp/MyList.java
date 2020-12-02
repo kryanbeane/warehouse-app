@@ -1,7 +1,4 @@
 package warehouseApp;
-
-import javafx.scene.control.TextField;
-
 import java.util.Iterator;
 
 public class MyList<F> implements Iterable<F> {
@@ -99,8 +96,9 @@ public class MyList<F> implements Iterable<F> {
     }
 
     public Node<F> accessAtIndex(int index){
-        if(index<0)return null;
-
+        if(index<0){
+            return null;
+        }
         Node<F> temp = head;
         if(head!=null){
             for(int i = 0; i<index;i++){
@@ -122,5 +120,4 @@ public class MyList<F> implements Iterable<F> {
     public Iterator<F> iterator() {
         return new listIterator<F>(head);
     }
-
 }

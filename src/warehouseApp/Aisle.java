@@ -76,10 +76,9 @@ public class Aisle {
      */
     @Override
     public String toString() {
-        return  "Aisle " + aisleIdentifier +
-                ",\n Aisle Width = " + aisleWidth +
-                ",\n Aisle Depth = " + aisleDepth +
-                "\n";
+        return  "Aisle " + aisleIdentifier + "\n" +
+                "Aisle Width = " + aisleWidth + "\n" +
+                "Aisle Depth = " + aisleDepth + "\n";
     }
 }
 
