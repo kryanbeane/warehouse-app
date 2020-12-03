@@ -6,6 +6,10 @@ public class MyList<F> implements Iterable<F> {
     public Node<F> head=null, tail=null;
     private int numberOfContents = 0;
 
+    /**
+     *
+     * @param e
+     */
     public void addElement(F e) {
         // We want to add it in at the end, not the start
         // Create a new node
@@ -27,6 +31,10 @@ public class MyList<F> implements Iterable<F> {
         numberOfContents++;
     }
 
+    /**
+     *
+     * @return
+     */
     public  String printList() {
         Node<F> currentNode = head;
         String fullList ="";
@@ -38,6 +46,10 @@ public class MyList<F> implements Iterable<F> {
         return fullList;
     }
 
+    /**
+     *
+     * @return
+     */
     public String printList2(){
         String fullList = "";
         for(Node temp = head; temp!=null; temp=temp.next){
@@ -46,18 +58,34 @@ public class MyList<F> implements Iterable<F> {
         return fullList;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isEmpty(){
         return head==null;
     }
 
+    /**
+     *
+     * @return
+     */
     public int length(){
         return numberOfContents;
     }
 
+    /**
+     *
+     * @return
+     */
     public Node<F> accessFirst(){
         return head;
     }
 
+    /**
+     *
+     * @param index
+     */
     public void removeNode(int index){
 
         if (head!=null){                                    // Check to make sure not empty
@@ -87,6 +115,10 @@ public class MyList<F> implements Iterable<F> {
         else System.out.println("The list was empty!");
     }
 
+    /**
+     *
+     * @return
+     */
     public Node<F> accessSecond(){
         if(head.next!=null) {
             return head.next;
@@ -95,6 +127,11 @@ public class MyList<F> implements Iterable<F> {
         }
     }
 
+    /**
+     *
+     * @param index
+     * @return
+     */
     public Node<F> accessAtIndex(int index){
         if(index<0){
             return null;
@@ -108,14 +145,24 @@ public class MyList<F> implements Iterable<F> {
         return temp;
     }
 
+    /**
+     *
+     */
     public void clear() {
         head=null;
     }
 
+    /**
+     *
+     */
     public void emptyList() {
         head=null;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public Iterator<F> iterator() {
         return new listIterator<F>(head);

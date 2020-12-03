@@ -3,32 +3,35 @@ package warehouseApp;
 public class Shelf {
 
     // Details stored about each shelf
-    private int shelfNumber;
+    private String shelfNumber;
     // List of Pallets
     MyList<Pallet> palletList = new MyList<>();
 
     /**
      * Gets shelf Number using user specified data
+     *
      * @return - User specified shelf number
      */
-    public int getShelfNumber() {
+    public String getShelfNumber() {
         return shelfNumber;
     }
 
     /**
      * Sets shelf number using user specified data
+     *
      * @param shelfNumber - User specified shelf number
      */
-    public void setShelfNumber(int shelfNumber) {
+    public void setShelfNumber(String shelfNumber) {
         this.shelfNumber = shelfNumber;
     }
 
     /**
      * Constructor that creates the Shelf
-     * @param sNum - User specified Shelf Number
+     *
+     * @param shelfNumber - User specified Shelf Number
      */
-    public Shelf(int sNum) {
-        this.setShelfNumber(sNum);
+    public Shelf(String shelfNumber) {
+        this.shelfNumber = shelfNumber;
     }
 
     /**
@@ -37,6 +40,6 @@ public class Shelf {
      */
     @Override
     public String toString() {
-        return "\n Shelf Number = " + shelfNumber;
+        return "Shelf Number " + shelfNumber;
     }
 }

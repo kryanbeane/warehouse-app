@@ -6,10 +6,16 @@ public class Node<N> {
 
     private N contents; // ADT reference
 
+    /**
+     *
+     * @return
+     */
     public N getContents()  {return contents;}
 
+    /**
+     *
+     * @param c
+     */
     public void setContents(N c)  {this.contents = c;}
-
-    public boolean hasNext()  {return next!=null;}
 
 }

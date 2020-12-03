@@ -10,7 +10,18 @@
               <securityLevel>HIGH</securityLevel>
               <floorTemperature>25.0</floorTemperature>
               <aisleList>
-                <numberOfContents>0</numberOfContents>
+                <head>
+                  <contents class="warehouseApp.Aisle">
+                    <aisleIdentifier>1T</aisleIdentifier>
+                    <aisleWidth>12</aisleWidth>
+                    <aisleDepth>4</aisleDepth>
+                    <shelfList>
+                      <numberOfContents>0</numberOfContents>
+                    </shelfList>
+                  </contents>
+                </head>
+                <tail reference="../head"/>
+                <numberOfContents>1</numberOfContents>
               </aisleList>
             </contents>
           </next>

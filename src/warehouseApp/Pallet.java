@@ -3,12 +3,29 @@ package warehouseApp;
 public class Pallet {
 
     // Details stored about each pallet
+    private String palletID;
     private String productDescription;
     private int productQuantity;
     private double minimumStoreTemperature;
     private double maximumStoreTemperature;
     private int palletPositionWidth;
     private int palletPositionDepth;
+
+    /**
+     *
+     * @return -
+     */
+    public String getPalletID() {
+        return palletID;
+    }
+
+    /**
+     *
+     * @param palletID -
+     */
+    public void setPalletID(String palletID) {
+        this.palletID = palletID;
+    }
 
     /**
      * Gets product description using user specified data
@@ -108,20 +125,22 @@ public class Pallet {
 
     /**
      * Constructor that creates the Pallet
-     * @param proDesc - User specified product description
-     * @param proQuantity - User specified product quantity
-     * @param minStoreTemp - User specified minimum storage temperature
-     * @param maxStoreTemp - User specified maximum storage temperature
-     * @param palPosW - User specified pallet position width
-     * @param palPosD - User specified pallet position depth
+     * @param palletID -
+     * @param productDescription - User specified product description
+     * @param productQuantity - User specified product quantity
+     * @param minimumStoreTemperature - User specified minimum storage temperature
+     * @param maximumStoreTemperature - User specified maximum storage temperature
+     * @param palletPositionWidth - User specified pallet position width
+     * @param palletPositionDepth - User specified pallet position depth
      */
-    public Pallet(String proDesc, int proQuantity, double minStoreTemp, double maxStoreTemp, int palPosW, int palPosD) {
-        this.setProductDescription(proDesc);
-        this.setProductQuantity(proQuantity);
-        this.setMinimumStoreTemperature(minStoreTemp);
-        this.setMaximumStoreTemperature(maxStoreTemp);
-        this.setPalletPositionDepth(palPosD);
-        this.setPalletPositionDepth(palPosD);
+    public Pallet(String palletID, String productDescription, int productQuantity, double minimumStoreTemperature, double maximumStoreTemperature, int palletPositionWidth, int palletPositionDepth) {
+        this.palletID = palletID;
+        this.productDescription = productDescription;
+        this.productQuantity = productQuantity;
+        this.minimumStoreTemperature = minimumStoreTemperature;
+        this.maximumStoreTemperature = maximumStoreTemperature;
+        this.palletPositionWidth = palletPositionWidth;
+        this.palletPositionDepth = palletPositionDepth;
     }
 
     /**

@@ -3,7 +3,6 @@ package warehouseApp;
 public class Aisle {
 
     // Details stored about each aisle
-
     private String aisleIdentifier;
     private int aisleWidth;
     private int aisleDepth;
@@ -79,6 +78,10 @@ public class Aisle {
         return  "Aisle " + aisleIdentifier + "\n" +
                 "Aisle Width = " + aisleWidth + "\n" +
                 "Aisle Depth = " + aisleDepth + "\n";
+    }
+
+    public String toString2() {
+        return "Aisle " + aisleIdentifier;
     }
 }
 

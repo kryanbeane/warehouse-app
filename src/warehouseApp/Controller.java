@@ -50,13 +50,38 @@ public class Controller {
      * @return - Randomly generated aisle ID.
      */
     public String genAisleID() {
-            Random random = new Random();
-            Floor floorFound = getFloor();
-            int integerPart = floorFound.getFloorNumber();   // Makes the int part a number between 1 and 10
-            int stringIndex = random.nextInt(26);
-            String alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-            char charPart = alpha.charAt(stringIndex);
-            return integerPart + String.valueOf(charPart);
+        Random random = new Random();
+        Floor floorFound = getFloor();
+        int integerPart = floorFound.getFloorNumber();   // Makes the int part a number between 1 and 10
+        int stringIndex = random.nextInt(26);
+        String alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        char charPart = alpha.charAt(stringIndex);
+        return integerPart + String.valueOf(charPart);
+    }
+
+    /**
+     *
+     * @return -
+     */
+    public String genShelfID() {
+        Random random = new Random();
+        Aisle aisleFound = getAisle();
+        String aislePart = aisleFound.getAisleIdentifier();
+        int stringIndex = random.nextInt(26);
+        String a="-";
+        return aislePart+a+stringIndex;
+    }
+
+    /**
+     *
+     */
+    public String genPalletID() {
+        Random random = new Random();
+        Shelf shelfFound = getShelf();
+        String firstPart = shelfFound.getShelfNumber();
+        String a="-";
+        int intPart=random.nextInt(26);
+        return firstPart + a + intPart;
     }
 
     /**
@@ -80,17 +105,16 @@ public class Controller {
         }
     }
 
-    @FXML TextField textGetAisle, textCurrentAisle;
     /**
-     * Gets aisle to add shelf to.
-     * @return - Aisle node or null if aisle not found.
+     *
      */
+    @FXML TextField textGetAisle, textCurrentAisle;
     public Aisle getAisle() {
         String aID = textGetAisle.getText();
         Node<Aisle> tempAisle = getFloor().aisleList.head;
         while(tempAisle!=null) {
             if(tempAisle.getContents().getAisleIdentifier().equals(aID)) {
-                textCurrentAisle.setText(tempAisle.getContents().toString());
+                textCurrentAisle.setText(tempAisle.getContents().toString2());
                 return tempAisle.getContents();
             }
             tempAisle = tempAisle.next;
@@ -101,22 +125,24 @@ public class Controller {
     /**
      * Add Shelf to shelfList in Aisle
      */
-    @FXML TextField textSNum;
+    @FXML TextField textShelfArea;
     public void addShelf() {
-        int sNum = Integer.parseInt(textSNum.getText());
         Aisle aisleFound = getAisle();
 
-        aisleFound.shelfList.addElement(new Shelf(sNum));
-        System.out.println("\n" + aisleFound.shelfList.printList());
+        if(aisleFound!=null) {
+            aisleFound.shelfList.addElement(new Shelf(genShelfID()));
+            textShelfArea.setText(getAisle().shelfList.printList());
+         } else {
+            textShelfArea.appendText("Aisle not selected, please choose an aisle :)");
+         }
     }
 
-    @FXML TextField textCurrentShelf;
     /**
-     * Gets shelf to add pallet to.
-     * @return - Shelf node or null if shelf not found.
+     *
      */
+    @FXML TextField textCurrentShelf, textGetShelf;
     public Shelf getShelf() {
-        int sNum = Integer.parseInt(textCurrentShelf.getText());
+        String sNum = textGetShelf.getText();
         Node<Shelf> tempShelf = getAisle().shelfList.head;
         while(tempShelf!=null) {
             if(tempShelf.getContents().getShelfNumber()==sNum) {
@@ -131,7 +157,8 @@ public class Controller {
     /**
      * Add pallet to palletList in Shelf
      */
-    @FXML TextField textSNumber, textProDesc, textProQuantity, textMinStoreTemp, textMaxStoreTemp, textPalPosW, textPalPosD;
+    @FXML TextField textProDesc, textProQuantity, textMinStoreTemp, textMaxStoreTemp, textPalPosW, textPalPosD;
+    @FXML TextArea textPalletArea;
     public void addPallet() {
         String proDesc = textProDesc.getText();
         int proQuantity = Integer.parseInt(textProQuantity.getText());
@@ -141,25 +168,63 @@ public class Controller {
         int palPosD = Integer.parseInt(textPalPosD.getText());
         Shelf shelfFound = getShelf();
 
-        shelfFound.palletList.addElement(new Pallet(proDesc, proQuantity, minStoreTemp, maxStoreTemp, palPosW, palPosD));
-        System.out.println("\n" + shelfFound.palletList.printList());
+        shelfFound.palletList.addElement(new Pallet(genPalletID(), proDesc, proQuantity, minStoreTemp, maxStoreTemp, palPosW, palPosD));
+        textPalletArea.setText(getShelf().palletList.printList());
+
+        textProDesc.clear();
+        textProQuantity.clear();
+        textMinStoreTemp.clear();
+        textMaxStoreTemp.clear();
+        textPalPosW.clear();
+        textPalPosD.clear();
     }
 
-    @FXML TextArea textDisplayArea;
+    /**
+     *
+     */
+    @FXML TextField textPalletID;
+    public void deletePallet() {
+        int palletID = Integer.parseInt(textPalletID.getText());
+        getShelf().palletList.removeNode(palletID);
+    }
+
     /**
      *  View all method
      */
+    @FXML TextArea textDisplayArea;
     public void viewAll() {
-        Node temp=Main.floorList.head;
-        int a = Main.floorList.length();
-        while(temp!=null) {
-            for(int i=0; i<a; i++) {
-                temp
-            }
 
-            temp=temp.next;
+    }
+
+    public void viewFloors() {
+        textFloorArea.setText(Main.floorList.printList());
+    }
+
+    public void viewAisles() {
+        Floor tempFloor = getFloor();
+        if (tempFloor != null) {
+            textAisleArea.setText(tempFloor.aisleList.printList());
+        } else if (tempFloor.aisleList == null) {
+            textAisleArea.setText("Add some aisles to this floor to view them!");
+        } else {
+            textAisleArea.setText("Please select a floor to view it's aisles!");
         }
-        textDisplayArea.setText(Main.floorList.printList());
+    }
+
+    public void viewShelves() {
+//        if() {
+//
+//        } else {
+//
+//        }
+    }
+
+    public void viewPallets() {
+//        if() {
+//
+//        } else {
+//
+//        }
     }
 
     /**
@@ -200,10 +265,4 @@ public class Controller {
         textDisplayArea.setText(Main.floorList.printList());
     }
 
-    public String ViewToString() {
-
-        Node temp = Main.floorList.head;
-        return  "Floor " + temp.getContents(). + ": " +
-                "\n Security Level = " + securityLevel + ", Floor Temperature = " + floorTemperature + "°C";
-    }
 }

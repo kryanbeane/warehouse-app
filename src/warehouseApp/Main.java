@@ -8,8 +8,16 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
+    /**
+     *
+     */
     static MyList<Floor> floorList = new MyList<>();
 
+    /**
+     *
+     * @param primaryStage
+     * @throws Exception
+     */
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("warehouseApp.fxml"));
