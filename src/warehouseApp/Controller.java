@@ -12,38 +12,11 @@ import java.util.Random;
 
 public class Controller {
 
-    /**
-     * Add Floor to floorList in Main
-     */
-    @FXML TextField textFNum, textSecLvl, textFTemp;
-    @FXML TextArea textFloorArea;
-    public void addFloor() {
-        int floorNumber = Integer.parseInt(textFNum.getText());
-        String securityLevel = textSecLvl.getText();
-        double floorTemperature = Double.parseDouble(textFTemp.getText());
-        Main.floorList.addElement(new Floor(floorNumber, securityLevel, floorTemperature));
-        textFloorArea.setText(Main.floorList.printList());
-        textFNum.clear();
-        textSecLvl.clear();
-        textFTemp.clear();
-    }
-
-    /**
-     * Get floor node to add aisle to.
-     */
-    @FXML TextField textGetFloor, textCurrentFloor;
-    public Floor getFloor() {
-        int floorNumber = Integer.parseInt(textGetFloor.getText());
-        Node<Floor> tempFloor = Main.floorList.head;
-        while (tempFloor != null) {
-            if (tempFloor.getContents().getFloorNumber() == floorNumber) {
-                textCurrentFloor.setText(tempFloor.getContents().toString2());
-                return tempFloor.getContents();
-            }
-            tempFloor = tempFloor.next;
-        }
-        return null;
-    }
+    @FXML TextArea textDisplayArea;                                                                                             // Area to display all lists and nodes.
+    @FXML TextField textFNum, textSecLvl, textFTemp, textGetFloor, textCurrentFloor;                                            // All floor-related text fields.
+    @FXML TextField textAisleW, textAisleD, textGetAisle, textCurrentAisle;                                                     // All aisle-related text fields.
+    @FXML TextField textCurrentShelf, textGetShelf;                                                                             // All shelf-related text fields.
+    @FXML TextField textProDesc, textProQuantity, textMinStoreTemp, textMaxStoreTemp, textPalPosW, textPalPosD, textPalletID;   // All pallet-related text fields.
 
     /**
      * Generates an ID to assign to a newly created aisle using the floor number and a random letter.
@@ -60,35 +33,79 @@ public class Controller {
     }
 
     /**
-     *
-     * @return -
+     * Generates an ID to assign to a newly created shelf using the aisle ID, a dash: '-' and a random number (eg. 4-G).
+     * @return - Randomly generated shelf ID.
      */
     public String genShelfID() {
         Random random = new Random();
         Aisle aisleFound = getAisle();
         String aislePart = aisleFound.getAisleIdentifier();
-        int stringIndex = random.nextInt(26);
-        String a="-";
-        return aislePart+a+stringIndex;
+        String x = "-";
+        int stringIndex = random.nextInt(9);
+        String newID = aislePart + x + stringIndex;
+
+        Node<Shelf> tempShelf = aisleFound.shelfList.head;
+        while(tempShelf!=null) {
+            if(!tempShelf.getContents().getShelfNumber().equals(newID)) {
+                return newID;
+            }
+            stringIndex = random.nextInt(9);
+            tempShelf = tempShelf.next;
+
+        }
+        textDisplayArea.appendText("All floor ID's are taken!");
+        return newID;
     }
 
     /**
-     *
+     * Generates an ID to assign to a newly created pallet using the shelf ID and a random number (eg. 4-G9)
+     * @return - Randomly generated pallet ID.
      */
     public String genPalletID() {
         Random random = new Random();
         Shelf shelfFound = getShelf();
         String firstPart = shelfFound.getShelfNumber();
-        String a="-";
         int intPart=random.nextInt(26);
-        return firstPart + a + intPart;
+        return firstPart + intPart;
+    }
+
+    /**
+     * Add Floor to floorList in Main
+     */
+    public void addFloor() {
+        int floorNumber = Integer.parseInt(textFNum.getText());
+        String securityLevel = textSecLvl.getText();
+        double floorTemperature = Double.parseDouble(textFTemp.getText());
+        Main.floorList.addElement(new Floor(floorNumber, securityLevel, floorTemperature));
+        textDisplayArea.setText(Main.floorList.printList());
+        textFNum.clear();
+        textSecLvl.clear();
+        textFTemp.clear();
+    }
+
+    /**
+     * Get floor node to add aisle to.
+     */
+    public Floor getFloor() {
+        int floorNumber = Integer.parseInt(textGetFloor.getText());
+        Node<Floor> tempFloor = Main.floorList.head;
+        while (tempFloor != null) {
+            if (tempFloor.getContents().getFloorNumber() == floorNumber) {
+                textCurrentFloor.setText(tempFloor.getContents().toString2());
+                //textDisplayArea.clear();
+                //textGetFloor.clear();
+                return tempFloor.getContents();
+
+            }
+            tempFloor = tempFloor.next;
+        }
+        textDisplayArea.appendText("Node not found! Please try again :)" + "\n" );
+        return null;
     }
 
     /**
      * Add aisle to aisleList in Floor
      */
-    @FXML TextField textAisleW, textAisleD;
-    @FXML TextArea textAisleArea;
     public void addAisle() {
         int aisleW = Integer.parseInt(textAisleW.getText());
         int aisleD = Integer.parseInt(textAisleD.getText());
@@ -96,8 +113,7 @@ public class Controller {
 
         if (floorFound != null) {
             floorFound.aisleList.addElement(new Aisle(genAisleID(), aisleW, aisleD));
-            System.out.println("\n" + floorFound.aisleList.printList());
-            textAisleArea.setText(floorFound.aisleList.printList());
+            textDisplayArea.setText(floorFound.aisleList.printList());
             textAisleW.clear();
             textAisleD.clear();
         } else {
@@ -108,7 +124,6 @@ public class Controller {
     /**
      *
      */
-    @FXML TextField textGetAisle, textCurrentAisle;
     public Aisle getAisle() {
         String aID = textGetAisle.getText();
         Node<Aisle> tempAisle = getFloor().aisleList.head;
@@ -125,27 +140,25 @@ public class Controller {
     /**
      * Add Shelf to shelfList in Aisle
      */
-    @FXML TextField textShelfArea;
     public void addShelf() {
         Aisle aisleFound = getAisle();
 
         if(aisleFound!=null) {
             aisleFound.shelfList.addElement(new Shelf(genShelfID()));
-            textShelfArea.setText(getAisle().shelfList.printList());
+            textDisplayArea.setText(getAisle().shelfList.printList());
          } else {
-            textShelfArea.appendText("Aisle not selected, please choose an aisle :)");
+            textDisplayArea.appendText("Aisle not selected, please choose an aisle :)");
          }
     }
 
     /**
      *
      */
-    @FXML TextField textCurrentShelf, textGetShelf;
     public Shelf getShelf() {
         String sNum = textGetShelf.getText();
         Node<Shelf> tempShelf = getAisle().shelfList.head;
         while(tempShelf!=null) {
-            if(tempShelf.getContents().getShelfNumber()==sNum) {
+            if(tempShelf.getContents().getShelfNumber().equals(sNum)) {
                 textCurrentShelf.setText(tempShelf.getContents().toString());
                 return tempShelf.getContents();
             }
@@ -157,8 +170,6 @@ public class Controller {
     /**
      * Add pallet to palletList in Shelf
      */
-    @FXML TextField textProDesc, textProQuantity, textMinStoreTemp, textMaxStoreTemp, textPalPosW, textPalPosD;
-    @FXML TextArea textPalletArea;
     public void addPallet() {
         String proDesc = textProDesc.getText();
         int proQuantity = Integer.parseInt(textProQuantity.getText());
@@ -169,7 +180,7 @@ public class Controller {
         Shelf shelfFound = getShelf();
 
         shelfFound.palletList.addElement(new Pallet(genPalletID(), proDesc, proQuantity, minStoreTemp, maxStoreTemp, palPosW, palPosD));
-        textPalletArea.setText(getShelf().palletList.printList());
+        textDisplayArea.setText(getShelf().palletList.printList());
 
         textProDesc.clear();
         textProQuantity.clear();
@@ -182,7 +193,6 @@ public class Controller {
     /**
      *
      */
-    @FXML TextField textPalletID;
     public void deletePallet() {
         int palletID = Integer.parseInt(textPalletID.getText());
         getShelf().palletList.removeNode(palletID);
@@ -191,26 +201,32 @@ public class Controller {
     /**
      *  View all method
      */
-    @FXML TextArea textDisplayArea;
     public void viewAll() {
 
     }
 
+    /**
+     *
+     */
     public void viewFloors() {
-        textFloorArea.setText(Main.floorList.printList());
+        textDisplayArea.setText(Main.floorList.printList());
     }
 
+    /**
+     *
+     */
     public void viewAisles() {
         Floor tempFloor = getFloor();
-        if (tempFloor != null) {
-            textAisleArea.setText(tempFloor.aisleList.printList());
-        } else if (tempFloor.aisleList == null) {
-            textAisleArea.setText("Add some aisles to this floor to view them!");
+        if(tempFloor.aisleList!=null) {
+            textDisplayArea.setText(tempFloor.aisleList.printList());
         } else {
-            textAisleArea.setText("Please select a floor to view it's aisles!");
+            textDisplayArea.setText("Try adding some aisles first ;)");
         }
     }
 
+    /**
+     *
+     */
     public void viewShelves() {
 //        if() {
 //
@@ -219,6 +235,9 @@ public class Controller {
 //        }
     }
 
+    /**
+     *
+     */
     public void viewPallets() {
 //        if() {
 //

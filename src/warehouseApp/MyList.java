@@ -36,24 +36,12 @@ public class MyList<F> implements Iterable<F> {
      * @return
      */
     public  String printList() {
-        Node<F> currentNode = head;
+        Node<F> currentNode = tail;
         String fullList ="";
 
         while (currentNode != null) {                       // Traverse through the List
             fullList += currentNode.getContents() + "\n";   // Print the data at current nod
-            currentNode = currentNode.next;                 // Go to next node
-        }
-        return fullList;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public String printList2(){
-        String fullList = "";
-        for(Node temp = head; temp!=null; temp=temp.next){
-            fullList += temp.getContents() + "\n";
+            currentNode = currentNode.previous;                 // Go to next node
         }
         return fullList;
     }

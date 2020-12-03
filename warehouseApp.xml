@@ -2,51 +2,29 @@
   <warehouseApp.MyList>
     <head>
       <next>
-        <next>
-          <next>
-            <previous reference="../.."/>
-            <contents class="warehouseApp.Floor">
-              <floorNumber>1</floorNumber>
-              <securityLevel>HIGH</securityLevel>
-              <floorTemperature>25.0</floorTemperature>
-              <aisleList>
-                <head>
-                  <contents class="warehouseApp.Aisle">
-                    <aisleIdentifier>1T</aisleIdentifier>
-                    <aisleWidth>12</aisleWidth>
-                    <aisleDepth>4</aisleDepth>
-                    <shelfList>
-                      <numberOfContents>0</numberOfContents>
-                    </shelfList>
-                  </contents>
-                </head>
-                <tail reference="../head"/>
-                <numberOfContents>1</numberOfContents>
-              </aisleList>
-            </contents>
-          </next>
-          <previous reference="../.."/>
-          <contents class="warehouseApp.Floor">
-            <floorNumber>2</floorNumber>
-            <securityLevel>LOW</securityLevel>
-            <floorTemperature>21.0</floorTemperature>
-            <aisleList>
-              <numberOfContents>0</numberOfContents>
-            </aisleList>
-          </contents>
-        </next>
         <previous reference="../.."/>
         <contents class="warehouseApp.Floor">
-          <floorNumber>3</floorNumber>
-          <securityLevel>MEDIUM</securityLevel>
-          <floorTemperature>29.0</floorTemperature>
+          <floorNumber>1</floorNumber>
+          <securityLevel>HIGH</securityLevel>
+          <floorTemperature>25.0</floorTemperature>
           <aisleList>
-            <numberOfContents>0</numberOfContents>
+            <head>
+              <contents class="warehouseApp.Aisle">
+                <aisleIdentifier>1S</aisleIdentifier>
+                <aisleWidth>124</aisleWidth>
+                <aisleDepth>4</aisleDepth>
+                <shelfList>
+                  <numberOfContents>0</numberOfContents>
+                </shelfList>
+              </contents>
+            </head>
+            <tail reference="../head"/>
+            <numberOfContents>1</numberOfContents>
           </aisleList>
         </contents>
       </next>
       <contents class="warehouseApp.Floor">
-        <floorNumber>4</floorNumber>
+        <floorNumber>2</floorNumber>
         <securityLevel>LOW</securityLevel>
         <floorTemperature>25.0</floorTemperature>
         <aisleList>
@@ -54,7 +32,7 @@
         </aisleList>
       </contents>
     </head>
-    <tail reference="../head/next/next/next"/>
-    <numberOfContents>4</numberOfContents>
+    <tail reference="../head/next"/>
+    <numberOfContents>2</numberOfContents>
   </warehouseApp.MyList>
 </object-stream>
