@@ -45,17 +45,20 @@ public class Controller {
         String newID = aislePart + x + stringIndex;
 
         Node<Shelf> tempShelf = aisleFound.shelfList.head;
-        while(tempShelf!=null) {
-            if(!tempShelf.getContents().getShelfNumber().equals(newID)) {
-                return newID;
-            }
-            stringIndex = random.nextInt(9);
-            tempShelf = tempShelf.next;
+            while (tempShelf != null) {
+                if (tempShelf.getContents().getShelfNumber().equals(newID)) {
+                    stringIndex = random.nextInt(9);
+                    newID = aislePart + x + stringIndex;
+                    return newID;
+                }
+                stringIndex = random.nextInt(9);
+                tempShelf = tempShelf.next;
 
+            }
+            textDisplayArea.appendText("All floor ID's are taken!");
+            return newID;
         }
-        textDisplayArea.appendText("All floor ID's are taken!");
-        return newID;
-    }
+
 
     /**
      * Generates an ID to assign to a newly created pallet using the shelf ID and a random number (eg. 4-G9)
@@ -100,7 +103,7 @@ public class Controller {
             tempFloor = tempFloor.next;
         }
         textDisplayArea.appendText("Node not found! Please try again :)" + "\n" );
-        return null;
+        return  tempFloor.getContents();
     }
 
     /**
@@ -143,13 +146,18 @@ public class Controller {
     public void addShelf() {
         Aisle aisleFound = getAisle();
 
-        if(aisleFound!=null) {
-            aisleFound.shelfList.addElement(new Shelf(genShelfID()));
-            textDisplayArea.setText(getAisle().shelfList.printList());
-         } else {
-            textDisplayArea.appendText("Aisle not selected, please choose an aisle :)");
-         }
+        while (aisleFound.shelfList.length() < 9) {
+            if(aisleFound!=null) {
+                aisleFound.shelfList.addElement(new Shelf(genShelfID()));
+                textDisplayArea.setText(getAisle().shelfList.printList());
+            } else {
+                textDisplayArea.appendText("Aisle not selected, please choose an aisle :)");
+            }
+            } textDisplayArea.appendText("Maximum number of shelves reached!");
+
     }
+
+
 
     /**
      *
@@ -218,9 +226,9 @@ public class Controller {
     public void viewAisles() {
         Floor tempFloor = getFloor();
         if(tempFloor.aisleList!=null) {
-            textDisplayArea.setText(tempFloor.aisleList.printList());
+            textDisplayArea.appendText(tempFloor.aisleList.printList());
         } else {
-            textDisplayArea.setText("Try adding some aisles first ;)");
+            textDisplayArea.appendText("Try adding some aisles first :)");
         }
     }
 
@@ -281,7 +289,7 @@ public class Controller {
      */
     public void reset() {
         Main.floorList.clear();
-        textDisplayArea.setText(Main.floorList.printList());
+        textDisplayArea.clear();
     }
 
 }
