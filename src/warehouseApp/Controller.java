@@ -292,4 +292,11 @@ public class Controller {
         textDisplayArea.clear();
     }
 
+    /**
+     * Exit system.
+      */
+    public void quit(){
+        System.exit(0);
+    }
+
 }
