@@ -133,18 +133,11 @@ public class MyList<F> implements Iterable<F> {
         return temp;
     }
 
-    /**
-     *
-     */
-    public void clear() {
-        head=null;
-    }
-
-    /**
-     *
-     */
+    // Empties a list
     public void emptyList() {
         head=null;
+        tail=null;
+        numberOfContents=0;
     }
 
     /**

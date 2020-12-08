@@ -149,12 +149,12 @@ public class Pallet {
      */
     @Override
     public String toString() {
-        return  "\n Product Description = " + productDescription +
-                ",\n Product Description = " + productQuantity +
-                ",\n Minimum Storage Temperature = " + minimumStoreTemperature +
-                ",\n Maximum Storage Temperature = " + maximumStoreTemperature +
-                ",\n Pallet Position Width = " + palletPositionWidth +
-                ",\n Pallet Position Depth = " + palletPositionDepth;
+        return  "Product Description: " + productDescription +
+                ",\n Product Quantity: " + productQuantity +
+                ",\n Minimum Storage Temperature: " + minimumStoreTemperature +
+                ",\n Maximum Storage Temperature: " + maximumStoreTemperature +
+                ",\n Pallet Position Width: " + palletPositionWidth +
+                ",\n Pallet Position Depth: " + palletPositionDepth;
 
     }
 }

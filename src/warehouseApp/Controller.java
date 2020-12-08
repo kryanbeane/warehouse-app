@@ -42,44 +42,15 @@ public class Controller {
      * @return - Randomly generated shelf ID.
      */
     public String genShelfID() {
-
-        Random rand = new Random();
+        Random random = new Random();
         Aisle aisleFound = getAisle();
-        Node<Shelf> tempShelf = aisleFound.shelfList.head;
-        String aislePart = aisleFound.getAisleIdentifier();
-        String x = "-";
-
-        // Chooses random character to add to end of ID.
-        int stringIndex = rand.nextInt(26);
+        String integerPart = aisleFound.getAisleIdentifier();
+        int stringIndex = random.nextInt(26);
         String alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         char charPart = alpha.charAt(stringIndex);
-
-        // Creates ID in format 1-H, 4-B, etc.
-        String newID;
-
-        while(tempShelf!=null) {
-            newID=aislePart+x+charPart;
-
-            for(int i=1; i<27; i++) {
-                String str = String.valueOf(i);
-                newID=aislePart+x+str;
-
-                if(tempShelf.getContents().getShelfNumber().equals(newID)) {
-                    // Replaces already taken ID with black spot in the String so it cannot be re-chosen.
-                    alpha=alpha.replace(str, "");
-                    System.out.println("ID already exists.");
-                }
-            }
-
-            tempShelf=tempShelf.next;
-        }
-        newID = aislePart + x + charPart;
-
-        return newID;
-
-        //textDisplayArea.appendText("All floor ID's are taken!");
+        char x = '-';
+        return integerPart + x + charPart;
     }
-
 
     /**
      * Generates an ID to assign to a newly created pallet using the shelf ID and a random number (eg. 4-G9)
@@ -89,14 +60,14 @@ public class Controller {
         Random random = new Random();
         Shelf shelfFound = getShelf();
         String firstPart = shelfFound.getShelfNumber();
-        int intPart=random.nextInt(26);
+        int intPart=random.nextInt(99);
         return firstPart + intPart;
     }
 
     /**
      * Add Floor to floorList in Main
      */
-    public void addFloor() {
+    public void addFloor()  {
         int floorNumber = Integer.parseInt(textFNum.getText());
         String securityLevel = textSecLvl.getText();
         double floorTemperature = Double.parseDouble(textFTemp.getText());
@@ -124,7 +95,7 @@ public class Controller {
             tempFloor = tempFloor.next;
         }
         textDisplayArea.appendText("Node not found! Please try again :)" + "\n" );
-        return  tempFloor.getContents();
+        return  null;
     }
 
     /**
@@ -141,7 +112,7 @@ public class Controller {
             textAisleW.clear();
             textAisleD.clear();
         } else {
-            System.out.println("Floor not found. Aisle not added.");
+            System.out.println("Floor not found. Aisle not added."+"\n");
         }
     }
 
@@ -166,17 +137,18 @@ public class Controller {
      */
     public void addShelf() {
         Aisle aisleFound = getAisle();
-
-        while (aisleFound.shelfList.length() < 9) {
-            if(aisleFound!=null) {
+        if (aisleFound != null) {
+            if (aisleFound.shelfList.length() < 5) {
                 aisleFound.shelfList.addElement(new Shelf(genShelfID()));
                 textDisplayArea.setText(getAisle().shelfList.printList());
             } else {
-                textDisplayArea.appendText("Aisle not selected, please choose an aisle :)");
+                textDisplayArea.appendText("Maximum number of shelves reached!" + "\n");
             }
-            } textDisplayArea.appendText("Maximum number of shelves reached!");
-
+        } else {
+            textDisplayArea.appendText("Please choose a valid aisle to add to!" + "\n");
+        }
     }
+
 
     /**
      *
@@ -273,21 +245,19 @@ public class Controller {
 //        }
     }
 
+    ////////////////////   Save Load and Reset   ////////////////////
+
     /**
      * Loads objects from text in xml document
      * @throws Exception - Error printed if floorList is empty
      */
+    @SuppressWarnings("unchecked")
     public void load() throws Exception {
-        try {
-            XStream xstream = new XStream(new DomDriver());
-            ObjectInputStream is = xstream.createObjectInputStream(new FileReader("warehouseApp.xml"));
-            Main.floorList = (MyList<Floor>)is.readObject();
-            textDisplayArea.setText(Main.floorList.printList());
-            is.close();
-        }catch(Exception e) {
-            textDisplayArea.setText("There are no Floors in the Loaded Data!");
-        }
-
+        XStream xstream = new XStream(new DomDriver());
+        ObjectInputStream is = xstream.createObjectInputStream(new FileReader("warehouseApp.xml"));
+        Main.floorList = (MyList<Floor>) is.readObject();
+        is.close();
+        textDisplayArea.setText(Main.floorList.printList());
     }
 
     /**
@@ -299,17 +269,19 @@ public class Controller {
         ObjectOutputStream out = xstream.createObjectOutputStream(new FileWriter("warehouseApp.xml"));
         out.writeObject(Main.floorList);
         out.close();
-        System.out.println("File has been saved");
+        textDisplayArea.appendText("File has been saved"+"\n");
     }
 
     /**
-     *  Reset clears floor list, thus clearing all other lists as aisle is a node of floor,
-     *  shelf is a node of aisle and pallet is a node of shelf.
+     *  Reset clears floor list, thus clearing all other lists.
      */
     public void reset() {
-        Main.floorList.clear();
-        textDisplayArea.clear();
+        Main.floorList.emptyList();
+
+        textDisplayArea.setText("System has been reset"+"\n");
     }
+
+    ////////////////////   Exit   ////////////////////
 
     /**
      * Exit system.

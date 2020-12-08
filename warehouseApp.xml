@@ -1,38 +1,5 @@
 <object-stream>
   <warehouseApp.MyList>
-    <head>
-      <next>
-        <previous reference="../.."/>
-        <contents class="warehouseApp.Floor">
-          <floorNumber>1</floorNumber>
-          <securityLevel>HIGH</securityLevel>
-          <floorTemperature>25.0</floorTemperature>
-          <aisleList>
-            <head>
-              <contents class="warehouseApp.Aisle">
-                <aisleIdentifier>1S</aisleIdentifier>
-                <aisleWidth>124</aisleWidth>
-                <aisleDepth>4</aisleDepth>
-                <shelfList>
-                  <numberOfContents>0</numberOfContents>
-                </shelfList>
-              </contents>
-            </head>
-            <tail reference="../head"/>
-            <numberOfContents>1</numberOfContents>
-          </aisleList>
-        </contents>
-      </next>
-      <contents class="warehouseApp.Floor">
-        <floorNumber>2</floorNumber>
-        <securityLevel>LOW</securityLevel>
-        <floorTemperature>25.0</floorTemperature>
-        <aisleList>
-          <numberOfContents>0</numberOfContents>
-        </aisleList>
-      </contents>
-    </head>
-    <tail reference="../head/next"/>
-    <numberOfContents>2</numberOfContents>
+    <numberOfContents>0</numberOfContents>
   </warehouseApp.MyList>
 </object-stream>
