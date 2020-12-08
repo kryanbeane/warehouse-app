@@ -13,9 +13,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="675" maxWidth="700" minHeight="675" minWidth="700" prefHeight="675.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="warehouseApp.Controller">
+<AnchorPane minHeight="741.00" minWidth="700.00" prefHeight="741.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="warehouseApp.Controller">
    <children>
-      <BorderPane prefHeight="675.0" prefWidth="700.0">
+      <BorderPane prefHeight="741.0" prefWidth="700.0">
          <top>
             <TabPane prefHeight="223.0" prefWidth="700.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
               <tabs>
@@ -57,9 +57,9 @@
                            <children>
                               <HBox prefHeight="196.0" prefWidth="700.0">
                                  <children>
-                                    <VBox prefHeight="196.0" prefWidth="345.0">
+                                    <VBox prefHeight="196.0" prefWidth="297.0">
                                        <children>
-                                          <Label alignment="CENTER" blendMode="MULTIPLY" prefHeight="21.0" prefWidth="211.0" text="Add Floor">
+                                          <Label alignment="CENTER" blendMode="MULTIPLY" prefHeight="21.0" prefWidth="296.0" text="Add Floor">
                                              <font>
                                                 <Font name="System Bold" size="13.0" />
                                              </font>
@@ -116,30 +116,6 @@
                                           </Button>
                                        </children>
                                     </VBox>
-                                    <VBox prefHeight="196.0" prefWidth="316.0">
-                                       <children>
-                                          <Button alignment="CENTER" mnemonicParsing="false" onAction="#viewFloors" prefHeight="0.0" prefWidth="139.0" text="VIEW FLOORS">
-                                             <VBox.margin>
-                                                <Insets bottom="5.0" left="5.0" right="15.0" top="41.0" />
-                                             </VBox.margin>
-                                          </Button>
-                                          <Button alignment="CENTER" mnemonicParsing="false" onAction="#viewAisles" prefHeight="25.0" prefWidth="173.0" text="VIEW AISLES">
-                                             <VBox.margin>
-                                                <Insets bottom="5.0" left="5.0" right="15.0" top="5.0" />
-                                             </VBox.margin>
-                                          </Button>
-                                          <Button alignment="CENTER" mnemonicParsing="false" onAction="#viewShelves" prefHeight="0.0" prefWidth="139.0" text="VIEW SHELVES">
-                                             <VBox.margin>
-                                                <Insets bottom="5.0" left="5.0" right="15.0" top="5.0" />
-                                             </VBox.margin>
-                                          </Button>
-                                          <Button alignment="CENTER" mnemonicParsing="false" onAction="#viewShelves" prefHeight="6.0" prefWidth="139.0" text="VIEW SHELVES">
-                                             <VBox.margin>
-                                                <Insets bottom="5.0" left="5.0" right="15.0" top="5.0" />
-                                             </VBox.margin>
-                                          </Button>
-                                       </children>
-                                    </VBox>
                                  </children>
                               </HBox>
                            </children>
@@ -152,9 +128,9 @@
                            <children>
                               <HBox prefHeight="195.0" prefWidth="700.0">
                                  <children>
-                                    <VBox prefHeight="195.0" prefWidth="309.0">
+                                    <VBox prefHeight="195.0" prefWidth="238.0">
                                        <children>
-                                          <Label alignment="CENTER" blendMode="MULTIPLY" prefHeight="21.0" prefWidth="211.0" text="Add Aisle">
+                                          <Label alignment="CENTER" blendMode="MULTIPLY" prefHeight="21.0" prefWidth="285.0" text="Add Aisle">
                                              <font>
                                                 <Font name="System Bold" size="13.0" />
                                              </font>
@@ -193,30 +169,6 @@
                                           </Button>
                                        </children>
                                     </HBox>
-                                    <VBox prefHeight="195.0" prefWidth="236.0">
-                                       <children>
-                                          <Button alignment="CENTER" mnemonicParsing="false" onAction="#viewFloors" prefHeight="0.0" prefWidth="139.0" text="VIEW FLOORS">
-                                             <VBox.margin>
-                                                <Insets bottom="5.0" left="5.0" right="15.0" top="40.0" />
-                                             </VBox.margin>
-                                          </Button>
-                                          <Button alignment="CENTER" mnemonicParsing="false" onAction="#viewAisles" prefHeight="25.0" prefWidth="173.0" text="VIEW AISLES">
-                                             <VBox.margin>
-                                                <Insets bottom="5.0" left="5.0" right="15.0" top="5.0" />
-                                             </VBox.margin>
-                                          </Button>
-                                          <Button alignment="CENTER" mnemonicParsing="false" onAction="#viewShelves" prefHeight="0.0" prefWidth="139.0" text="VIEW SHELVES">
-                                             <VBox.margin>
-                                                <Insets bottom="5.0" left="5.0" right="15.0" top="5.0" />
-                                             </VBox.margin>
-                                          </Button>
-                                          <Button alignment="CENTER" mnemonicParsing="false" onAction="#viewShelves" prefHeight="6.0" prefWidth="139.0" text="VIEW SHELVES">
-                                             <VBox.margin>
-                                                <Insets bottom="5.0" left="5.0" right="15.0" top="5.0" />
-                                             </VBox.margin>
-                                          </Button>
-                                       </children>
-                                    </VBox>
                                  </children>
                               </HBox>
                            </children>
@@ -233,9 +185,9 @@
                                        <children>
                                           <HBox prefHeight="203.0" prefWidth="700.0">
                                              <children>
-                                                <VBox prefHeight="197.0" prefWidth="784.0">
+                                                <VBox prefHeight="203.0" prefWidth="241.0">
                                                    <children>
-                                                      <Label alignment="CENTER" blendMode="MULTIPLY" prefHeight="21.0" prefWidth="201.0" text="Add Shelf">
+                                                      <Label alignment="CENTER" blendMode="MULTIPLY" prefHeight="21.0" prefWidth="258.0" text="Add Shelf">
                                                          <font>
                                                             <Font name="System Bold" size="13.0" />
                                                          </font>
@@ -243,37 +195,14 @@
                                                             <Insets top="5.0" />
                                                          </VBox.margin>
                                                       </Label>
-                                                      <Button mnemonicParsing="false" onAction="#addShelf" prefHeight="25.0" prefWidth="141.0" text="ADD">
+                                                      <Button mnemonicParsing="false" onAction="#addShelf" prefHeight="25.0" prefWidth="274.0" text="ADD">
                                                          <VBox.margin>
                                                             <Insets left="30.0" right="30.0" top="5.0" />
                                                          </VBox.margin>
                                                       </Button>
                                                    </children>
                                                 </VBox>
-                                                <VBox prefHeight="197.0" prefWidth="381.0">
-                                                   <children>
-                                                      <Button alignment="CENTER" mnemonicParsing="false" onAction="#viewFloors" prefHeight="0.0" prefWidth="139.0" text="VIEW FLOORS">
-                                                         <VBox.margin>
-                                                            <Insets bottom="5.0" left="5.0" right="15.0" top="40.0" />
-                                                         </VBox.margin>
-                                                      </Button>
-                                                      <Button alignment="CENTER" mnemonicParsing="false" onAction="#viewAisles" prefHeight="25.0" prefWidth="173.0" text="VIEW AISLES">
-                                                         <VBox.margin>
-                                                            <Insets bottom="5.0" left="5.0" right="15.0" top="5.0" />
-                                                         </VBox.margin>
-                                                      </Button>
-                                                      <Button alignment="CENTER" mnemonicParsing="false" onAction="#viewShelves" prefHeight="0.0" prefWidth="139.0" text="VIEW SHELVES">
-                                                         <VBox.margin>
-                                                            <Insets bottom="5.0" left="5.0" right="15.0" top="5.0" />
-                                                         </VBox.margin>
-                                                      </Button>
-                                                      <Button alignment="CENTER" mnemonicParsing="false" onAction="#viewPallets" prefHeight="6.0" prefWidth="139.0" text="VIEW PALLETS">
-                                                         <VBox.margin>
-                                                            <Insets bottom="5.0" left="5.0" right="15.0" top="5.0" />
-                                                         </VBox.margin>
-                                                      </Button>
-                                                   </children>
-                                                </VBox>
+                                                <VBox prefHeight="197.0" prefWidth="381.0" />
                                              </children>
                                           </HBox>
                                        </children>
@@ -393,38 +322,14 @@
                                                             <Insets left="7.0" />
                                                          </VBox.margin>
                                                       </Label>
-                                                      <TextField fx:id="textPalletID">
+                                                      <TextField fx:id="textPalletID" prefHeight="25.0" prefWidth="254.0">
                                                          <VBox.margin>
-                                                            <Insets left="5.0" right="5.0" />
+                                                            <Insets left="5.0" right="10.0" />
                                                          </VBox.margin>
                                                       </TextField>
-                                                      <Button mnemonicParsing="false" onAction="#deletePallet" prefHeight="25.0" prefWidth="198.0" text="DELETE">
+                                                      <Button mnemonicParsing="false" onAction="#deletePallet" prefHeight="25.0" prefWidth="314.0" text="DELETE">
                                                          <VBox.margin>
-                                                            <Insets left="5.0" right="5.0" top="10.0" />
-                                                         </VBox.margin>
-                                                      </Button>
-                                                   </children>
-                                                </VBox>
-                                                <VBox prefHeight="186.0" prefWidth="256.0">
-                                                   <children>
-                                                      <Button alignment="CENTER" mnemonicParsing="false" onAction="#viewFloors" prefHeight="0.0" prefWidth="139.0" text="VIEW FLOORS">
-                                                         <VBox.margin>
-                                                            <Insets bottom="5.0" left="5.0" right="15.0" top="40.0" />
-                                                         </VBox.margin>
-                                                      </Button>
-                                                      <Button alignment="CENTER" mnemonicParsing="false" onAction="#viewAisles" prefHeight="25.0" prefWidth="173.0" text="VIEW AISLES">
-                                                         <VBox.margin>
-                                                            <Insets bottom="5.0" left="5.0" right="15.0" top="5.0" />
-                                                         </VBox.margin>
-                                                      </Button>
-                                                      <Button alignment="CENTER" mnemonicParsing="false" onAction="#viewShelves" prefHeight="0.0" prefWidth="139.0" text="VIEW SHELVES">
-                                                         <VBox.margin>
-                                                            <Insets bottom="5.0" left="5.0" right="15.0" top="5.0" />
-                                                         </VBox.margin>
-                                                      </Button>
-                                                      <Button alignment="CENTER" mnemonicParsing="false" onAction="#viewPallets" prefHeight="6.0" prefWidth="139.0" text="VIEW PALLETS">
-                                                         <VBox.margin>
-                                                            <Insets bottom="5.0" left="5.0" right="15.0" top="5.0" />
+                                                            <Insets left="5.0" right="10.0" top="10.0" />
                                                          </VBox.margin>
                                                       </Button>
                                                    </children>
@@ -443,7 +348,7 @@
             </TabPane>
          </top>
          <left>
-            <VBox pickOnBounds="false" prefHeight="351.0" prefWidth="170.0" BorderPane.alignment="CENTER">
+            <VBox pickOnBounds="false" prefHeight="466.0" prefWidth="170.0" BorderPane.alignment="CENTER">
                <children>
                   <HBox pickOnBounds="false" prefHeight="103.0" prefWidth="170.0">
                      <children>
@@ -464,9 +369,22 @@
                               </TextField>
                               <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#getFloor" prefHeight="25.0" prefWidth="295.0" text="SELECT ">
                                  <VBox.margin>
-                                    <Insets left="55.0" right="55.0" />
+                                    <Insets bottom="5.0" left="55.0" right="55.0" />
                                  </VBox.margin>
                               </Button>
+                              <Label alignment="CENTER" blendMode="MULTIPLY" prefHeight="21.0" prefWidth="246.0" text="CURRENT FLOOR">
+                                 <font>
+                                    <Font name="System Italic" size="12.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </Label>
+                              <TextField fx:id="textCurrentFloor" editable="false" prefHeight="25.0" prefWidth="185.0">
+                                 <VBox.margin>
+                                    <Insets left="45.0" right="45.0" />
+                                 </VBox.margin>
+                              </TextField>
                            </children>
                            <HBox.margin>
                               <Insets top="10.0" />
@@ -496,6 +414,19 @@
                                     <Insets bottom="5.0" left="55.0" right="55.0" />
                                  </VBox.margin>
                               </Button>
+                              <Label alignment="CENTER" blendMode="MULTIPLY" prefHeight="21.0" prefWidth="299.0" text="CURRENT AISLE">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                                 <font>
+                                    <Font name="System Italic" size="12.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="textCurrentAisle" editable="false" prefHeight="25.0" prefWidth="135.0">
+                                 <VBox.margin>
+                                    <Insets left="45.0" right="45.0" />
+                                 </VBox.margin>
+                              </TextField>
                            </children>
                            <HBox.margin>
                               <Insets top="10.0" />
@@ -505,7 +436,7 @@
                   </HBox>
                   <HBox prefHeight="88.0" prefWidth="170.0">
                      <children>
-                        <VBox prefHeight="353.0" prefWidth="170.0">
+                        <VBox prefHeight="215.0" prefWidth="170.0">
                            <children>
                               <Label alignment="CENTER" prefHeight="17.0" prefWidth="413.0" text="SELECT SHELF">
                                  <VBox.margin>
@@ -522,9 +453,19 @@
                               </TextField>
                               <Button mnemonicParsing="false" onAction="#getShelf" prefHeight="25.0" prefWidth="360.0" text="SELECT ">
                                  <VBox.margin>
-                                    <Insets bottom="15.0" left="55.0" right="55.0" />
+                                    <Insets bottom="5.0" left="55.0" right="55.0" />
                                  </VBox.margin>
                               </Button>
+                              <Label alignment="CENTER" blendMode="MULTIPLY" prefHeight="21.0" prefWidth="252.0" text="CURRENT SHELF">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </Label>
+                              <TextField fx:id="textCurrentShelf" editable="false" prefHeight="25.0" prefWidth="139.0">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="45.0" right="45.0" />
+                                 </VBox.margin>
+                              </TextField>
                            </children>
                            <HBox.margin>
                               <Insets top="10.0" />
@@ -539,66 +480,60 @@
             </VBox>
          </left>
          <center>
-            <TextArea fx:id="textDisplayArea" editable="false" prefHeight="320.0" prefWidth="480.0" BorderPane.alignment="CENTER">
+            <TextArea fx:id="textDisplayArea" editable="false" prefHeight="368.0" prefWidth="480.0" BorderPane.alignment="CENTER">
                <BorderPane.margin>
                   <Insets bottom="25.0" right="50.0" top="5.0" />
                </BorderPane.margin>
             </TextArea>
          </center>
          <bottom>
-            <VBox prefHeight="86.0" prefWidth="700.0" BorderPane.alignment="CENTER">
+            <VBox prefHeight="61.0" prefWidth="700.0" BorderPane.alignment="CENTER">
                <children>
-                  <HBox prefHeight="97.0" prefWidth="700.0">
+                  <HBox prefHeight="59.0" prefWidth="659.0">
                      <children>
-                        <VBox prefHeight="80.0" prefWidth="292.0">
+                        <VBox fillWidth="false" prefHeight="59.0" prefWidth="316.0">
                            <children>
-                              <Label alignment="CENTER" blendMode="MULTIPLY" prefHeight="21.0" prefWidth="246.0" text="Selected Floor">
-                                 <font>
-                                    <Font name="System Bold" size="13.0" />
-                                 </font>
+                              <Button alignment="CENTER" mnemonicParsing="false" onAction="#viewPallets" prefHeight="25.0" prefWidth="236.0" text="VIEW PALLETS" textAlignment="CENTER">
                                  <VBox.margin>
-                                    <Insets />
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="12.0" />
                                  </VBox.margin>
-                              </Label>
-                              <TextField fx:id="textCurrentFloor" editable="false" prefHeight="25.0" prefWidth="28.0">
-                                 <VBox.margin>
-                                    <Insets left="75.0" right="75.0" top="5.0" />
-                                 </VBox.margin>
-                              </TextField>
+                              </Button>
                            </children>
                         </VBox>
-                        <VBox prefHeight="80.0" prefWidth="306.0">
+                        <VBox prefHeight="59.0" prefWidth="322.0">
                            <children>
-                              <Label alignment="CENTER" blendMode="MULTIPLY" prefHeight="21.0" prefWidth="299.0" text="Selected Aisle">
-                                 <font>
-                                    <Font name="System Bold" size="13.0" />
-                                 </font>
+                              <Button alignment="CENTER" mnemonicParsing="false" onAction="#viewShelves" prefHeight="25.0" prefWidth="295.0" text="VIEW SHELVES" textAlignment="CENTER">
                                  <VBox.margin>
-                                    <Insets />
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="12.0" />
                                  </VBox.margin>
-                              </Label>
-                              <TextField fx:id="textCurrentAisle" editable="false" prefHeight="0.0" prefWidth="156.0">
-                                 <VBox.margin>
-                                    <Insets left="85.0" right="85.0" top="5.0" />
-                                 </VBox.margin>
-                              </TextField>
+                              </Button>
                            </children>
                         </VBox>
-                        <VBox prefHeight="80.0" prefWidth="286.0">
+                        <VBox prefHeight="59.0" prefWidth="319.0">
                            <children>
-                              <Label alignment="CENTER" blendMode="MULTIPLY" prefHeight="21.0" prefWidth="252.0" text="Selected Shelf">
-                                 <font>
-                                    <Font name="System Bold" size="13.0" />
-                                 </font>
+                              <Button alignment="CENTER" mnemonicParsing="false" onAction="#viewFloors" prefHeight="25.0" prefWidth="202.0" text="VIEW FLOORS" textAlignment="CENTER">
                                  <VBox.margin>
-                                    <Insets />
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="12.0" />
                                  </VBox.margin>
-                              </Label>
-                              <TextField fx:id="textCurrentShelf" editable="false" prefHeight="25.0" prefWidth="79.0">
+                              </Button>
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="59.0" prefWidth="311.0">
+                           <children>
+                              <Button alignment="CENTER" mnemonicParsing="false" onAction="#viewAisles" prefHeight="25.0" prefWidth="145.0" text="VIEW AISLES" textAlignment="CENTER">
                                  <VBox.margin>
-                                    <Insets left="75.0" right="75.0" top="5.0" />
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="12.0" />
                                  </VBox.margin>
-                              </TextField>
+                              </Button>
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="59.0" prefWidth="363.0">
+                           <children>
+                              <Button mnemonicParsing="false" onAction="#quit" prefHeight="25.0" prefWidth="200.0" text="QUIT" textAlignment="CENTER">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="12.0" />
+                                 </VBox.margin>
+                              </Button>
                            </children>
                         </VBox>
                      </children>

@@ -11,12 +11,16 @@ import java.io.ObjectOutputStream;
 import java.util.Random;
 
 public class Controller {
-
-    @FXML TextArea textDisplayArea;                                                                                             // Area to display all lists and nodes.
-    @FXML TextField textFNum, textSecLvl, textFTemp, textGetFloor, textCurrentFloor;                                            // All floor-related text fields.
-    @FXML TextField textAisleW, textAisleD, textGetAisle, textCurrentAisle;                                                     // All aisle-related text fields.
-    @FXML TextField textCurrentShelf, textGetShelf;                                                                             // All shelf-related text fields.
-    @FXML TextField textProDesc, textProQuantity, textMinStoreTemp, textMaxStoreTemp, textPalPosW, textPalPosD, textPalletID;   // All pallet-related text fields.
+    // Area to display all lists and nodes.
+    @FXML TextArea textDisplayArea;
+    // All floor-related text fields.
+    @FXML TextField textFNum, textSecLvl, textFTemp, textGetFloor, textCurrentFloor;
+    // All aisle-related text fields.
+    @FXML TextField textAisleW, textAisleD, textGetAisle, textCurrentAisle;
+    // All shelf-related text fields.
+    @FXML TextField textCurrentShelf, textGetShelf;
+    // All pallet-related text fields.
+    @FXML TextField textProDesc, textProQuantity, textMinStoreTemp, textMaxStoreTemp, textPalPosW, textPalPosD, textPalletID;
 
     /**
      * Generates an ID to assign to a newly created aisle using the floor number and a random letter.
@@ -25,7 +29,8 @@ public class Controller {
     public String genAisleID() {
         Random random = new Random();
         Floor floorFound = getFloor();
-        int integerPart = floorFound.getFloorNumber();   // Makes the int part a number between 1 and 10
+        // Makes the int part a number between 1 and 10
+        int integerPart = floorFound.getFloorNumber();
         int stringIndex = random.nextInt(26);
         String alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         char charPart = alpha.charAt(stringIndex);
@@ -33,31 +38,47 @@ public class Controller {
     }
 
     /**
-     * Generates an ID to assign to a newly created shelf using the aisle ID, a dash: '-' and a random number (eg. 4-G).
+     * Generates an ID to assign to a newly created shelf using the aisle ID, a dash: '-' and a random letter (eg. 4-G).
      * @return - Randomly generated shelf ID.
      */
     public String genShelfID() {
-        Random random = new Random();
+
+        Random rand = new Random();
         Aisle aisleFound = getAisle();
+        Node<Shelf> tempShelf = aisleFound.shelfList.head;
         String aislePart = aisleFound.getAisleIdentifier();
         String x = "-";
-        int stringIndex = random.nextInt(9);
-        String newID = aislePart + x + stringIndex;
 
-        Node<Shelf> tempShelf = aisleFound.shelfList.head;
-            while (tempShelf != null) {
-                if (tempShelf.getContents().getShelfNumber().equals(newID)) {
-                    stringIndex = random.nextInt(9);
-                    newID = aislePart + x + stringIndex;
-                    return newID;
+        // Chooses random character to add to end of ID.
+        int stringIndex = rand.nextInt(26);
+        String alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        char charPart = alpha.charAt(stringIndex);
+
+        // Creates ID in format 1-H, 4-B, etc.
+        String newID;
+
+        while(tempShelf!=null) {
+            newID=aislePart+x+charPart;
+
+            for(int i=1; i<27; i++) {
+                String str = String.valueOf(i);
+                newID=aislePart+x+str;
+
+                if(tempShelf.getContents().getShelfNumber().equals(newID)) {
+                    // Replaces already taken ID with black spot in the String so it cannot be re-chosen.
+                    alpha=alpha.replace(str, "");
+                    System.out.println("ID already exists.");
                 }
-                stringIndex = random.nextInt(9);
-                tempShelf = tempShelf.next;
-
             }
-            textDisplayArea.appendText("All floor ID's are taken!");
-            return newID;
+
+            tempShelf=tempShelf.next;
         }
+        newID = aislePart + x + charPart;
+
+        return newID;
+
+        //textDisplayArea.appendText("All floor ID's are taken!");
+    }
 
 
     /**
@@ -156,8 +177,6 @@ public class Controller {
             } textDisplayArea.appendText("Maximum number of shelves reached!");
 
     }
-
-
 
     /**
      *
