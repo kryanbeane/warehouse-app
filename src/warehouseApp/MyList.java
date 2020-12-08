@@ -13,20 +13,26 @@ public class MyList<F> implements Iterable<F> {
     public void addElement(F e) {
         // We want to add it in at the end, not the start
         // Create a new node
-        Node<F> nn = new Node<>();
-        nn.setContents(e);
+        Node<F> newNode = new Node<>();
+        newNode.setContents(e);
 
         // If the head equals null then the list is empty
         if(head == null) {
-            head = tail = nn;           // Both head and tail are the newNode; The first, last, and only item
-            head.previous = null;       // Now head and tail will be linked to null from previous and next
+            // Both head and tail are the newNode; The first, last, and only item
+            head = tail = newNode;
+            // Now head and tail will be linked to null from previous and next
+            head.previous = null;
             tail.next = null;
         }
         else {
-            head.previous=nn;           // nn is the head's previous
-            nn.next = head;             // The next after nn is current head node, two are now linked
-            head=nn;                    // We can now move the head to newNode
-            head.previous=null;         // The one before head is null, as it is the head of the list.(Line may not be needed)
+            // newNode is the head's previous
+            head.previous=newNode;
+            // The next after nn is current head node, two are now linked
+            newNode.next = head;
+            // We can now move the head to newNode
+            head=newNode;
+            // The one before head is null, as it is the head of the list.(Line may not be needed)
+            head.previous=null;
         }
         numberOfContents++;
     }
@@ -39,9 +45,12 @@ public class MyList<F> implements Iterable<F> {
         Node<F> currentNode = tail;
         String fullList ="";
 
-        while (currentNode != null) {                       // Traverse through the List
-            fullList += currentNode.getContents() + "\n";   // Print the data at current nod
-            currentNode = currentNode.previous;                 // Go to next node
+        // Traverse through the List
+        while (currentNode != null) {
+            // Print the data at current node
+            fullList += currentNode.getContents() + "\n";
+            // Go to next node
+            currentNode = currentNode.previous;
         }
         return fullList;
     }

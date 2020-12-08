@@ -22,6 +22,10 @@ public class Controller {
     // All pallet-related text fields.
     @FXML TextField textProDesc, textProQuantity, textMinStoreTemp, textMaxStoreTemp, textPalPosW, textPalPosD, textPalletID;
 
+    /////////////////////////////////////////////////////////////////
+    ///////////////////////   Generate ID's   ///////////////////////
+    /////////////////////////////////////////////////////////////////
+
     /**
      * Generates an ID to assign to a newly created aisle using the floor number and a random letter.
      * @return - Randomly generated aisle ID.
@@ -64,6 +68,10 @@ public class Controller {
         return firstPart + intPart;
     }
 
+    /////////////////////////////////////////////////////////////////
+    ///////////////////////   Floor Methods   ///////////////////////
+    /////////////////////////////////////////////////////////////////
+
     /**
      * Add Floor to floorList in Main
      */
@@ -97,6 +105,10 @@ public class Controller {
         textDisplayArea.appendText("Node not found! Please try again :)" + "\n" );
         return  null;
     }
+
+    /////////////////////////////////////////////////////////////////
+    ///////////////////////   Aisle Methods   ///////////////////////
+    /////////////////////////////////////////////////////////////////
 
     /**
      * Add aisle to aisleList in Floor
@@ -132,6 +144,10 @@ public class Controller {
         return null;
     }
 
+    /////////////////////////////////////////////////////////////////
+    ///////////////////////   Shelf Methods   ///////////////////////
+    /////////////////////////////////////////////////////////////////
+
     /**
      * Add Shelf to shelfList in Aisle
      */
@@ -166,6 +182,10 @@ public class Controller {
         return null;
     }
 
+    /////////////////////////////////////////////////////////////////
+    ///////////////////////  Pallet Methods  ////////////////////////
+    /////////////////////////////////////////////////////////////////
+
     /**
      * Add pallet to palletList in Shelf
      */
@@ -189,31 +209,26 @@ public class Controller {
         textPalPosD.clear();
     }
 
-    /**
-     *
-     */
+
     public void deletePallet() {
         int palletID = Integer.parseInt(textPalletID.getText());
         getShelf().palletList.removeNode(palletID);
     }
 
-    /**
-     *  View all method
-     */
+    /////////////////////////////////////////////////////////////////
+    ///////////////////////   View  Methods   ///////////////////////
+    /////////////////////////////////////////////////////////////////
+
     public void viewAll() {
 
     }
 
-    /**
-     *
-     */
+
     public void viewFloors() {
         textDisplayArea.setText(Main.floorList.printList());
     }
 
-    /**
-     *
-     */
+
     public void viewAisles() {
         Floor tempFloor = getFloor();
         if(tempFloor.aisleList!=null) {
@@ -223,9 +238,7 @@ public class Controller {
         }
     }
 
-    /**
-     *
-     */
+
     public void viewShelves() {
 //        if() {
 //
@@ -234,9 +247,7 @@ public class Controller {
 //        }
     }
 
-    /**
-     *
-     */
+
     public void viewPallets() {
 //        if() {
 //
@@ -245,7 +256,9 @@ public class Controller {
 //        }
     }
 
+    /////////////////////////////////////////////////////////////////
     ////////////////////   Save Load and Reset   ////////////////////
+    /////////////////////////////////////////////////////////////////
 
     /**
      * Loads objects from text in xml document
@@ -277,7 +290,7 @@ public class Controller {
      */
     public void reset() {
         Main.floorList.emptyList();
-
+z`
         textDisplayArea.setText("System has been reset"+"\n");
     }
 
