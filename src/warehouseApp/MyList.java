@@ -8,41 +8,43 @@ public class MyList<F> implements Iterable<F> {
 
     /**
      *
-     * @param e
+     * @param e - User specified element to add.
      */
     public void addElement(F e) {
-        // We want to add it in at the end, not the start
-        // Create a new node
+        // We want to add it in at the end, not the start.
+        // Create a new node.
         Node<F> newNode = new Node<>();
         newNode.setContents(e);
 
-        // If the head equals null then the list is empty
+        // If the head equals null then the list is empty.
         if(head == null) {
-            // Both head and tail are the newNode; The first, last, and only item
+            // Both head and tail are the newNode; The first, last, and only item.
             head = tail = newNode;
-            // Now head and tail will be linked to null from previous and next
+            // Now head and tail will be linked to null from previous and next.
             head.previous = null;
             tail.next = null;
         }
         else {
             // newNode is the head's previous
             head.previous=newNode;
-            // The next after nn is current head node, two are now linked
+            // The next after nn is current head node, two are now linked.
             newNode.next = head;
-            // We can now move the head to newNode
+            // We can now move the head to newNode.
             head=newNode;
-            // The one before head is null, as it is the head of the list.(Line may not be needed)
+            // The one before head is null, as it is the head of the list.
             head.previous=null;
         }
         numberOfContents++;
     }
 
     /**
-     *
-     * @return
+     * Prints list from tail to head, so is displayed correctly in GUI.
+     * @return - String form of list.
      */
-    public  String printList() {
+    public String printList() {
+        //
         Node<F> currentNode = tail;
+        //
         String fullList ="";
 
         // Traverse through the List
@@ -57,7 +59,7 @@ public class MyList<F> implements Iterable<F> {
 
     /**
      *
-     * @return
+     * @return -
      */
     public boolean isEmpty(){
         return head==null;

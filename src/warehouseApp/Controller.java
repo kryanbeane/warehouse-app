@@ -11,6 +11,7 @@ import java.io.ObjectOutputStream;
 import java.util.Random;
 
 public class Controller {
+
     // Area to display all lists and nodes.
     @FXML TextArea textDisplayArea;
     // All floor-related text fields.
@@ -25,6 +26,36 @@ public class Controller {
     /////////////////////////////////////////////////////////////////
     ///////////////////////   Generate ID's   ///////////////////////
     /////////////////////////////////////////////////////////////////
+    /**
+     * Generates an ID to assign to a newly created shelf using the aisle ID, a dash: '-' and a random letter (eg. 4-G).
+     * @return - Randomly generated shelf ID.
+     */
+    public String genShelfID() {
+
+        Random random = new Random();
+        Aisle aisleFound = getAisle();
+        Node<Shelf> temp = aisleFound.shelfList.head;
+        String integerPart = aisleFound.getAisleIdentifier();
+        int stringIndex = random.nextInt(26);
+        String alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        char charPart = alpha.charAt(stringIndex);
+        char x = '-';
+        String newID=integerPart+x+charPart;
+
+
+        while(temp!=null) {
+            if (!temp.getContents().getShelfNumber().equals(newID)) {
+                break;
+            }
+            else if(temp.getContents().getShelfNumber().equals(newID)) {
+                charPart = alpha.charAt(stringIndex);
+                newID = integerPart + x + charPart;
+            }
+            temp=temp.next;
+        }
+        return newID;
+
+    }
 
     /**
      * Generates an ID to assign to a newly created aisle using the floor number and a random letter.
@@ -39,21 +70,6 @@ public class Controller {
         String alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         char charPart = alpha.charAt(stringIndex);
         return integerPart + String.valueOf(charPart);
-    }
-
-    /**
-     * Generates an ID to assign to a newly created shelf using the aisle ID, a dash: '-' and a random letter (eg. 4-G).
-     * @return - Randomly generated shelf ID.
-     */
-    public String genShelfID() {
-        Random random = new Random();
-        Aisle aisleFound = getAisle();
-        String integerPart = aisleFound.getAisleIdentifier();
-        int stringIndex = random.nextInt(26);
-        String alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        char charPart = alpha.charAt(stringIndex);
-        char x = '-';
-        return integerPart + x + charPart;
     }
 
     /**
@@ -87,23 +103,35 @@ public class Controller {
     }
 
     /**
-     * Get floor node to add aisle to.
+     * Gets floor node to add aisles to.
+     * @return - Selected floor.
      */
     public Floor getFloor() {
-        int floorNumber = Integer.parseInt(textGetFloor.getText());
-        Node<Floor> tempFloor = Main.floorList.head;
-        while (tempFloor != null) {
-            if (tempFloor.getContents().getFloorNumber() == floorNumber) {
-                textCurrentFloor.setText(tempFloor.getContents().toString2());
-                //textDisplayArea.clear();
-                //textGetFloor.clear();
-                return tempFloor.getContents();
-
+        try {
+            // User specified floor number to be retrieved
+            int floorNumber = Integer.parseInt(textGetFloor.getText());
+            // Sets value tempFloor to head of floor list to loop through list and find sought floor
+            Node<Floor> tempFloor = Main.floorList.head;
+            // Loops through floor list
+            while (tempFloor != null) {
+                // If user specified floor number = number of currently accessed floor, set that as selected floor
+                if (tempFloor.getContents().getFloorNumber() == floorNumber) {
+                    textDisplayArea.appendText("Floor " + floorNumber + " successfully selected." + "\n");
+                    textCurrentFloor.setText(tempFloor.getContents().toString2());
+                    return tempFloor.getContents();
+                }
+                // Go to next node
+                tempFloor = tempFloor.next;
             }
-            tempFloor = tempFloor.next;
+            // If node is null, display error
+            textDisplayArea.appendText("Floor not found! Please try again :)" + "\n");
+            return null;
         }
-        textDisplayArea.appendText("Node not found! Please try again :)" + "\n" );
-        return  null;
+        // Catch if no value is entered into the box, displays error to enter a floor
+        catch(Exception e) {
+            textDisplayArea.appendText("Please enter a floor to select." +"\n");
+            return null;
+        }
     }
 
     /////////////////////////////////////////////////////////////////
@@ -111,7 +139,7 @@ public class Controller {
     /////////////////////////////////////////////////////////////////
 
     /**
-     * Add aisle to aisleList in Floor
+     * Add aisle to aisleList in selected Floor.
      */
     public void addAisle() {
         int aisleW = Integer.parseInt(textAisleW.getText());
@@ -129,19 +157,34 @@ public class Controller {
     }
 
     /**
-     *
+     * Gets aisle node to add shelves to.
+     * @return - Selected aisle.
      */
     public Aisle getAisle() {
-        String aID = textGetAisle.getText();
-        Node<Aisle> tempAisle = getFloor().aisleList.head;
-        while(tempAisle!=null) {
-            if(tempAisle.getContents().getAisleIdentifier().equals(aID)) {
-                textCurrentAisle.setText(tempAisle.getContents().toString2());
-                return tempAisle.getContents();
+        try {
+            // User specified aisle ID to be retrieved
+            String aID = textGetAisle.getText();
+            // Sets value tempAisle to head of aisle list in selected floor to loop through list and find sought aisle
+            Node<Aisle> tempAisle = getFloor().aisleList.head;
+            // Loops through aisle list
+            while (tempAisle != null) {
+                // If user specified aisle ID = number of currently accessed aisle, set that as selected aisle
+                if (tempAisle.getContents().getAisleIdentifier().equals(aID)) {
+                    textDisplayArea.appendText("Aisle " + aID + " successfully selected." + "\n");
+                    textCurrentAisle.setText(tempAisle.getContents().toString2());
+                    return tempAisle.getContents();
+                }
+                // Go to next node
+                tempAisle = tempAisle.next;
             }
-            tempAisle = tempAisle.next;
+            // If node is null, display error
+            textDisplayArea.appendText("Aisle not found! Please try again :)" + "\n");
+            return null;
         }
-        return null;
+        catch (Exception e) {
+            textDisplayArea.appendText("Please enter a aisle to select." +"\n");
+            return null;
+        }
     }
 
     /////////////////////////////////////////////////////////////////
@@ -149,7 +192,7 @@ public class Controller {
     /////////////////////////////////////////////////////////////////
 
     /**
-     * Add Shelf to shelfList in Aisle
+     * Add Shelf to shelfList in selected Aisle.
      */
     public void addShelf() {
         Aisle aisleFound = getAisle();
@@ -165,9 +208,9 @@ public class Controller {
         }
     }
 
-
     /**
-     *
+     * Gets shelf node to add pallets to.
+     * @return - Selected shelf.
      */
     public Shelf getShelf() {
         String sNum = textGetShelf.getText();
@@ -187,7 +230,7 @@ public class Controller {
     /////////////////////////////////////////////////////////////////
 
     /**
-     * Add pallet to palletList in Shelf
+     * Add pallet to palletList in selected Shelf.
      */
     public void addPallet() {
         String proDesc = textProDesc.getText();
@@ -209,7 +252,9 @@ public class Controller {
         textPalPosD.clear();
     }
 
-
+    /**
+     * Deletes pallet from selected shelf.
+     */
     public void deletePallet() {
         int palletID = Integer.parseInt(textPalletID.getText());
         getShelf().palletList.removeNode(palletID);
@@ -219,16 +264,23 @@ public class Controller {
     ///////////////////////   View  Methods   ///////////////////////
     /////////////////////////////////////////////////////////////////
 
+    /**
+     *
+     */
     public void viewAll() {
 
     }
 
-
+    /**
+     *
+     */
     public void viewFloors() {
         textDisplayArea.setText(Main.floorList.printList());
     }
 
-
+    /**
+     *
+     */
     public void viewAisles() {
         Floor tempFloor = getFloor();
         if(tempFloor.aisleList!=null) {
@@ -238,7 +290,9 @@ public class Controller {
         }
     }
 
-
+    /**
+     *
+     */
     public void viewShelves() {
 //        if() {
 //
@@ -247,7 +301,9 @@ public class Controller {
 //        }
     }
 
-
+    /**
+     *
+     */
     public void viewPallets() {
 //        if() {
 //
@@ -266,11 +322,16 @@ public class Controller {
      */
     @SuppressWarnings("unchecked")
     public void load() throws Exception {
-        XStream xstream = new XStream(new DomDriver());
-        ObjectInputStream is = xstream.createObjectInputStream(new FileReader("warehouseApp.xml"));
-        Main.floorList = (MyList<Floor>) is.readObject();
-        is.close();
-        textDisplayArea.setText(Main.floorList.printList());
+        if (Main.floorList.isEmpty()) {
+            textDisplayArea.appendText("The file is empty, try adding some floors!"+"\n");
+        }
+        else {
+            XStream xstream = new XStream(new DomDriver());
+            ObjectInputStream is = xstream.createObjectInputStream(new FileReader("warehouseApp.xml"));
+            Main.floorList = (MyList<Floor>) is.readObject();
+            is.close();
+            textDisplayArea.setText(Main.floorList.printList());
+        }
     }
 
     /**
@@ -282,23 +343,24 @@ public class Controller {
         ObjectOutputStream out = xstream.createObjectOutputStream(new FileWriter("warehouseApp.xml"));
         out.writeObject(Main.floorList);
         out.close();
-        textDisplayArea.appendText("File has been saved"+"\n");
+        textDisplayArea.appendText("File has been saved."+"\n");
     }
 
     /**
-     *  Reset clears floor list, thus clearing all other lists.
+     * Reset clears floor list, thus clearing all other lists.
      */
     public void reset() {
         Main.floorList.emptyList();
-z`
-        textDisplayArea.setText("System has been reset"+"\n");
+        textDisplayArea.setText("System has been reset."+"\n");
     }
 
-    ////////////////////   Exit   ////////////////////
+    /////////////////////////////////////////////////////////////////
+    ///////////////////////////   Exit   ////////////////////////////
+    /////////////////////////////////////////////////////////////////
 
     /**
-     * Exit system.
-      */
+     * Exit system
+     */
     public void quit(){
         System.exit(0);
     }
