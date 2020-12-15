@@ -6,15 +6,11 @@ public class listIterator<K> implements Iterator<K> {
 
     private Node<K> pos;
 
-    /**
-     *
-     * @param node
-     */
     public listIterator(Node<K> node){pos=node;}
 
     /**
-     *
-     * @return
+     * Returns a boolean response to whether there is a node in the next slot or not.
+     * @return - True if next node isn't null, false otherwise.
      */
     @Override
     public boolean hasNext() {
@@ -22,8 +18,8 @@ public class listIterator<K> implements Iterator<K> {
     }
 
     /**
-     *
-     * @return
+     * Method to call and return the next node.
+     * @return - The next node
      */
     @Override
     public K next() {

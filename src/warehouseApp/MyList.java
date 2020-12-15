@@ -7,33 +7,35 @@ public class MyList<F> implements Iterable<F> {
     private int numberOfContents = 0;
 
     /**
-     *
+     * Adds node to a list.
      * @param e - User specified element to add.
      */
     public void addElement(F e) {
-        // We want to add it in at the end, not the start.
-        // Create a new node.
+        // Creates a new node.
         Node<F> newNode = new Node<>();
+        // Sets the contents of the new node to the input e.
         newNode.setContents(e);
 
-        // If the head equals null then the list is empty.
+        // If the head equals null then the list is empty and:
         if(head == null) {
-            // Both head and tail are the newNode; The first, last, and only item.
+            // Both head and tail are the newNode.
             head = tail = newNode;
-            // Now head and tail will be linked to null from previous and next.
+            // Sets previous and next values both to null.
             head.previous = null;
             tail.next = null;
         }
+        // If the head isn't null:
         else {
-            // newNode is the head's previous
+            // newNode is now the head's previous.
             head.previous=newNode;
-            // The next after nn is current head node, two are now linked.
+            // The next after newNode is current head node, linking the two nodes.
             newNode.next = head;
             // We can now move the head to newNode.
             head=newNode;
             // The one before head is null, as it is the head of the list.
             head.previous=null;
         }
+        // Adds one to the number of contents as one new node now exists
         numberOfContents++;
     }
 
@@ -42,109 +44,103 @@ public class MyList<F> implements Iterable<F> {
      * @return - String form of list.
      */
     public String printList() {
-        //
+        // Creates a temporary currentNode and sets it to tail.
         Node<F> currentNode = tail;
-        //
+        // Creates an empty string.
         String fullList ="";
 
-        // Traverse through the List
+        // Traverses through the List.
         while (currentNode != null) {
-            // Print the data at current node
+            // Prints the data at current node.
             fullList += currentNode.getContents() + "\n";
-            // Go to next node
+            // Goes to next node.
             currentNode = currentNode.previous;
         }
+        // Returns the fullList string once the currentNode = null.
         return fullList;
     }
 
     /**
-     *
-     * @return -
+     * Method to return whether list is empty or not.
+     * @return - True if list is empty, false otherwise.
      */
     public boolean isEmpty(){
         return head==null;
     }
 
     /**
-     *
-     * @return
+     * Returns current length of a list.
+     * @return - INT value of numberOfContents.
      */
     public int length(){
         return numberOfContents;
     }
 
     /**
-     *
-     * @return
-     */
-    public Node<F> accessFirst(){
-        return head;
-    }
-
-    /**
-     *
-     * @param index
+     * Removes node at a chosen index.
+     * @param index - Index of node to delete.
      */
     public void removeNode(int index){
-
-        if (head!=null){                                    // Check to make sure not empty
-            Node<F> temp;                                   // Update, now using two nodes
-
-            if (index == 0){                                // If you want to delete the first item
-                if(head.next==null){                        // And if the list contains only one item
-                    head=tail=null;                         // -from skydiver example.
+        // If the list is not empty.
+        if (head!=null){
+            // Create a temporary node.
+            Node<F> temp;
+            // If the head is to be deleted
+            if (index == 0){
+                // If the list contains only a head.
+                if(head.next==null){
+                    // Delete it.
+                    head=tail=null;
                 }else{
-                    head=head.next;                         // Else, set the head equal to the next node(original head no longer using memory).
+                    head=head.next;
                 }
+                // Decrease number of contents as one node is now removed.
                 numberOfContents--;
-                System.out.println("Deleted node at position: 0");
             }
-
+            // Otherwise if the index > 0 and less than the length of the list:
             else if (index > 0 && index <numberOfContents){
+                // Set the temp node to head
                 temp=head;
-
-                for(int i=1;i<index;i++) temp=temp.next;    // Makes temp the one BEFORE the item to be deleted.('<index')
-                temp.next = temp.next.next;                 // The one after temp is now equal to the one after that.
-                numberOfContents--;                         // Then the last node is equal to the one before the one to be deleted.
-                //(thus deleting the desired node)
-                System.out.println("Deleted node at position: " + index);
+                // Loop through until temp is the node before the index
+                for(int i=1;i<index;i++) {
+                    temp=temp.next;
+                }
+                // The node after temp is now equal to the node after that, so the node has now been deleted.
+                temp.next = temp.next.next;
+                // Decrease number of contents as one node is now removed.
+                numberOfContents--;
             }
-            else System.out.println("Index was beyond range!");
+            else System.out.println("Invalid Index");
         }
-        else System.out.println("The list was empty!");
+        else System.out.println("Empty list entered.");
     }
 
     /**
-     *
-     * @return
-     */
-    public Node<F> accessSecond(){
-        if(head.next!=null) {
-            return head.next;
-        }else{
-            return null;
-        }
-    }
-
-    /**
-     *
-     * @param index
-     * @return
+     * Accesses a node of a chosen index.
+     * @param index - Index of node to access.
+     * @return - Sought node.
      */
     public Node<F> accessAtIndex(int index){
+        // Returns null if negative index is entered.
         if(index<0){
             return null;
         }
+        // Sets temp node to the head of the list.
         Node<F> temp = head;
+        // Loops through the list while the temp node isn't null.
         if(head!=null){
+            // Loop through list until current temp node is the sough node.
             for(int i = 0; i<index;i++){
                 temp = temp.next;
             }
         }
+        // Return the sought node once found.
         return temp;
     }
 
-    // Empties a list
+    /**
+     * Empties a list of its contents.
+     */
     public void emptyList() {
         head=null;
         tail=null;
@@ -152,8 +148,30 @@ public class MyList<F> implements Iterable<F> {
     }
 
     /**
-     *
-     * @return
+     * Lists all elements in a list.
+     * @return - String of list of elements.
+     */
+    public String listElements() {
+        // If list is empty, return an empty string.
+        if(head==null) {
+            return "";
+        } else {
+            // Set temporary node element to head of the list.
+            Node<F> element = head;
+
+            StringBuilder listOfElements= new StringBuilder(head.getContents().toString() + "\n");
+
+            while(element.next!=null) {
+                element=element.next;
+                listOfElements.append(element.getContents().toString()).append("\n");
+            }
+            return listOfElements.toString();
+        }
+    }
+
+    /**
+     * Iterator to make traversing through lists easier.
+     * @return - Head of listIterator.
      */
     @Override
     public Iterator<F> iterator() {

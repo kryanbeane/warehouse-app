@@ -92,11 +92,14 @@ public class Controller {
      * Add Floor to floorList in Main
      */
     public void addFloor()  {
-        int floorNumber = Integer.parseInt(textFNum.getText());
-        String securityLevel = textSecLvl.getText();
-        double floorTemperature = Double.parseDouble(textFTemp.getText());
-        Main.floorList.addElement(new Floor(floorNumber, securityLevel, floorTemperature));
+        // Adds new floor to the list using user entered values in text fields
+        Main.floorList.addElement(new Floor(Integer.parseInt(textFNum.getText()), textSecLvl.getText(), Double.parseDouble(textFTemp.getText())));
+        // Displays the updated floor list in the text area
         textDisplayArea.setText(Main.floorList.printList());
+
+        System.out.println(Main.floorList.listElements());
+
+        // Clears text fields in GUI to make it easier to add multiple floors
         textFNum.clear();
         textSecLvl.clear();
         textFTemp.clear();
@@ -116,7 +119,7 @@ public class Controller {
             while (tempFloor != null) {
                 // If user specified floor number = number of currently accessed floor, set that as selected floor
                 if (tempFloor.getContents().getFloorNumber() == floorNumber) {
-                    textDisplayArea.appendText("Floor " + floorNumber + " successfully selected." + "\n");
+                    textDisplayArea.setText("Floor " + floorNumber + " successfully selected." + "\n");
                     textCurrentFloor.setText(tempFloor.getContents().toString2());
                     return tempFloor.getContents();
                 }
@@ -148,7 +151,7 @@ public class Controller {
 
         if (floorFound != null) {
             floorFound.aisleList.addElement(new Aisle(genAisleID(), aisleW, aisleD));
-            textDisplayArea.setText(floorFound.aisleList.printList());
+            textDisplayArea.setText("Aisles in Floor " + floorFound.getFloorNumber() + ": " + "\n" + "\n" + floorFound.aisleList.printList() + "\n");
             textAisleW.clear();
             textAisleD.clear();
         } else {
@@ -282,11 +285,12 @@ public class Controller {
      *
      */
     public void viewAisles() {
+
         Floor tempFloor = getFloor();
-        if(tempFloor.aisleList!=null) {
-            textDisplayArea.appendText(tempFloor.aisleList.printList());
+        if(tempFloor.aisleList.head!=null) {
+            textDisplayArea.setText("Aisles in Floor"+tempFloor.getFloorNumber() + ": " + "\n" + "\n" + tempFloor.aisleList.printList()+"\n");
         } else {
-            textDisplayArea.appendText("Try adding some aisles first :)");
+            textDisplayArea.setText("Try adding some aisles first."+"\n");
         }
     }
 
@@ -316,21 +320,24 @@ public class Controller {
     ////////////////////   Save Load and Reset   ////////////////////
     /////////////////////////////////////////////////////////////////
 
+
     /**
      * Loads objects from text in xml document
      * @throws Exception - Error printed if floorList is empty
      */
     @SuppressWarnings("unchecked")
     public void load() throws Exception {
-        if (Main.floorList.isEmpty()) {
-            textDisplayArea.appendText("The file is empty, try adding some floors!"+"\n");
-        }
-        else {
+
+        if (Main.floorList.head != null) {
             XStream xstream = new XStream(new DomDriver());
-            ObjectInputStream is = xstream.createObjectInputStream(new FileReader("warehouseApp.xml"));
+            ObjectInputStream is = xstream.createObjectInputStream(new FileReader("WarehouseApp.xml"));
             Main.floorList = (MyList<Floor>) is.readObject();
             is.close();
             textDisplayArea.setText(Main.floorList.printList());
+
+        }
+        else {
+            textDisplayArea.appendText("The file is empty, try adding some floors!"+"\n");
         }
     }
 
@@ -340,7 +347,7 @@ public class Controller {
      */
     public void save() throws Exception {
         XStream xstream = new XStream(new DomDriver());
-        ObjectOutputStream out = xstream.createObjectOutputStream(new FileWriter("warehouseApp.xml"));
+        ObjectOutputStream out = xstream.createObjectOutputStream(new FileWriter("WarehouseApp.xml"));
         out.writeObject(Main.floorList);
         out.close();
         textDisplayArea.appendText("File has been saved."+"\n");
@@ -350,7 +357,7 @@ public class Controller {
      * Reset clears floor list, thus clearing all other lists.
      */
     public void reset() {
-        Main.floorList.emptyList();
+        Main.floorList.head=null;
         textDisplayArea.setText("System has been reset."+"\n");
     }
 
