@@ -12,16 +12,16 @@ public class Pallet {
     private int palletPositionDepth;
 
     /**
-     *
-     * @return -
+     * Gets the pallet's ID.
+     * @return - The referenced pallet's ID.
      */
     public String getPalletID() {
         return palletID;
     }
 
     /**
-     *
-     * @param palletID -
+     * Sets the pallet's ID to a new value.
+     * @param palletID - New ID of the pallet.
      */
     public void setPalletID(String palletID) {
         this.palletID = palletID;
@@ -149,12 +149,13 @@ public class Pallet {
      */
     @Override
     public String toString() {
-        return  "Product Description: " + productDescription +
+        return  "Pallet ID: " + palletID +
+                ",\n Product Description: " + productDescription +
                 ",\n Product Quantity: " + productQuantity +
                 ",\n Minimum Storage Temperature: " + minimumStoreTemperature +
                 ",\n Maximum Storage Temperature: " + maximumStoreTemperature +
                 ",\n Pallet Position Width: " + palletPositionWidth +
-                ",\n Pallet Position Depth: " + palletPositionDepth;
+                ",\n Pallet Position Depth: " + palletPositionDepth +"\n";
 
     }
 }

@@ -7,14 +7,14 @@ public class Node<N> {
     private N contents; // ADT reference
 
     /**
-     *
-     * @return
+     * Gets the contents of the referenced node.
+     * @return - Contents of node.
      */
     public N getContents()  {return contents;}
 
     /**
-     *
-     * @param c
+     * Sets the contents of the referenced node.
+     * @param c - The node's new contents.
      */
     public void setContents(N c)  {this.contents = c;}
 
