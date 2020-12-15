@@ -321,43 +321,36 @@ public class Controller {
     /////////////////////////////////////////////////////////////////
 
 
-    /**
-     * Loads objects from text in xml document
-     * @throws Exception - Error printed if floorList is empty
-     */
-    @SuppressWarnings("unchecked")
-    public void load() throws Exception {
-
-        if (Main.floorList.head != null) {
-            XStream xstream = new XStream(new DomDriver());
-            ObjectInputStream is = xstream.createObjectInputStream(new FileReader("WarehouseApp.xml"));
-            Main.floorList = (MyList<Floor>) is.readObject();
-            is.close();
-            textDisplayArea.setText(Main.floorList.printList());
-
-        }
-        else {
-            textDisplayArea.appendText("The file is empty, try adding some floors!"+"\n");
-        }
-    }
 
     /**
      * Saves objects as text in xml document
-     * @throws Exception -
      */
     public void save() throws Exception {
         XStream xstream = new XStream(new DomDriver());
         ObjectOutputStream out = xstream.createObjectOutputStream(new FileWriter("WarehouseApp.xml"));
         out.writeObject(Main.floorList);
         out.close();
-        textDisplayArea.appendText("File has been saved."+"\n");
+        textDisplayArea.appendText("File has been saved." + "\n");
+    }
+
+    /**
+     * Loads objects from text in xml document
+     * @throws Exception - Error printed if floorList is empty
+     */
+    @SuppressWarnings("unchecked")
+    public void load() throws Exception {
+            XStream xstream = new XStream(new DomDriver());
+            ObjectInputStream is = xstream.createObjectInputStream(new FileReader("WarehouseApp.xml"));
+            Main.floorList = (MyList<Floor>) is.readObject();
+            is.close();
+            textDisplayArea.setText(Main.floorList.printList());
     }
 
     /**
      * Reset clears floor list, thus clearing all other lists.
      */
     public void reset() {
-        Main.floorList.head=null;
+        Main.floorList.emptyList();
         textDisplayArea.setText("System has been reset."+"\n");
     }
 

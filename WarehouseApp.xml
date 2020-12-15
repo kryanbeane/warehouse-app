@@ -1,16 +1,5 @@
 <object-stream>
   <warehouseApp.MyList>
-    <head>
-      <contents class="warehouseApp.Floor">
-        <floorNumber>1</floorNumber>
-        <securityLevel>HIGH</securityLevel>
-        <floorTemperature>25.0</floorTemperature>
-        <aisleList>
-          <numberOfContents>0</numberOfContents>
-        </aisleList>
-      </contents>
-    </head>
-    <tail reference="../head"/>
-    <numberOfContents>1</numberOfContents>
+    <numberOfContents>0</numberOfContents>
   </warehouseApp.MyList>
 </object-stream>
