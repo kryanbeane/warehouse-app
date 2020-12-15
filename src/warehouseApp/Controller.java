@@ -23,7 +23,7 @@ public class Controller {
     // All shelf-related text fields.
     @FXML TextField textCurrentShelf, textGetShelf;
     // All pallet-related text fields.
-    @FXML TextField textProDesc, textProQuantity, textMinStoreTemp, textMaxStoreTemp, textPalPosW, textPalPosD, textPalletID;
+    @FXML TextField textProDesc, textProQuantity, textMinStoreTemp, textMaxStoreTemp, textPalPosW, textPalPosD, textPalletID, textPalletSearch;
 
 
     /////////////////////////////////////////////////////////////////
@@ -401,38 +401,71 @@ public class Controller {
         // Temporary node used to loop through current pallet list.
         Node<Pallet> temp = getShelf().palletList.head;
         // int value of current index in loop.
-        int i=1;
+        int i=0;
         // Loop through until the id's match.
         while (temp!=null) {
             if(temp.getContents().getPalletID().equals(palletID)) {
                 // Once ID's match, leave loop.
                 break;
+
             }
             // If ID's don't match, go onto next node and increase index by 1.
             temp=temp.next;
             i++;
         }
 
-        // Removes chosen pallet.
         getShelf().palletList.removeNode(i);
-        // Message displaying successful deletion.
         textDisplayArea.setText("Pallet Successfully Deleted!" +"\n");
+
     }
+
+
+    /////////////////////////////////////////////////////////////////
+    ///////////////////////   Search Pallet   ///////////////////////
+    /////////////////////////////////////////////////////////////////
+
+    // Couldn't get working.
+
+
+//    public Pallet searchPallet() {
+//        String sought = textPalletSearch.getText();
+//
+//        Node<Floor> tempFloor = Main.floorList.head;
+//        Node<Aisle> tempAisle = tempFloor.getContents().aisleList.head;
+//        Node<Shelf> tempShelf = tempAisle.getContents().shelfList.head;
+//        Node<Pallet> tempPallet = tempShelf.getContents().palletList.head;
+//
+//        Pallet soughtP = tempPallet.getContents();
+//        try {
+//            while(tempFloor!=null) {
+//                while(tempAisle!=null) {
+//                    while(tempShelf!=null) {
+//                        while (tempPallet != null) {
+//                            if(tempPallet.getContents().getProductDescription().equalsIgnoreCase(sought)) {
+//                                soughtP = tempPallet.getContents();
+//                                break;
+//                            }
+//                            tempPallet=tempPallet.next;
+//                        }
+//                        tempShelf=tempShelf.next;
+//                    }
+//                    tempAisle=tempAisle.next;
+//                }
+//                tempFloor=tempFloor.next;
+//            }
+//        } catch (Exception e) {
+//            textDisplayArea.setText("Pallet not found. Try again."+"\n");
+//            soughtP=null;
+//        }
+//
+//        return soughtP;
+//
+//    }
 
 
     /////////////////////////////////////////////////////////////////
     ///////////////////////   View  Methods   ///////////////////////
     /////////////////////////////////////////////////////////////////
-
-    /**
-     * Lists all contents of all lists.
-     */
-    public void viewAll() {
-        Node<Floor> tempFloor = Main.floorList.head;
-
-        textDisplayArea.setText(Main.floorList.listElements());
-
-    }
 
     /**
      * Prints the list of floors.
