@@ -67,16 +67,6 @@
                                                 <Insets top="5.0" />
                                              </VBox.margin>
                                           </Label>
-                                          <Label prefHeight="17.0" prefWidth="208.0" text="Floor Number">
-                                             <VBox.margin>
-                                                <Insets left="7.0" />
-                                             </VBox.margin>
-                                          </Label>
-                                          <TextField fx:id="textFNum">
-                                             <VBox.margin>
-                                                <Insets left="5.0" right="5.0" />
-                                             </VBox.margin>
-                                          </TextField>
                                           <Label prefHeight="17.0" prefWidth="208.0" text="Security Level">
                                              <VBox.margin>
                                                 <Insets left="7.0" />
@@ -105,17 +95,14 @@
                                                 <Insets left="5.0" right="5.0" />
                                              </VBox.margin>
                                           </TextField>
-                                       </children>
-                                    </VBox>
-                                    <VBox prefHeight="196.0" prefWidth="519.0">
-                                       <children>
-                                          <Button mnemonicParsing="false" onAction="#addFloor" prefHeight="186.0" prefWidth="41.0" text="ADD">
+                                          <Button mnemonicParsing="false" onAction="#addFloor" prefHeight="25.0" prefWidth="368.0" text="ADD">
                                              <VBox.margin>
-                                                <Insets bottom="27.0" left="5.0" top="42.0" />
+                                                <Insets bottom="27.0" left="5.0" right="5.0" top="5.0" />
                                              </VBox.margin>
                                           </Button>
                                        </children>
                                     </VBox>
+                                    <VBox prefHeight="196.0" prefWidth="519.0" />
                                  </children>
                               </HBox>
                            </children>
@@ -158,17 +145,14 @@
                                                 <Insets left="5.0" right="5.0" />
                                              </VBox.margin>
                                           </TextField>
-                                       </children>
-                                    </VBox>
-                                    <HBox fx:id="t" prefHeight="195.0" prefWidth="431.0">
-                                       <children>
-                                          <Button mnemonicParsing="false" onAction="#addAisle" prefHeight="67.0" prefWidth="41.0" text="ADD">
-                                             <HBox.margin>
-                                                <Insets bottom="85.0" left="5.0" top="43.0" />
-                                             </HBox.margin>
+                                          <Button mnemonicParsing="false" onAction="#addAisle" prefHeight="25.0" prefWidth="643.0" text="ADD">
+                                             <VBox.margin>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                             </VBox.margin>
                                           </Button>
                                        </children>
-                                    </HBox>
+                                    </VBox>
+                                    <HBox fx:id="t" prefHeight="195.0" prefWidth="431.0" />
                                  </children>
                               </HBox>
                            </children>
@@ -195,9 +179,9 @@
                                                             <Insets top="5.0" />
                                                          </VBox.margin>
                                                       </Label>
-                                                      <Button mnemonicParsing="false" onAction="#addShelf" prefHeight="25.0" prefWidth="274.0" text="ADD">
+                                                      <Button mnemonicParsing="false" onAction="#addShelf" prefHeight="25.0" prefWidth="284.0" text="ADD">
                                                          <VBox.margin>
-                                                            <Insets left="30.0" right="30.0" top="5.0" />
+                                                            <Insets left="5.0" right="5.0" top="5.0" />
                                                          </VBox.margin>
                                                       </Button>
                                                    </children>
@@ -529,7 +513,7 @@
                         </VBox>
                         <VBox prefHeight="59.0" prefWidth="363.0">
                            <children>
-                              <Button mnemonicParsing="false" onAction="#quit" prefHeight="25.0" prefWidth="200.0" text="QUIT" textAlignment="CENTER">
+                              <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#quit" prefHeight="25.0" prefWidth="200.0" text="QUIT" textAlignment="CENTER">
                                  <VBox.margin>
                                     <Insets bottom="10.0" left="10.0" right="10.0" top="12.0" />
                                  </VBox.margin>

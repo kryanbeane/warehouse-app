@@ -23,9 +23,11 @@ public class Controller {
     // All pallet-related text fields.
     @FXML TextField textProDesc, textProQuantity, textMinStoreTemp, textMaxStoreTemp, textPalPosW, textPalPosD, textPalletID;
 
+
     /////////////////////////////////////////////////////////////////
     ///////////////////////   Generate ID's   ///////////////////////
     /////////////////////////////////////////////////////////////////
+
     /**
      * Generates an ID to assign to a newly created shelf using the aisle ID, a dash: '-' and a random letter (eg. 4-G).
      * @return - Randomly generated shelf ID.
@@ -62,14 +64,22 @@ public class Controller {
      * @return - Randomly generated aisle ID.
      */
     public String genAisleID() {
-        Random random = new Random();
         Floor floorFound = getFloor();
-        // Makes the int part a number between 1 and 10
+        Node<Aisle> temp = floorFound.aisleList.head;
         int integerPart = floorFound.getFloorNumber();
-        int stringIndex = random.nextInt(26);
+        int stringIndex;
         String alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+
+        if(temp!=null) {
+            // Return the size of the list + 1, so the next available floor number.
+            stringIndex = floorFound.aisleList.length();
+        } else {
+            // Otherwise if the list is empty, give the new floor the first number.
+            stringIndex = 0;
+        }
         char charPart = alpha.charAt(stringIndex);
-        return integerPart + String.valueOf(charPart);
+        return integerPart+String.valueOf(charPart);
     }
 
     /**
@@ -84,6 +94,21 @@ public class Controller {
         return firstPart + intPart;
     }
 
+    /**
+     * Generates an unused floor number to assign to a newly created floor.
+     * @return - Next un-used floor number.
+     */
+    public int genFloorNum() {
+        // If the floor list isn't empty:
+        if(Main.floorList.head!=null) {
+            // Return the size of the list + 1, so the next available floor number.
+            return Main.floorList.length()+1;
+        } else {
+            // Otherwise if the list is empty, give the new floor the first number.
+            return 1;
+        }
+    }
+
     /////////////////////////////////////////////////////////////////
     ///////////////////////   Floor Methods   ///////////////////////
     /////////////////////////////////////////////////////////////////
@@ -92,17 +117,21 @@ public class Controller {
      * Add Floor to floorList in Main
      */
     public void addFloor()  {
-        // Adds new floor to the list using user entered values in text fields
-        Main.floorList.addElement(new Floor(Integer.parseInt(textFNum.getText()), textSecLvl.getText(), Double.parseDouble(textFTemp.getText())));
-        // Displays the updated floor list in the text area
-        textDisplayArea.setText(Main.floorList.printList());
+        String secLevel = textSecLvl.getText();
+        Double fTemp = Double.parseDouble(textFTemp.getText());
 
-        System.out.println(Main.floorList.listElements());
+        if(secLevel.equalsIgnoreCase("high") || secLevel.equalsIgnoreCase("medium") || secLevel.equalsIgnoreCase("low")) {
+            // Adds new floor to the list using user entered values in text fields
+            Main.floorList.addElement(new Floor(genFloorNum(), secLevel, fTemp));
+            // Displays the updated floor list in the text area
+            textDisplayArea.setText(Main.floorList.printList());
 
-        // Clears text fields in GUI to make it easier to add multiple floors
-        textFNum.clear();
-        textSecLvl.clear();
-        textFTemp.clear();
+            // Clears text fields in GUI to make it easier to add multiple floors
+            textSecLvl.clear();
+            textFTemp.clear();
+        } else {
+            textDisplayArea.appendText("Security Level must be either High, Medium or Low. Try again!");
+        }
     }
 
     /**
@@ -119,7 +148,7 @@ public class Controller {
             while (tempFloor != null) {
                 // If user specified floor number = number of currently accessed floor, set that as selected floor
                 if (tempFloor.getContents().getFloorNumber() == floorNumber) {
-                    textDisplayArea.setText("Floor " + floorNumber + " successfully selected." + "\n");
+                    textDisplayArea.appendText("Floor " + floorNumber + " successfully selected." + "\n");
                     textCurrentFloor.setText(tempFloor.getContents().toString2());
                     return tempFloor.getContents();
                 }
@@ -132,10 +161,10 @@ public class Controller {
         }
         // Catch if no value is entered into the box, displays error to enter a floor
         catch(Exception e) {
-            textDisplayArea.appendText("Please enter a floor to select." +"\n");
             return null;
         }
     }
+
 
     /////////////////////////////////////////////////////////////////
     ///////////////////////   Aisle Methods   ///////////////////////
@@ -150,12 +179,24 @@ public class Controller {
         Floor floorFound = getFloor();
 
         if (floorFound != null) {
-            floorFound.aisleList.addElement(new Aisle(genAisleID(), aisleW, aisleD));
-            textDisplayArea.setText("Aisles in Floor " + floorFound.getFloorNumber() + ": " + "\n" + "\n" + floorFound.aisleList.printList() + "\n");
-            textAisleW.clear();
-            textAisleD.clear();
+            if (floorFound.aisleList.length() < 11) {
+                if (aisleW < 21 && aisleW > 0) {
+                    if (aisleD < 6 && aisleD > 0) {
+                        floorFound.aisleList.addElement(new Aisle(genAisleID(), aisleW, aisleD));
+                        textDisplayArea.setText("Aisles in Floor " + floorFound.getFloorNumber() + ": " + "\n" + "\n" + floorFound.aisleList.printList() + "\n");
+                        textAisleW.clear();
+                        textAisleD.clear();
+                    } else {
+                        textDisplayArea.appendText("Aisle depth must be between 1 and 20. Try again." + "\n");
+                    }
+                } else {
+                    textDisplayArea.appendText("Aisle width must be between 1 and 5. Try again." + "\n");
+                }
+            } else {
+                textDisplayArea.appendText("Maximum number of aisles reached!" + "\n");
+            }
         } else {
-            System.out.println("Floor not found. Aisle not added."+"\n");
+            textDisplayArea.appendText("Floor not found. Aisle not added."+"\n");
         }
     }
 
@@ -189,6 +230,7 @@ public class Controller {
             return null;
         }
     }
+
 
     /////////////////////////////////////////////////////////////////
     ///////////////////////   Shelf Methods   ///////////////////////
@@ -228,6 +270,7 @@ public class Controller {
         return null;
     }
 
+
     /////////////////////////////////////////////////////////////////
     ///////////////////////  Pallet Methods  ////////////////////////
     /////////////////////////////////////////////////////////////////
@@ -244,9 +287,17 @@ public class Controller {
         int palPosD = Integer.parseInt(textPalPosD.getText());
         Shelf shelfFound = getShelf();
 
-        shelfFound.palletList.addElement(new Pallet(genPalletID(), proDesc, proQuantity, minStoreTemp, maxStoreTemp, palPosW, palPosD));
-        textDisplayArea.setText(getShelf().palletList.printList());
-
+        if (shelfFound!= null) {
+            if(proQuantity>0 && proQuantity<101) {
+                shelfFound.palletList.addElement(new Pallet(genPalletID(), proDesc, proQuantity, minStoreTemp, maxStoreTemp, palPosW, palPosD));
+                textDisplayArea.setText(shelfFound.palletList.printList());
+            } else {
+                textDisplayArea.appendText("Invalid Product Quantity. Enter a quality between 0 and 100!");
+            }
+        } else {
+            textDisplayArea.appendText("Shelf not found. Pallet not added."+"\n");
+        }
+        // Clears text fields to make adding another pallet easy.
         textProDesc.clear();
         textProQuantity.clear();
         textMinStoreTemp.clear();
@@ -262,6 +313,7 @@ public class Controller {
         int palletID = Integer.parseInt(textPalletID.getText());
         getShelf().palletList.removeNode(palletID);
     }
+
 
     /////////////////////////////////////////////////////////////////
     ///////////////////////   View  Methods   ///////////////////////
@@ -316,11 +368,10 @@ public class Controller {
 //        }
     }
 
+
     /////////////////////////////////////////////////////////////////
     ////////////////////   Save Load and Reset   ////////////////////
     /////////////////////////////////////////////////////////////////
-
-
 
     /**
      * Saves objects as text in xml document
@@ -353,6 +404,7 @@ public class Controller {
         Main.floorList.emptyList();
         textDisplayArea.setText("System has been reset."+"\n");
     }
+
 
     /////////////////////////////////////////////////////////////////
     ///////////////////////////   Exit   ////////////////////////////
