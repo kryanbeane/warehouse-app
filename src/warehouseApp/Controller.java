@@ -430,7 +430,7 @@ public class Controller {
     public void viewAll() {
         Node<Floor> tempFloor = Main.floorList.head;
 
-
+        textDisplayArea.setText(Main.floorList.listElements());
 
     }
 
