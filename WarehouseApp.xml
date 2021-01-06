@@ -1,240 +1,72 @@
 <object-stream>
   <warehouseApp.MyList>
     <head>
-      <next>
-        <next>
-          <next>
-            <next>
-              <previous reference="../.."/>
-              <contents class="warehouseApp.Floor">
-                <floorNumber>1</floorNumber>
-                <securityLevel>HIGH</securityLevel>
-                <floorTemperature>21.0</floorTemperature>
-                <aisleList>
-                  <head>
-                    <next>
-                      <next>
+      <contents class="warehouseApp.Floor">
+        <floorNumber>1</floorNumber>
+        <securityLevel>HIGH</securityLevel>
+        <floorTemperature>25.0</floorTemperature>
+        <aisleList>
+          <head>
+            <contents class="warehouseApp.Aisle">
+              <aisleIdentifier>1A</aisleIdentifier>
+              <aisleWidth>12</aisleWidth>
+              <aisleDepth>4</aisleDepth>
+              <shelfList>
+                <head>
+                  <contents class="warehouseApp.Shelf">
+                    <shelfNumber>1A-A</shelfNumber>
+                    <palletList>
+                      <head>
                         <next>
+                          <next>
+                            <previous reference="../.."/>
+                            <contents class="warehouseApp.Pallet">
+                              <palletID>1A-A1</palletID>
+                              <productDescription>Bertie</productDescription>
+                              <productQuantity>25</productQuantity>
+                              <minimumStoreTemperature>1.0</minimumStoreTemperature>
+                              <maximumStoreTemperature>1.0</maximumStoreTemperature>
+                              <palletPositionWidth>1</palletPositionWidth>
+                              <palletPositionDepth>1</palletPositionDepth>
+                            </contents>
+                          </next>
                           <previous reference="../.."/>
-                          <contents class="warehouseApp.Aisle">
-                            <aisleIdentifier>1A</aisleIdentifier>
-                            <aisleWidth>12</aisleWidth>
-                            <aisleDepth>4</aisleDepth>
-                            <shelfList>
-                              <numberOfContents>0</numberOfContents>
-                            </shelfList>
+                          <contents class="warehouseApp.Pallet">
+                            <palletID>1A-A2</palletID>
+                            <productDescription>Peter</productDescription>
+                            <productQuantity>12</productQuantity>
+                            <minimumStoreTemperature>2.0</minimumStoreTemperature>
+                            <maximumStoreTemperature>2.0</maximumStoreTemperature>
+                            <palletPositionWidth>2</palletPositionWidth>
+                            <palletPositionDepth>2</palletPositionDepth>
                           </contents>
                         </next>
-                        <previous reference="../.."/>
-                        <contents class="warehouseApp.Aisle">
-                          <aisleIdentifier>1B</aisleIdentifier>
-                          <aisleWidth>15</aisleWidth>
-                          <aisleDepth>3</aisleDepth>
-                          <shelfList>
-                            <numberOfContents>0</numberOfContents>
-                          </shelfList>
+                        <contents class="warehouseApp.Pallet">
+                          <palletID>1A-A3</palletID>
+                          <productDescription>Susan</productDescription>
+                          <productQuantity>12</productQuantity>
+                          <minimumStoreTemperature>4.0</minimumStoreTemperature>
+                          <maximumStoreTemperature>4.0</maximumStoreTemperature>
+                          <palletPositionWidth>4</palletPositionWidth>
+                          <palletPositionDepth>4</palletPositionDepth>
                         </contents>
-                      </next>
-                      <previous reference="../.."/>
-                      <contents class="warehouseApp.Aisle">
-                        <aisleIdentifier>1C</aisleIdentifier>
-                        <aisleWidth>11</aisleWidth>
-                        <aisleDepth>4</aisleDepth>
-                        <shelfList>
-                          <head>
-                            <next>
-                              <next>
-                                <next>
-                                  <previous reference="../.."/>
-                                  <contents class="warehouseApp.Shelf">
-                                    <shelfNumber>1C-A</shelfNumber>
-                                    <palletList>
-                                      <numberOfContents>0</numberOfContents>
-                                    </palletList>
-                                  </contents>
-                                </next>
-                                <previous reference="../.."/>
-                                <contents class="warehouseApp.Shelf">
-                                  <shelfNumber>1C-B</shelfNumber>
-                                  <palletList>
-                                    <numberOfContents>0</numberOfContents>
-                                  </palletList>
-                                </contents>
-                              </next>
-                              <previous reference="../.."/>
-                              <contents class="warehouseApp.Shelf">
-                                <shelfNumber>1C-C</shelfNumber>
-                                <palletList>
-                                  <numberOfContents>0</numberOfContents>
-                                </palletList>
-                              </contents>
-                            </next>
-                            <contents class="warehouseApp.Shelf">
-                              <shelfNumber>1C-D</shelfNumber>
-                              <palletList>
-                                <numberOfContents>0</numberOfContents>
-                              </palletList>
-                            </contents>
-                          </head>
-                          <tail reference="../head/next/next/next"/>
-                          <numberOfContents>4</numberOfContents>
-                        </shelfList>
-                      </contents>
-                    </next>
-                    <contents class="warehouseApp.Aisle">
-                      <aisleIdentifier>1D</aisleIdentifier>
-                      <aisleWidth>16</aisleWidth>
-                      <aisleDepth>5</aisleDepth>
-                      <shelfList>
-                        <numberOfContents>0</numberOfContents>
-                      </shelfList>
-                    </contents>
-                  </head>
-                  <tail reference="../head/next/next/next"/>
-                  <numberOfContents>4</numberOfContents>
-                </aisleList>
-              </contents>
-            </next>
-            <previous reference="../.."/>
-            <contents class="warehouseApp.Floor">
-              <floorNumber>2</floorNumber>
-              <securityLevel>LOW</securityLevel>
-              <floorTemperature>0.0</floorTemperature>
-              <aisleList>
-                <head>
-                  <next>
-                    <next>
-                      <previous reference="../.."/>
-                      <contents class="warehouseApp.Aisle">
-                        <aisleIdentifier>2A</aisleIdentifier>
-                        <aisleWidth>12</aisleWidth>
-                        <aisleDepth>4</aisleDepth>
-                        <shelfList>
-                          <head>
-                            <next>
-                              <next>
-                                <next>
-                                  <next>
-                                    <previous reference="../.."/>
-                                    <contents class="warehouseApp.Shelf">
-                                      <shelfNumber>2A-A</shelfNumber>
-                                      <palletList>
-                                        <numberOfContents>0</numberOfContents>
-                                      </palletList>
-                                    </contents>
-                                  </next>
-                                  <previous reference="../.."/>
-                                  <contents class="warehouseApp.Shelf">
-                                    <shelfNumber>2A-B</shelfNumber>
-                                    <palletList>
-                                      <numberOfContents>0</numberOfContents>
-                                    </palletList>
-                                  </contents>
-                                </next>
-                                <previous reference="../.."/>
-                                <contents class="warehouseApp.Shelf">
-                                  <shelfNumber>2A-C</shelfNumber>
-                                  <palletList>
-                                    <numberOfContents>0</numberOfContents>
-                                  </palletList>
-                                </contents>
-                              </next>
-                              <previous reference="../.."/>
-                              <contents class="warehouseApp.Shelf">
-                                <shelfNumber>2A-D</shelfNumber>
-                                <palletList>
-                                  <numberOfContents>0</numberOfContents>
-                                </palletList>
-                              </contents>
-                            </next>
-                            <contents class="warehouseApp.Shelf">
-                              <shelfNumber>2A-E</shelfNumber>
-                              <palletList>
-                                <numberOfContents>0</numberOfContents>
-                              </palletList>
-                            </contents>
-                          </head>
-                          <tail reference="../head/next/next/next/next"/>
-                          <numberOfContents>5</numberOfContents>
-                        </shelfList>
-                      </contents>
-                    </next>
-                    <previous reference="../.."/>
-                    <contents class="warehouseApp.Aisle">
-                      <aisleIdentifier>2B</aisleIdentifier>
-                      <aisleWidth>10</aisleWidth>
-                      <aisleDepth>5</aisleDepth>
-                      <shelfList>
-                        <numberOfContents>0</numberOfContents>
-                      </shelfList>
-                    </contents>
-                  </next>
-                  <contents class="warehouseApp.Aisle">
-                    <aisleIdentifier>2C</aisleIdentifier>
-                    <aisleWidth>11</aisleWidth>
-                    <aisleDepth>3</aisleDepth>
-                    <shelfList>
-                      <numberOfContents>0</numberOfContents>
-                    </shelfList>
+                      </head>
+                      <tail reference="../head/next/next"/>
+                      <numberOfContents>3</numberOfContents>
+                    </palletList>
                   </contents>
                 </head>
-                <tail reference="../head/next/next"/>
-                <numberOfContents>3</numberOfContents>
-              </aisleList>
+                <tail reference="../head"/>
+                <numberOfContents>1</numberOfContents>
+              </shelfList>
             </contents>
-          </next>
-          <previous reference="../.."/>
-          <contents class="warehouseApp.Floor">
-            <floorNumber>3</floorNumber>
-            <securityLevel>MEDIUM</securityLevel>
-            <floorTemperature>35.0</floorTemperature>
-            <aisleList>
-              <numberOfContents>0</numberOfContents>
-            </aisleList>
-          </contents>
-        </next>
-        <previous reference="../.."/>
-        <contents class="warehouseApp.Floor">
-          <floorNumber>4</floorNumber>
-          <securityLevel>LOW</securityLevel>
-          <floorTemperature>21.0</floorTemperature>
-          <aisleList>
-            <head>
-              <next>
-                <previous reference="../.."/>
-                <contents class="warehouseApp.Aisle">
-                  <aisleIdentifier>4A</aisleIdentifier>
-                  <aisleWidth>12</aisleWidth>
-                  <aisleDepth>4</aisleDepth>
-                  <shelfList>
-                    <numberOfContents>0</numberOfContents>
-                  </shelfList>
-                </contents>
-              </next>
-              <contents class="warehouseApp.Aisle">
-                <aisleIdentifier>4B</aisleIdentifier>
-                <aisleWidth>10</aisleWidth>
-                <aisleDepth>4</aisleDepth>
-                <shelfList>
-                  <numberOfContents>0</numberOfContents>
-                </shelfList>
-              </contents>
-            </head>
-            <tail reference="../head/next"/>
-            <numberOfContents>2</numberOfContents>
-          </aisleList>
-        </contents>
-      </next>
-      <contents class="warehouseApp.Floor">
-        <floorNumber>5</floorNumber>
-        <securityLevel>LOW</securityLevel>
-        <floorTemperature>12.0</floorTemperature>
-        <aisleList>
-          <numberOfContents>0</numberOfContents>
+          </head>
+          <tail reference="../head"/>
+          <numberOfContents>1</numberOfContents>
         </aisleList>
       </contents>
     </head>
-    <tail reference="../head/next/next/next/next"/>
-    <numberOfContents>5</numberOfContents>
+    <tail reference="../head"/>
+    <numberOfContents>1</numberOfContents>
   </warehouseApp.MyList>
 </object-stream>

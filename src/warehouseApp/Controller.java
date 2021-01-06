@@ -17,7 +17,7 @@ public class Controller {
     // Area to display all lists and nodes.
     @FXML TextArea textDisplayArea;
     // All floor-related text fields.
-    @FXML TextField textFNum, textSecLvl, textFTemp, textGetFloor, textCurrentFloor;
+    @FXML TextField textSecLvl, textFTemp, textGetFloor, textCurrentFloor;
     // All aisle-related text fields.
     @FXML TextField textAisleW, textAisleD, textGetAisle, textCurrentAisle;
     // All shelf-related text fields.
@@ -122,10 +122,10 @@ public class Controller {
         // If the current aisle isn't null:
         if(temp!=null) {
             // Set the string part to the size of the aisle list.
-            stringIndex = shelfFound.palletList.length();
+            stringIndex = shelfFound.palletList.length()+1;
         } else {
             // Otherwise if the list is empty set the string part to the first letter in stringIndex.
-            stringIndex = 0;
+            stringIndex = 1;
         }
         // Returns new unique ID.
         return firstPart+stringIndex;
@@ -367,6 +367,13 @@ public class Controller {
                         shelfFound.palletList.addElement(new Pallet(genPalletID(), proDesc, proQuantity, minStoreTemp, maxStoreTemp, palPosW, palPosD));
                         // Display the pallet to the text area.
                         textDisplayArea.setText(shelfFound.palletList.printList());
+                        // Clears text fields to make adding another pallet easy.
+                        textProDesc.clear();
+                        textProQuantity.clear();
+                        textMinStoreTemp.clear();
+                        textMaxStoreTemp.clear();
+                        textPalPosW.clear();
+                        textPalPosD.clear();
                     } else {
                         // Error if quantity over 100 is entered.
                         textDisplayArea.appendText("Invalid Product Quantity. Enter a quality between 0 and 100!"+"\n");
@@ -383,42 +390,48 @@ public class Controller {
             // Error if entered depth is higher than current aisle's depth.
             textDisplayArea.appendText("This aisle's max depth is " + aisleFound.getAisleDepth() +"\n");
         }
-        // Clears text fields to make adding another pallet easy.
-        textProDesc.clear();
-        textProQuantity.clear();
-        textMinStoreTemp.clear();
-        textMaxStoreTemp.clear();
-        textPalPosW.clear();
-        textPalPosD.clear();
+
     }
 
     /**
      * Deletes pallet from selected shelf.
      */
     public void deletePallet() {
-        // Field assigned to pallet ID to delete entered by user.
-        String palletID = textPalletID.getText();
-        // Temporary node used to loop through current pallet list.
-        Node<Pallet> temp = getShelf().palletList.head;
-        // int value of current index in loop.
-        int i=0;
-        // Loop through until the id's match.
-        while (temp!=null) {
-            if(temp.getContents().getPalletID().equals(palletID)) {
-                // Once ID's match, leave loop.
-                break;
+        try {
+            String palletID = textPalletID.getText();
+            Node<Pallet> temp = getShelf().palletList.head;
 
+            for (int i = 0; i<getShelf().palletList.length(); i++) {
+                if (temp.getContents().getPalletID().equals(palletID)) {
+                    getShelf().palletList.removeNode(i);
+                    textDisplayArea.setText("Pallet Successfully Deleted!" + "\n");
+
+                }
+                temp=temp.next;
             }
-            // If ID's don't match, go onto next node and increase index by 1.
-            temp=temp.next;
-            i++;
+        } catch(Exception e) {
+                textDisplayArea.setText("Pallet Deletion Unsuccessful, Try Again!" + "\n");
         }
-
-        getShelf().palletList.removeNode(i);
-        textDisplayArea.setText("Pallet Successfully Deleted!" +"\n");
-
     }
 
+
+    public void searchForPallet() {
+        String searchFor = textPalletSearch.getText();
+
+        for (Floor tempFloor : Main.floorList) {
+            for (Aisle tempAisle : tempFloor.aisleList) {
+                for (Shelf tempShelf : tempAisle.shelfList) {
+                    for (Pallet tempPallet : tempShelf.palletList) {
+
+                        if (tempPallet.getProductDescription().equalsIgnoreCase(searchFor)) {
+                            textDisplayArea.setText("Pallet Found:" + "\n" + "\n" + tempPallet.toString() + "\n" );
+                            return;
+                        }
+                    }
+                }
+            }
+        }
+    }
 
     /////////////////////////////////////////////////////////////////
     ///////////////////////   Search Pallet   ///////////////////////

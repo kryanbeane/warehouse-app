@@ -6,7 +6,9 @@ public class listIterator<K> implements Iterator<K> {
 
     private Node<K> pos;
 
-    public listIterator(Node<K> node){pos=node;}
+    public listIterator(Node<K> node){
+        pos=node;
+    }
 
     /**
      * Returns a boolean response to whether there is a node in the next slot or not.

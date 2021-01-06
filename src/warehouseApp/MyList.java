@@ -80,25 +80,25 @@ public class MyList<F> implements Iterable<F> {
      * Removes node at a chosen index.
      * @param index - Index of node to delete.
      */
-    public void removeNode(int index){
+    public void removeNode(int index) {
         // If the list is not empty.
-        if (head!=null){
+        if(head!=null) {
             // Create a temporary node.
             Node<F> temp;
             // If the head is to be deleted
-            if (index == 0){
+            if(index == 0) {
                 // If the list contains only a head.
-                if(head.next==null){
+                if(head.next==null) {
                     // Delete it.
                     head=tail=null;
-                }else{
+                } else {
                     head=head.next;
                 }
                 // Decrease number of contents as one node is now removed.
                 numberOfContents--;
             }
             // Otherwise if the index > 0 and less than the length of the list:
-            else if (index > 0 && index <numberOfContents){
+            else if (index > 0 && index <numberOfContents) {
                 // Set the temp node to head
                 temp=head;
                 // Loop through until temp is the node before the index
