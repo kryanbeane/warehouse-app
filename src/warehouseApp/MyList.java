@@ -6,10 +6,10 @@ public class MyList<F> implements Iterable<F> {
     public Node<F> head=null, tail=null;
     private int numberOfContents = 0;
 
-    /**
-     * Adds node to a list.
-     * @param e - User specified element to add.
-     */
+   /**
+    * Adds node to a list.
+    * @param e - User specified element to add.
+    */
     public void addElement(F e) {
         // Creates a new node.
         Node<F> newNode = new Node<>();
@@ -21,19 +21,15 @@ public class MyList<F> implements Iterable<F> {
             // Both head and tail are the newNode.
             head = tail = newNode;
             // Sets previous and next values both to null.
-            head.previous = null;
-            tail.next = null;
+            head.next = null;
+            tail.previous = null;
         }
         // If the head isn't null:
         else {
-            // newNode is now the head's previous.
-            head.previous=newNode;
-            // The next after newNode is current head node, linking the two nodes.
-            newNode.next = head;
-            // We can now move the head to newNode.
-            head=newNode;
-            // The one before head is null, as it is the head of the list.
-            head.previous=null;
+            tail.next=newNode;
+            newNode.previous=tail;
+            tail=newNode;
+            tail.next=null;
         }
         // Adds one to the number of contents as one new node now exists
         numberOfContents++;
@@ -45,7 +41,7 @@ public class MyList<F> implements Iterable<F> {
      */
     public String printList() {
         // Creates a temporary currentNode and sets it to tail.
-        Node<F> currentNode = tail;
+        Node<F> currentNode = head;
         // Creates an empty string.
         String fullList ="";
 
@@ -54,7 +50,7 @@ public class MyList<F> implements Iterable<F> {
             // Prints the data at current node.
             fullList += currentNode.getContents() + "\n";
             // Goes to next node.
-            currentNode = currentNode.previous;
+            currentNode = currentNode.next;
         }
         // Returns the fullList string once the currentNode = null.
         return fullList;
@@ -97,6 +93,7 @@ public class MyList<F> implements Iterable<F> {
                 // Decrease number of contents as one node is now removed.
                 numberOfContents--;
             }
+
             // Otherwise if the index > 0 and less than the length of the list:
             else if (index > 0 && index <numberOfContents) {
                 // Set the temp node to head
@@ -110,7 +107,7 @@ public class MyList<F> implements Iterable<F> {
                 // Decrease number of contents as one node is now removed.
                 numberOfContents--;
             }
-            else System.out.println("Invalid Index");
+            else System.out.println("Invalid Index.");
         }
         else System.out.println("Empty list entered.");
     }

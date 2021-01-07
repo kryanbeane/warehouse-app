@@ -4,13 +4,11 @@ import com.thoughtworks.xstream.io.xml.DomDriver;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-
-import javax.swing.text.html.HTMLEditorKit;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.Random;
+
 
 public class Controller {
 
@@ -399,21 +397,18 @@ public class Controller {
     public void deletePallet() {
         try {
             String palletID = textPalletID.getText();
-            Node<Pallet> temp = getShelf().palletList.head;
+            MyList<Pallet> palList = getShelf().palletList;
 
-            for (int i = 0; i<getShelf().palletList.length(); i++) {
-                if (temp.getContents().getPalletID().equals(palletID)) {
-                    getShelf().palletList.removeNode(i);
+            for (int i = 0; i < palList.length(); i++) {
+                if (palList.accessAtIndex(i).getContents().getPalletID().equals(palletID)) {
+                    palList.removeNode(i);
                     textDisplayArea.setText("Pallet Successfully Deleted!" + "\n");
-
                 }
-                temp=temp.next;
             }
-        } catch(Exception e) {
-                textDisplayArea.setText("Pallet Deletion Unsuccessful, Try Again!" + "\n");
+        } catch (Exception e) {
+            textDisplayArea.setText("Pallet Deletion Unsuccessful, Try Again!" + "\n");
         }
     }
-
 
     public void searchForPallet() {
         String searchFor = textPalletSearch.getText();
