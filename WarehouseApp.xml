@@ -3,8 +3,8 @@
     <head>
       <contents class="warehouseApp.Floor">
         <floorNumber>1</floorNumber>
-        <securityLevel>LOW</securityLevel>
-        <floorTemperature>25.0</floorTemperature>
+        <securityLevel>HIGH</securityLevel>
+        <floorTemperature>20.0</floorTemperature>
         <aisleList>
           <head>
             <contents class="warehouseApp.Aisle">
@@ -16,43 +16,7 @@
                   <contents class="warehouseApp.Shelf">
                     <shelfNumber>1A-A</shelfNumber>
                     <palletList>
-                      <head>
-                        <next>
-                          <next>
-                            <previous reference="../.."/>
-                            <contents class="warehouseApp.Pallet">
-                              <palletID>1A-A1</palletID>
-                              <productDescription>awd</productDescription>
-                              <productQuantity>1</productQuantity>
-                              <minimumStoreTemperature>1.0</minimumStoreTemperature>
-                              <maximumStoreTemperature>1.0</maximumStoreTemperature>
-                              <palletPositionWidth>1</palletPositionWidth>
-                              <palletPositionDepth>1</palletPositionDepth>
-                            </contents>
-                          </next>
-                          <previous reference="../.."/>
-                          <contents class="warehouseApp.Pallet">
-                            <palletID>1A-A2</palletID>
-                            <productDescription>awd</productDescription>
-                            <productQuantity>1</productQuantity>
-                            <minimumStoreTemperature>1.0</minimumStoreTemperature>
-                            <maximumStoreTemperature>1.0</maximumStoreTemperature>
-                            <palletPositionWidth>1</palletPositionWidth>
-                            <palletPositionDepth>1</palletPositionDepth>
-                          </contents>
-                        </next>
-                        <contents class="warehouseApp.Pallet">
-                          <palletID>1A-A3</palletID>
-                          <productDescription>awd</productDescription>
-                          <productQuantity>1</productQuantity>
-                          <minimumStoreTemperature>1.0</minimumStoreTemperature>
-                          <maximumStoreTemperature>1.0</maximumStoreTemperature>
-                          <palletPositionWidth>1</palletPositionWidth>
-                          <palletPositionDepth>1</palletPositionDepth>
-                        </contents>
-                      </head>
-                      <tail reference="../head/next/next"/>
-                      <numberOfContents>3</numberOfContents>
+                      <numberOfContents>0</numberOfContents>
                     </palletList>
                   </contents>
                 </head>

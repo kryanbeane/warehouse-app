@@ -8,20 +8,105 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import static java.lang.Math.abs;
 
 
 public class Controller {
 
     // Area to display all lists and nodes.
-    @FXML TextArea textDisplayArea;
+    @FXML
+    TextArea textDisplayArea;
     // All floor-related text fields.
-    @FXML TextField textSecLvl, textFTemp, textGetFloor, textCurrentFloor;
+    @FXML
+    TextField textSecLvl, textFTemp, textGetFloor, textCurrentFloor;
     // All aisle-related text fields.
-    @FXML TextField textAisleW, textAisleD, textGetAisle, textCurrentAisle;
+    @FXML
+    TextField textAisleW, textAisleD, textGetAisle, textCurrentAisle;
     // All shelf-related text fields.
-    @FXML TextField textCurrentShelf, textGetShelf;
+    @FXML
+    TextField textCurrentShelf, textGetShelf;
     // All pallet-related text fields.
-    @FXML TextField textProDesc, textProQuantity, textMinStoreTemp, textMaxStoreTemp, textPalPosW, textPalPosD, textPalletID, textPalletSearch;
+    @FXML
+    TextField textProDesc, textProQuantity, textMinStoreTemp, textMaxStoreTemp, textPalPosW, textPalPosD, textPalletID, textPalletSearch;
+    // All smart add-related text fields.
+    @FXML
+    TextField textSmartDescription, textSmartQuantity, textSmartMinTemp, textSmartMaxTemp, textSmartSecurity;
+
+    /////////////////////////////////////////////////////////////////
+    ////////////////////////   Smart Add   //////////////////////////
+    /////////////////////////////////////////////////////////////////
+
+
+    public void smartAdd() {
+
+        String smartDescription = textSmartDescription.getText();
+        int smartQuantity = Integer.parseInt(textSmartQuantity.getText());
+        double smartTempMin = Double.parseDouble(textSmartMinTemp.getText());
+        double smartTempMax = Double.parseDouble(textSmartMaxTemp.getText());
+        String smartSecurity;
+        int palletWidth;
+        int palletDepth;
+
+        if (textSmartSecurity.getText().equalsIgnoreCase("high") || textSmartSecurity.getText().equalsIgnoreCase("medium") || textSmartSecurity.getText().equalsIgnoreCase("low")) {
+            smartSecurity = textSmartSecurity.getText();
+        } else {
+            textDisplayArea.setText("Please Enter High, Medium or Low" + "\n");
+            smartSecurity = null;
+        }
+
+        if (Main.floorList.isEmpty()) {
+            textDisplayArea.setText("There are no Floors in the system." + "\n");
+
+        } else {
+
+            for (Floor floor : Main.floorList) {
+                if (floor.getSecurityLevel().equalsIgnoreCase(smartSecurity)) {
+                    if (floor.getFloorTemperature() <= smartTempMax && floor.getFloorTemperature() >= smartTempMin) {
+                        if (!floor.aisleList.isEmpty()) {
+
+                            for (Aisle aisle : floor.aisleList) {
+                                if (!aisle.shelfList.isEmpty()) {
+
+                                    for (Shelf shelf : aisle.shelfList) {
+                                        if (shelf.palletList.length() < aisle.getAisleWidth() * aisle.getAisleDepth()) {
+                                            if (shelf.palletList.isEmpty()) {
+                                                palletWidth = 1;
+                                                palletDepth = 1;
+                                            } else {
+                                                palletWidth = Math.abs(shelf.palletList.tail.getContents().getPalletPositionWidth() +1);
+                                                palletDepth = (shelf.palletList.tail.getContents().getPalletPositionDepth());
+                                            }
+
+                                            Pallet newPallet = new Pallet(genSmartPalletID(shelf), smartDescription, smartQuantity, smartTempMin, smartTempMax, palletWidth, palletDepth);
+                                            shelf.palletList.addElement(newPallet);
+                                            textDisplayArea.setText("Pallet Added to " + floor.toString2() + ", " + aisle.toString2() + ", " + " and to " + shelf.toString() + ":" + "\n" + "\n" + newPallet.toString());
+
+                                        } else {
+                                            textDisplayArea.setText("There is no space on that Shelf." + "\n");
+                                            return;
+                                        }
+                                    }
+                                } else {
+                                    textDisplayArea.setText("There are no Shelves in this Aisle." + "\n");
+                                    return;
+                                }
+                            }
+                        } else {
+                            textDisplayArea.setText("There are no Aisles in this Floor." + "\n");
+                            return;
+                        }
+                    } else {
+                        textDisplayArea.setText("No floor meets the temperature requirements" + "\n");
+                        return;
+                    }
+                } else {
+                    textDisplayArea.setText("There are no floors with a suitable security level." + "\n");
+                    return;
+                }
+            }
+        }
+    }
+
 
 
     /////////////////////////////////////////////////////////////////
@@ -105,6 +190,29 @@ public class Controller {
     }
 
     /**
+     * Generates an ID to assign to a newly created pallet with smart add using the shelf ID and a random number (eg. 4-G9)
+     * @return - Randomly generated pallet ID.
+     */
+    public String genSmartPalletID(Shelf shelfFound) {
+        // Sets temp to the head of the current aisle's shelf list.
+        Node<Pallet> temp = shelfFound.palletList.head;
+        // Sets the first part of the ID to the current shelf's ID.
+        String firstPart = shelfFound.getShelfNumber();
+        int stringIndex;
+
+        // If the current aisle isn't null:
+        if(temp!=null) {
+            // Set the string part to the size of the aisle list.
+            stringIndex = shelfFound.palletList.length()+1;
+        } else {
+            // Otherwise if the list is empty set the string part to the first letter in stringIndex.
+            stringIndex = 1;
+        }
+        // Returns new unique ID.
+        return firstPart+stringIndex;
+    }
+
+    /**
      * Generates an ID to assign to a newly created pallet using the shelf ID and a random number (eg. 4-G9)
      * @return - Randomly generated pallet ID.
      */
@@ -154,6 +262,7 @@ public class Controller {
         } else {
             // Error displayed if incorrectly formatted security level is entered.
             textDisplayArea.appendText("Security Level must be either High, Medium or Low. Try again!");
+            
         }
     }
 

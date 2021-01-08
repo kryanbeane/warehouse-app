@@ -139,31 +139,8 @@ public class MyList<F> implements Iterable<F> {
      * Empties a list of its contents.
      */
     public void emptyList() {
-        head=null;
-        tail=null;
+        head=tail=null;
         numberOfContents=0;
-    }
-
-    /**
-     * Lists all elements in a list.
-     * @return - String of list of elements.
-     */
-    public String listElements() {
-        // If list is empty, return an empty string.
-        if(head==null) {
-            return "";
-        } else {
-            // Set temporary node element to head of the list.
-            Node<F> element = head;
-
-            StringBuilder listOfElements= new StringBuilder(head.getContents().toString() + "\n");
-
-            while(element.next!=null) {
-                element=element.next;
-                listOfElements.append(element.getContents().toString()).append("\n");
-            }
-            return listOfElements.toString();
-        }
     }
 
     /**
