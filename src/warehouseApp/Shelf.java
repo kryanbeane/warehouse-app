@@ -40,6 +40,6 @@ public class Shelf {
      */
     @Override
     public String toString() {
-        return "Shelf " + shelfNumber;
+        return "Shelf " + shelfNumber +"\n";
     }
 }

@@ -584,6 +584,22 @@ public class Controller {
     ///////////////////////   View  Methods   ///////////////////////
     /////////////////////////////////////////////////////////////////
 
+    public void viewAll() {
+        textDisplayArea.clear();
+        for(Floor floor: Main.floorList) {
+            textDisplayArea.appendText(floor.toString()+"\n");
+            for (Aisle aisle : floor.aisleList) {
+                textDisplayArea.appendText( aisle.toString()+"\n");
+                for (Shelf shelf: aisle.shelfList) {
+                    textDisplayArea.appendText( shelf.toString()+"\n");
+                    for (Pallet pallet: shelf.palletList) {
+                        textDisplayArea.appendText( pallet.toString()+"\n");
+                    }
+                }
+            }
+        }
+    }
+
     /**
      * Prints the list of floors.
      */
