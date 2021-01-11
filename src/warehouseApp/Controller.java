@@ -36,7 +36,6 @@ public class Controller {
     ////////////////////////   Smart Add   //////////////////////////
     /////////////////////////////////////////////////////////////////
 
-
     public void smartAdd() {
 
         String smartDescription = textSmartDescription.getText();
@@ -73,40 +72,30 @@ public class Controller {
                                                 palletWidth = 1;
                                                 palletDepth = 1;
                                             } else {
-                                                palletWidth = Math.abs(shelf.palletList.tail.getContents().getPalletPositionWidth() +1);
+                                                palletWidth = Math.abs(shelf.palletList.tail.getContents().getPalletPositionWidth() + 1);
                                                 palletDepth = (shelf.palletList.tail.getContents().getPalletPositionDepth());
                                             }
 
                                             Pallet newPallet = new Pallet(genSmartPalletID(shelf), smartDescription, smartQuantity, smartTempMin, smartTempMax, palletWidth, palletDepth);
                                             shelf.palletList.addElement(newPallet);
-                                            textDisplayArea.setText("Pallet Added to " + floor.toString2() + ", " + aisle.toString2() + ", " + " and to " + shelf.toString() + ":" + "\n" + "\n" + newPallet.toString());
+                                            textDisplayArea.setText("Pallet Added to " + floor.toString2() + ", " + aisle.toString2() + ", " + " and to " + shelf.toString() + "\n" + "\n" + newPallet.toString());
+                                            textSmartSecurity.clear();
+                                            textSmartDescription.clear();
+                                            textSmartMaxTemp.clear();
+                                            textSmartMinTemp.clear();
+                                            textSmartQuantity.clear();
 
-                                        } else {
-                                            textDisplayArea.setText("There is no space on that Shelf." + "\n");
-                                            return;
+
                                         }
                                     }
-                                } else {
-                                    textDisplayArea.setText("There are no Shelves in this Aisle." + "\n");
-                                    return;
                                 }
                             }
-                        } else {
-                            textDisplayArea.setText("There are no Aisles in this Floor." + "\n");
-                            return;
                         }
-                    } else {
-                        textDisplayArea.setText("No floor meets the temperature requirements" + "\n");
-                        return;
                     }
-                } else {
-                    textDisplayArea.setText("There are no floors with a suitable security level." + "\n");
-                    return;
                 }
             }
         }
     }
-
 
 
     /////////////////////////////////////////////////////////////////
@@ -237,6 +226,16 @@ public class Controller {
         return firstPart+stringIndex;
     }
 
+    public void clearSelections() {
+        textGetFloor.clear();
+        textCurrentFloor.clear();
+        textGetAisle.clear();
+        textCurrentAisle.clear();
+        textGetShelf.clear();
+        textCurrentShelf.clear();
+        textDisplayArea.setText("Selections Cleared!" + "\n" + "\n");
+
+    }
 
     /////////////////////////////////////////////////////////////////
     ///////////////////////   Floor Methods   ///////////////////////
@@ -519,6 +518,9 @@ public class Controller {
         }
     }
 
+    /**
+     *  Searches for pallet from all pallets in all shelves in all aisles in all floors.
+     */
     public void searchForPallet() {
         String searchFor = textPalletSearch.getText();
 
@@ -536,48 +538,6 @@ public class Controller {
             }
         }
     }
-
-    /////////////////////////////////////////////////////////////////
-    ///////////////////////   Search Pallet   ///////////////////////
-    /////////////////////////////////////////////////////////////////
-
-    // Couldn't get working.
-
-
-//    public Pallet searchPallet() {
-//        String sought = textPalletSearch.getText();
-//
-//        Node<Floor> tempFloor = Main.floorList.head;
-//        Node<Aisle> tempAisle = tempFloor.getContents().aisleList.head;
-//        Node<Shelf> tempShelf = tempAisle.getContents().shelfList.head;
-//        Node<Pallet> tempPallet = tempShelf.getContents().palletList.head;
-//
-//        Pallet soughtP = tempPallet.getContents();
-//        try {
-//            while(tempFloor!=null) {
-//                while(tempAisle!=null) {
-//                    while(tempShelf!=null) {
-//                        while (tempPallet != null) {
-//                            if(tempPallet.getContents().getProductDescription().equalsIgnoreCase(sought)) {
-//                                soughtP = tempPallet.getContents();
-//                                break;
-//                            }
-//                            tempPallet=tempPallet.next;
-//                        }
-//                        tempShelf=tempShelf.next;
-//                    }
-//                    tempAisle=tempAisle.next;
-//                }
-//                tempFloor=tempFloor.next;
-//            }
-//        } catch (Exception e) {
-//            textDisplayArea.setText("Pallet not found. Try again."+"\n");
-//            soughtP=null;
-//        }
-//
-//        return soughtP;
-//
-//    }
 
 
     /////////////////////////////////////////////////////////////////

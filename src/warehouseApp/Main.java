@@ -18,7 +18,7 @@ public class Main extends Application {
         // Sets the title of the window
         primaryStage.setTitle("Warehouse Application");
         // Sets the size of the window
-        primaryStage.setScene(new Scene(root, 700, 741));
+        primaryStage.setScene(new Scene(root, 700, 752));
         // Makes the window non resizeable
         primaryStage.setResizable(false);
         // Displays window
