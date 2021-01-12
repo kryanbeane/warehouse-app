@@ -530,7 +530,8 @@ public class Controller {
                     for (Pallet tempPallet : tempShelf.palletList) {
 
                         if (tempPallet.getProductDescription().equalsIgnoreCase(searchFor)) {
-                            textDisplayArea.setText("Pallet Found:" + "\n" + "\n" + tempPallet.toString() + "\n" );
+                            textDisplayArea.setText("Pallet Found in " + tempFloor.toString2() + ", "+tempAisle.toString2() + ", " + tempShelf.toString() + "\n" + "\n" + tempPallet.toString() + "\n" );
+                            textPalletSearch.clear();
                             return;
                         }
                     }
@@ -551,7 +552,7 @@ public class Controller {
             for (Aisle aisle : floor.aisleList) {
                 textDisplayArea.appendText( aisle.toString()+"\n");
                 for (Shelf shelf: aisle.shelfList) {
-                    textDisplayArea.appendText( shelf.toString()+"\n");
+                    textDisplayArea.appendText( shelf.toString());
                     for (Pallet pallet: shelf.palletList) {
                         textDisplayArea.appendText( pallet.toString()+"\n");
                     }

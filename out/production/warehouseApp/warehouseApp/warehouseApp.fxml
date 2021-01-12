@@ -13,9 +13,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="741.00" minWidth="700.00" prefHeight="741.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="warehouseApp.Controller">
+<AnchorPane minHeight="752.0" minWidth="700.00" prefHeight="741.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="warehouseApp.Controller">
    <children>
-      <BorderPane prefHeight="741.0" prefWidth="700.0">
+      <BorderPane prefHeight="721.0" prefWidth="700.0">
          <top>
             <TabPane prefHeight="223.0" prefWidth="700.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
               <tabs>
@@ -441,12 +441,17 @@
             </TabPane>
          </top>
          <left>
-            <VBox pickOnBounds="false" prefHeight="466.0" prefWidth="170.0" BorderPane.alignment="CENTER">
+            <VBox pickOnBounds="false" prefHeight="493.0" prefWidth="170.0" BorderPane.alignment="CENTER">
                <children>
                   <HBox pickOnBounds="false" prefHeight="103.0" prefWidth="170.0">
                      <children>
                         <VBox prefHeight="77.0" prefWidth="170.0">
                            <children>
+                              <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#clearSelections" prefHeight="25.0" prefWidth="295.0" text="CLEAR SELECTIONS">
+                                 <VBox.margin>
+                                    <Insets left="25.0" right="25.0" />
+                                 </VBox.margin>
+                              </Button>
                               <Label alignment="CENTER" prefHeight="17.0" prefWidth="261.0" text="SELECT FLOOR">
                                  <VBox.margin>
                                     <Insets top="5.0" />
@@ -582,7 +587,7 @@
          <bottom>
             <VBox prefHeight="61.0" prefWidth="700.0" BorderPane.alignment="CENTER">
                <children>
-                  <HBox prefHeight="59.0" prefWidth="659.0">
+                  <HBox prefHeight="11.0" prefWidth="700.0">
                      <children>
                         <VBox fillWidth="false" prefHeight="59.0" prefWidth="316.0">
                            <children>

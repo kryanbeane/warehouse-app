@@ -11,7 +11,27 @@
                 <securityLevel>LOW</securityLevel>
                 <floorTemperature>5.0</floorTemperature>
                 <aisleList>
-                  <numberOfContents>0</numberOfContents>
+                  <head>
+                    <contents class="warehouseApp.Aisle">
+                      <aisleIdentifier>5A</aisleIdentifier>
+                      <aisleWidth>12</aisleWidth>
+                      <aisleDepth>4</aisleDepth>
+                      <shelfList>
+                        <head>
+                          <contents class="warehouseApp.Shelf">
+                            <shelfNumber>5A-A</shelfNumber>
+                            <palletList>
+                              <numberOfContents>0</numberOfContents>
+                            </palletList>
+                          </contents>
+                        </head>
+                        <tail reference="../head"/>
+                        <numberOfContents>1</numberOfContents>
+                      </shelfList>
+                    </contents>
+                  </head>
+                  <tail reference="../head"/>
+                  <numberOfContents>1</numberOfContents>
                 </aisleList>
               </contents>
             </next>
